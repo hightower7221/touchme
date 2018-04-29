@@ -141,6 +141,8 @@
     var diffvalue = Math.abs(value - base)
     var diffpecent = diffvalue / base
 
+    console.log('app.keygame.calculatestatus: ' + value + '#' + base + '#' + diffvalue + '#' + diffpecent);
+
     if (diffpecent > 0.4)  {app.displaystatus(0);}
     else if (diffpecent > 0.2) {app.displaystatus(0);}
     else { app.displaystatus(0);}
