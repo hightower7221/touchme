@@ -81,23 +81,23 @@
 
   document.addEventListener("keydown", function(e) {
       document.getElementById('buttouchme').style.backgroundColor = "red";
-      if (e.which in pressed) return;
-      pressed[e.which] = e.timeStamp;
+      if (e.which in app.pressed) return;
+      app.pressed[e.which] = e.timeStamp;
 
   });
 
   document.addEventListener("keyup", function(e) {
       document.getElementById('buttouchme').style.backgroundColor = "green";
-      if (!(e.which in pressed)) return;
+      if (!(e.which in app.pressed)) return;
 
-      var duration = ( e.timeStamp - pressed[e.which] );
-      if (!(e.which in totalTime)) totalTime[e.which] = 0;
-      totalTime[e.which] += duration;
+      var duration = ( e.timeStamp - app.pressed[e.which] );
+      if (!(e.which in totalTime)) app.totalTime[e.which] = 0;
+      app.totalTime[e.which] += duration;
       downtime.innerHTML +=
                  '<p>Key ' + e.which + ' was pressed for ' +
                  duration + ' ' +
-                 '(' + totalTime[e.which] + ' total)</p>';
-             delete pressed[e.which];
+                 '(' + app.totalTime[e.which] + ' total)</p>';
+             delete app.pressed[e.which];
 
 
   });
