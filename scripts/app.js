@@ -98,19 +98,41 @@
 
   });
 
-
-/* Timecalc https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
-
   document.addEventListener("keydown", function(e) {
+    app.keygame.handlekeytouchdown();
+  });
+
+  document.addEventListener("touchstart", function(e) {
+    app.keygame.handlekeytouchdown();
+  });
+
+  document.addEventListener("keyup", function(e) {
+    app.keygame.handlekeytouchup();
+  });
+
+  document.addEventListener("touchend", function(e) {
+    app.keygame.handlekeytouchup();
+  });
+
+  /*****************************************************************************
+  /* Game first Step */
+  /* https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
+  /* Timecalc https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
+  /******************************************************************************/
+
+  app.keygame.handlekeytouchdown = function	()
+  {
     if(app.keygame.gameon)
     {
       //document.getElementById('buttouchme').style.backgroundColor = "red";
       if (e.which in app.keygame.pressed) return;
       app.keygame.pressed[e.which] = e.timeStamp;
     }
-  });
 
-  document.addEventListener("keyup", function(e) {
+  }
+
+  app.keygame.handlekeytouchup = function	()
+  {
     if (app.keygame.gameon) {
       //document.getElementById('buttouchme').style.backgroundColor = "green";
       if (!(e.which in app.keygame.pressed)) return;
@@ -125,14 +147,10 @@
       app.keygame.calculatestatus(duration,500);
     }
 
+  }
 
 
-  });
 
-  /*****************************************************************************
-  /* Game first Step */
-  /* https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
-  /******************************************************************************/
 
   // calc status
   // 20% yellow
