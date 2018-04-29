@@ -16,6 +16,16 @@
 (function() {
   'use strict';
 
+
+  var game = {
+    gameon:false,
+    totalTime:{},
+    pressed:{},
+    totalTimeunpressed:{},
+    unpressed:{}
+  };
+
+
   var app = {
     isLoading: true,
     visibleCards: {},
@@ -26,9 +36,9 @@
     container: document.querySelector('.main'),
     addDialog: document.querySelector('.dialog-container'),
     daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    running:document.querySelector('running'),
     downtime:document.querySelector('downtime'),
-    totalTime:{},
-    pressed:{}
+    keygame: game;
   };
 
 
@@ -74,29 +84,43 @@
   document.getElementById('buttouchme').addEventListener('click', function() {
     // Start Action
     window.confirm("You want to be touched?");
+    if (app.keygame.gameon) {
+      app.keygame.gameon = false;
+      running.innerHTML = "0";
+    }
+    else {
+      app.keygame.gameon = true;
+      running.innerHTML = "1";
+    }
+
   });
 
 
 /* Timecalc https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
 
   document.addEventListener("keydown", function(e) {
+    if(app.keygame.gameon)
+    {
       document.getElementById('buttouchme').style.backgroundColor = "red";
-      if (e.which in app.pressed) return;
-      app.pressed[e.which] = e.timeStamp;
-
+      if (e.which in app.keygame.pressed) return;
+      app.keygame.pressed[e.which] = e.timeStamp;
+    }
   });
 
   document.addEventListener("keyup", function(e) {
+    if (app.keygame.gameon) {
       document.getElementById('buttouchme').style.backgroundColor = "green";
-      if (!(e.which in app.pressed)) return;
+      if (!(e.which in app.keygame.pressed)) return;
 
-      var duration = ( e.timeStamp - app.pressed[e.which] );
-      if (!(e.which in app.totalTime)) app.totalTime[e.which] = 0;
-      app.totalTime[e.which] += duration;
+      var duration = Math.round( e.timeStamp - app.keygame.pressed[e.which] );
+      if (!(e.which in app.keygame.totalTime)) app.keygame.totalTime[e.which] = 0;
+      app.keygame.totalTime[e.which] += duration;
       downtime.innerHTML =
                   duration + ' ' +
-                 '(' + app.totalTime[e.which] + ' total)';
-             delete app.pressed[e.which];
+                 '(' + app.keygame.totalTime[e.which] + ' total)';
+      delete app.keygame.pressed[e.which];
+    }
+
 
 
   });
