@@ -71,6 +71,21 @@
   });
 
 
+  document.addEventListener("keydown", app.handleKeyDownUp(0));
+  document.addEventListener("keyup", app.handleKeyDownUp(1));
+
+  app.handleKeyDownUp = function(KeyDownOrUp) {
+    if(KeyDownOrUp==0)
+    {
+      document.getElementById('buttouchme').style.backgroundColor = "red";
+    }
+    else {
+      document.getElementById('buttouchme').style.backgroundColor = "green";
+    }
+  }
+
+
+
 
   /*****************************************************************************
    *
