@@ -29,6 +29,9 @@
   };
 
 
+
+
+
   /*****************************************************************************
    *
    * Event listeners for UI elements
@@ -71,18 +74,14 @@
   });
 
 
-  document.addEventListener("keydown", app.handleKeyDownUp(0));
-  document.addEventListener("keyup", app.handleKeyDownUp(1));
-
-  app.handleKeyDownUp = function(KeyDownOrUp) {
-    if(KeyDownOrUp==0)
-    {
+  document.addEventListener("keydown", function() {
       document.getElementById('buttouchme').style.backgroundColor = "red";
-    }
-    else {
+  });
+  
+  document.addEventListener("keyup", function() {
       document.getElementById('buttouchme').style.backgroundColor = "green";
-    }
-  }
+  });
+
 
 
 
