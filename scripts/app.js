@@ -28,7 +28,7 @@
     daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     downtime = document.getElementById('downtime'),
     totalTime = {},
-    pressed = {};
+    pressed = {}
   };
 
 
@@ -76,6 +76,8 @@
     window.confirm("You want to be touched?");
   });
 
+
+/* Timecalc https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
 
   document.addEventListener("keydown", function(e) {
       document.getElementById('buttouchme').style.backgroundColor = "red";
