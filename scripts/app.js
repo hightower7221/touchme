@@ -131,7 +131,7 @@
 
   }
 
-  app.keygame.handlekeytouchup = function	()
+  app.keygame.handlekeytouchup = function	(e)
   {
     if (app.keygame.gameon) {
       //document.getElementById('buttouchme').style.backgroundColor = "green";
