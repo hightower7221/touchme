@@ -25,7 +25,10 @@
     cardTemplate: document.querySelector('.cardTemplate'),
     container: document.querySelector('.main'),
     addDialog: document.querySelector('.dialog-container'),
-    daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    downtime = document.getElementById('downtime'),
+    totalTime = {},
+    pressed = {};
   };
 
 
@@ -74,13 +77,34 @@
   });
 
 
-  document.addEventListener("keydown", function() {
+  document.addEventListener("keydown", function(e) {
       document.getElementById('buttouchme').style.backgroundColor = "red";
+      if (e.which in pressed) return;
+      pressed[e.which] = e.timeStamp;
+
   });
 
-  document.addEventListener("keyup", function() {
+  document.addEventListener("keyup", function(e) {
       document.getElementById('buttouchme').style.backgroundColor = "green";
+      if (!(e.which in pressed)) return;
+
+      var duration = ( e.timeStamp - pressed[e.which] );
+      if (!(e.which in totalTime)) totalTime[e.which] = 0;
+      totalTime[e.which] += duration;
+      downtime.innerHTML +=
+                 '<p>Key ' + e.which + ' was pressed for ' +
+                 duration + ' ' +
+                 '(' + totalTime[e.which] + ' total)</p>';
+             delete pressed[e.which];
+
+
   });
+
+  /*****************************************************************************
+  /* GAme first Step */
+  /* https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
+  /*****************************************************************************
+
 
 
 
