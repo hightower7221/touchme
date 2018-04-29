@@ -338,7 +338,7 @@
 
   // TODO add startup code here
  //  app.selectedCities = localStorage.selectedCities;
-  app.toggleLoader();
+//  app.toggleLoader();
   /*
   if (app.selectedCities) {
     app.selectedCities = JSON.parse(app.selectedCities);
