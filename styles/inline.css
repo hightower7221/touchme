@@ -324,9 +324,12 @@ body {
       .hal9000 {
           background-image: url("/touchme/images/hal9000.svg");
           background-repeat: no-repeat;
-          background-size: contain; 
-          width: 96px;
-          height: 96px;
+          background-size: contain;
+          width: 50%;
+          height: 50%;
+          left: 50%;
+          top: 50%;
+          position: fixed;
       }
 
 .weather-forecast .icon {
