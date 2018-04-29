@@ -36,6 +36,7 @@
     container: document.querySelector('.main'),
     addDialog: document.querySelector('.dialog-container'),
     daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    statusColors:['green', 'yellow', 'red'],
     running:document.querySelector('running'),
     downtime:document.querySelector('downtime'),
     keygame: game
@@ -83,14 +84,16 @@
 
   document.getElementById('buttouchme').addEventListener('click', function() {
     // Start Action
-    window.confirm("You want to be touched?");
+    //window.confirm("You want to be touched?");
     if (app.keygame.gameon) {
       app.keygame.gameon = false;
       running.innerHTML = "0";
+      app.displaystatus(3);
     }
     else {
       app.keygame.gameon = true;
       running.innerHTML = "1";
+      app.displaystatus(0);
     }
 
   });
@@ -101,7 +104,7 @@
   document.addEventListener("keydown", function(e) {
     if(app.keygame.gameon)
     {
-      document.getElementById('buttouchme').style.backgroundColor = "red";
+      //document.getElementById('buttouchme').style.backgroundColor = "red";
       if (e.which in app.keygame.pressed) return;
       app.keygame.pressed[e.which] = e.timeStamp;
     }
@@ -109,7 +112,7 @@
 
   document.addEventListener("keyup", function(e) {
     if (app.keygame.gameon) {
-      document.getElementById('buttouchme').style.backgroundColor = "green";
+      //document.getElementById('buttouchme').style.backgroundColor = "green";
       if (!(e.which in app.keygame.pressed)) return;
 
       var duration = Math.round( e.timeStamp - app.keygame.pressed[e.which] );
@@ -119,6 +122,7 @@
                   duration + ' ' +
                  '(' + app.keygame.totalTime[e.which] + ' total)';
       delete app.keygame.pressed[e.which];
+      app.keygame.calculatestatus(duration,500);
     }
 
 
@@ -126,11 +130,44 @@
   });
 
   /*****************************************************************************
-  /* GAme first Step */
+  /* Game first Step */
   /* https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
-  /*****************************************************************************
+  /******************************************************************************/
 
-// start timer
+  // calc status
+  // 20% yellow
+  // 40% red
+  app.keygame.calculatestatus = function(value,base) {
+    var diffvalue = Math.abs(value - base)
+    var diffpecent = diffvalue / base
+
+    if (diffpecent > 0.4)  {app.displaystatus(0);}
+    else if (diffpecent > 0.2) {app.displaystatus(0);}
+    else { app.displaystatus(0);}
+  }
+
+
+
+  // display status
+
+    app.displaystatus = function(value) {
+    var statuscolor = "";
+
+    switch(value) {
+      case 0:
+         statuscolor = "green";
+         break;
+     case 1:
+         statuscolor = "yellow";
+         break;
+     case 2:
+         statuscolor = "red";
+         break;
+     default:
+         statuscolor = "grey";
+    }
+    document.getElementById('buttouchme').style.backgroundColor = statuscolor;
+  }
 
 
 
