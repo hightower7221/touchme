@@ -93,10 +93,9 @@
       var duration = ( e.timeStamp - app.pressed[e.which] );
       if (!(e.which in app.totalTime)) app.totalTime[e.which] = 0;
       app.totalTime[e.which] += duration;
-      downtime.innerHTML +=
-                 '<p>Key ' + e.which + ' was pressed for ' +
-                 duration + ' ' +
-                 '(' + app.totalTime[e.which] + ' total)</p>';
+      downtime.innerHTML =
+                  duration + ' ' +
+                 '(' + app.totalTime[e.which] + ' total)';
              delete app.pressed[e.which];
 
 
