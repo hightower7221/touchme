@@ -38,7 +38,7 @@
     daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     running:document.querySelector('running'),
     downtime:document.querySelector('downtime'),
-    keygame: game;
+    keygame: game
   };
 
 
