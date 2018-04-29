@@ -99,19 +99,19 @@
   });
 
   document.addEventListener("keydown", function(e) {
-    app.keygame.handlekeytouchdown();
+    app.keygame.handlekeytouchdown(e);
   });
 
   document.addEventListener("touchstart", function(e) {
-    app.keygame.handlekeytouchdown();
+    app.keygame.handlekeytouchdown(e);
   });
 
   document.addEventListener("keyup", function(e) {
-    app.keygame.handlekeytouchup();
+    app.keygame.handlekeytouchup(e);
   });
 
   document.addEventListener("touchend", function(e) {
-    app.keygame.handlekeytouchup();
+    app.keygame.handlekeytouchup(e);
   });
 
   /*****************************************************************************
@@ -120,7 +120,7 @@
   /* Timecalc https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
   /******************************************************************************/
 
-  app.keygame.handlekeytouchdown = function	()
+  app.keygame.handlekeytouchdown = function	(e)
   {
     if(app.keygame.gameon)
     {
