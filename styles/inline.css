@@ -113,9 +113,7 @@ body {
   .header #butAdd {
     background: url(/touchme/images/ic_add_white_24px.svg) center center no-repeat; }
 
-    .hal9000 {
-        background-image: url("/touchme/images/hal9000.svg"); 
-    }
+
 
 .header__title {
   font-weight: 400;
@@ -323,7 +321,13 @@ body {
     .weather-forecast .future .oneday .temp-low {
       color: #888; }
 
-
+      .hal9000 {
+          background-image: url("/touchme/images/hal9000.svg");
+          background-repeat: no-repeat;
+          background-size: contain; 
+          width: 96px;
+          height: 96px;
+      }
 
 .weather-forecast .icon {
   background-repeat: no-repeat;
