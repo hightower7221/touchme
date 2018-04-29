@@ -143,8 +143,8 @@
 
     console.log('app.keygame.calculatestatus: ' + value + '#' + base + '#' + diffvalue + '#' + diffpecent);
 
-    if (diffpecent > 0.4)  {app.displaystatus(0);}
-    else if (diffpecent > 0.2) {app.displaystatus(0);}
+    if (diffpecent > 0.4)  {app.displaystatus(2);}
+    else if (diffpecent > 0.2) {app.displaystatus(1);}
     else { app.displaystatus(0);}
   }
 
