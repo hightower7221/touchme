@@ -319,6 +319,10 @@ body {
     .weather-forecast .future .oneday .temp-low {
       color: #888; }
 
+      .hal9000 {
+          background-image: url("/touchme/images/hal9000.svg"); }
+      }
+
 .weather-forecast .icon {
   background-repeat: no-repeat;
   background-size: contain; }
