@@ -47,19 +47,23 @@
   </header>
 
   <main class="main">
-    <div class="card">
+    <div class="card cardTemplate weather-forecast">
+      <!--
       <div class="weather-forecast hal9000">
 
       </div>
-      <div class="weather-forecast touchme">
+    -->
+      <div class="touchme">
         <button id="buttouchme" class="touchmeButton" aria-label="Touch Me">Touch Me</button>
       </div>
+      <div class="touchme">
+        <span class="scale">Uptime</span><span class="value">1</span>
+      </div>
+      <div class="touchme">
+        <span class="scale">Downtime</span><span class="value">1</span>
+      </div>
+
     </div>
-
-
-
-
-
 
     <div class="card cardTemplate weather-forecast" hidden>
       <div class="city-key" hidden></div>
@@ -183,7 +187,7 @@
     </div>
   </div>
 
-  <div class="loader">
+  <div class="loader" hidden>
     <svg viewBox="0 0 32 32" width="32" height="32">
       <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
     </svg>
