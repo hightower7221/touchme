@@ -81,6 +81,14 @@
     }
   };
 
+  app.toggleLoader = function() {
+    if (app.isLoading) {
+      app.spinner.setAttribute('hidden', true);
+      app.container.removeAttribute('hidden');
+      app.isLoading = false;
+    }
+  };
+
   // Updates a weather card with the latest weather forecast. If the card
   // doesn't already exist, it's cloned from the template.
   app.updateForecastCard = function(data) {
@@ -143,12 +151,10 @@
           Math.round(daily.low);
       }
     }
-    if (app.isLoading) {
-      app.spinner.setAttribute('hidden', true);
-      app.container.removeAttribute('hidden');
-      app.isLoading = false;
-    }
+    app.toggleLoader();
   };
+
+
 
 
   /*****************************************************************************
@@ -344,6 +350,7 @@
 
   // TODO add startup code here
   app.selectedCities = localStorage.selectedCities;
+  app.toggleLoader();
   /*
   if (app.selectedCities) {
     app.selectedCities = JSON.parse(app.selectedCities);
