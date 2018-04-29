@@ -320,7 +320,7 @@ body {
       color: #888; }
 
       .hal9000 {
-          background-image: url("/touchme/images/hal9000.svg"); }
+          background: url(/touchme/images/hal9000.svg) center center no-repeat; }
       }
 
 .weather-forecast .icon {
