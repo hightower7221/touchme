@@ -27,8 +27,8 @@
     addDialog: document.querySelector('.dialog-container'),
     daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     downtime:document.querySelector('downtime'),
-    totalTime = {},
-    pressed = {}
+    totalTime:{},
+    pressed:{}
   };
 
 
