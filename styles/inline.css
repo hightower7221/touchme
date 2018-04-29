@@ -114,7 +114,7 @@ body {
     background: url(/touchme/images/ic_add_white_24px.svg) center center no-repeat; }
 
     .hal9000 {
-        background: url(/touchme/images/hal9000.svg) center center no-repeat; 
+        background-image: url("/touchme/images/hal9000.svg"); 
     }
 
 .header__title {
