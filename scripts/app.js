@@ -65,6 +65,12 @@
     app.toggleAddDialog(false);
   });
 
+  document.getElementById('buttouchme').addEventListener('click', function() {
+    // Start Action
+    window.confirm("You want to be touched?");
+  });
+
+
 
   /*****************************************************************************
    *

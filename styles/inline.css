@@ -113,7 +113,9 @@ body {
   .header #butAdd {
     background: url(/touchme/images/ic_add_white_24px.svg) center center no-repeat; }
 
-
+  .touchmeButton{
+    background: url(/touchme/images/ic_add_white_24px.svg) center center no-repeat; }
+  }
 
 .header__title {
   font-weight: 400;
@@ -325,7 +327,8 @@ body {
           background-image: url("/touchme/images/hal9000.svg");
           background-repeat: no-repeat;
           background-size: contain;
-          width: 50%;
+          width: 250px;
+          height: 250px;
           left: 50%;
           top: 50%;
           position: fixed;
