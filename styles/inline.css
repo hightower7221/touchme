@@ -335,6 +335,8 @@ body {
           height: 250px;
       }
 
+      .downtime{ color: #333333}
+
 .weather-forecast .icon {
   background-repeat: no-repeat;
   background-size: contain; }
@@ -372,7 +374,7 @@ body {
   .weather-forecast .future .oneday .icon {
     width: 32px;
     height: 32px; } }
-    
+
 
 .mdl-button {
   background: transparent;

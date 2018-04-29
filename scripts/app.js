@@ -26,7 +26,7 @@
     container: document.querySelector('.main'),
     addDialog: document.querySelector('.dialog-container'),
     daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    downtime = document.getElementById('downtime'),
+    downtime:document.querySelector('downtime'),
     totalTime = {},
     pressed = {}
   };
@@ -106,6 +106,8 @@
   /* GAme first Step */
   /* https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
   /*****************************************************************************
+
+// start timer
 
 
 
