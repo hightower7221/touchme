@@ -116,10 +116,16 @@ body {
     }
 
      .touchme {float: left;
-       margin: 16px;
+       width: 200px;
+       height: 64px;
+       margin-left: auto;
+       margin-right: auto;
      }
      .touchmeend {clear: left;
-            margin: 16px;}
+       width: 200px;
+       height: 64px;
+       margin-left: auto;
+       margin-right: auto;}
 
 
 .header__title {
