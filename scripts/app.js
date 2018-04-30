@@ -43,8 +43,8 @@
     statusColors:['green', 'yellow', 'red'],
     running:document.querySelector('running'),
     downtime:document.querySelector('downtime'),
-    keygame: game
-    keygame.gameondisplay:running;
+    keygame: game,
+    keygame.gameondisplay:running
   };
 
 
