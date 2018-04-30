@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-* {
-  box-sizing: border-box; }
 
 html, body {
   padding: 0;
@@ -113,14 +111,15 @@ body {
   .header #butAdd {
     background: url(/touchme/images/ic_add_white_24px.svg) center center no-repeat; }
 
-  .touchmeButton{
-
+  .touchmeButton {
       font-size: 20px;
+    }
 
+     .touchme {float: left;
+       padding: 24px;
      }
-
-     .touchme {float: left;}
-     .touchmeend {clear: left;}
+     .touchmeend {clear: left;
+            padding: 24px;}
 
 
 .header__title {
