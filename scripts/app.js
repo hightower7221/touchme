@@ -92,20 +92,10 @@
 
     if (app.keygame.gameon) {
       app.keygame.stopgame();
-      /*
-      running.innerHTML = "0";
-      */
       app.displaystatus(3);
     }
     else {
-
       app.keygame.startgame();
-      /*9
-      app.keygame.gameon = true;
-      running.innerHTML = "1";
-      app.displaystatus(0);
-      app.keygame.gametimeout = setTimeout(app.keygame.stopgame,app.keygame. gameontime);
-      */
     }
 
   });
@@ -140,7 +130,6 @@
       if (e.which in app.keygame.pressed) return;
       app.keygame.pressed[e.which] = e.timeStamp;
     }
-
   }
 
   app.keygame.handlekeytouchup = function	(e)
@@ -174,10 +163,24 @@
     app.keygame.gameon = false;
     running.innerHTML = "stopped";
 
+/*
+    for (index = 0; index < a.length; ++index) {
+        console.log(a[index]);
+    }
+*/
 
+var tTime = app.keygame.totalTime;
+
+for (index = 0; index < tTime.length; ++index) {
+  downtimeall +=tTime[index];
+}
+
+
+/*
     app.keygame.totalTime.forEach(function	(item, index){
       downtimeall +=item;
     });
+*/
 
     uptimeall = app.keygame.gameontime - downtimeall;
 
