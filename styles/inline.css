@@ -335,7 +335,7 @@ body {
           height: 250px;
       }
 
-      .downtime .running{ color: #333333}
+      .downtime .running .uptime{ color: #333333}
 
 .weather-forecast .icon {
   background-repeat: no-repeat;
