@@ -41,13 +41,12 @@
     addDialog: document.querySelector('.dialog-container'),
     daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     statusColors:['green', 'yellow', 'red'],
-    running:document.querySelector('running'),
     downtime:document.querySelector('downtime'),
     keygame: game
   };
 
 
-
+///running:document.querySelector('running'),
 
 
   /*****************************************************************************
