@@ -170,7 +170,7 @@
 */
 
 var tTime = app.keygame.totalTime;
-
+var index = 0;
 for (index = 0; index < tTime.length; ++index) {
   downtimeall +=tTime[index];
 }
