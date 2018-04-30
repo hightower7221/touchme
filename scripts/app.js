@@ -164,13 +164,13 @@
 
   app.keygame.startgame = function	(){
     app.keygame.gameon = true;
-    keygame.gameondisplay.innerHTML = "running";
+    app.keygame.gameondisplay.innerHTML = "running";
     app.keygame.gametimeout = setTimeout(app.keygame.stopgame,app.keygame. gameontime);
   }
 
   app.keygame.stopgame = function	(){
     app.keygame.gameon = false;
-    keygame.gameondisplay.innerHTML = "stopped";
+    app.keygame.gameondisplay.innerHTML = "stopped";
     clearTimeout(app.keygame.gametimeout);
   }
 
