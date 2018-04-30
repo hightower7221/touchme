@@ -162,47 +162,21 @@
     var uptimeall = 0;
     app.keygame.gameon = false;
     running.innerHTML = "stopped";
+    clearTimeout(app.keygame.gametimeout);
 
-/*
-    for (index = 0; index < a.length; ++index) {
-        console.log(a[index]);
+    var tTime = app.keygame.totalTime;
+    var index;
+
+    for (index in tTime){
+      downtimeall += tTime[index];
     }
-*/
-
-console.log(app.keygame.totalTime);
-
-var tTime = app.keygame.totalTime;
-var index;
-
-for (index in tTime){
-  downtimeall += tTime[index];
-}
-
-/*
-    app.keygame.totalTime.forEach(function	(item, index){
-      downtimeall +=item;
-    });
-*/
 
     uptimeall = app.keygame.gameontime - downtimeall;
 
     uptime.innerHTML = uptimeall;
     downtime.innerHTML = downtimeall;
-/*
-    <button onclick="numbers.forEach(myFunction)">Try it</button>
-<p id="demo"></p>
 
-<script>
-demoP = document.getElementById("demo");
-var numbers = [4, 9, 16, 25];
 
-function myFunction(item, index) {
-    demoP.innerHTML = demoP.innerHTML + "index[" + index + "]: " + item + "<br>";
-}
-
-*/
-
-    clearTimeout(app.keygame.gametimeout);
   }
 
 
