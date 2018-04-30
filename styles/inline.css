@@ -116,10 +116,10 @@ body {
     }
 
      .touchme {float: left;
-       padding: 24px;
+       margin: 16px;
      }
      .touchmeend {clear: left;
-            padding: 24px;}
+            margin: 16px;}
 
 
 .header__title {
