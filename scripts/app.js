@@ -19,7 +19,7 @@
 
   var game = {
     gameon:false,
-    gameondisplay:null,
+    gameondisplay:document.querySelector('running'),
     gameontime:60000,
     gametimeout:null,
     totalTime:{},
@@ -43,8 +43,7 @@
     statusColors:['green', 'yellow', 'red'],
     running:document.querySelector('running'),
     downtime:document.querySelector('downtime'),
-    keygame: game,
-    keygame.gameondisplay:running
+    keygame: game
   };
 
 
