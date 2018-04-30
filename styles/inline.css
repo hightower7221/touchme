@@ -119,6 +119,9 @@ body {
 
      }
 
+     .touchme {float: left;}
+     .touchmeend {clear: left;}
+
 
 .header__title {
   font-weight: 400;
