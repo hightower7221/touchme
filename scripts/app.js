@@ -19,10 +19,14 @@
 
   var game = {
     gameon:false,
+    gameondisplay:null,
+    gameontime:60000,
+    gametimeout:null,
     totalTime:{},
     pressed:{},
     totalTimeunpressed:{},
-    unpressed:{}
+    unpressed:{},
+    pressednum:0
   };
 
 
@@ -40,6 +44,7 @@
     running:document.querySelector('running'),
     downtime:document.querySelector('downtime'),
     keygame: game
+    keygame.gameondisplay:running;
   };
 
 
@@ -85,15 +90,23 @@
   document.getElementById('buttouchme').addEventListener('click', function() {
     // Start Action
     //window.confirm("You want to be touched?");
+
     if (app.keygame.gameon) {
-      app.keygame.gameon = false;
+      app.keygame.stopgame();
+      /*
       running.innerHTML = "0";
+      */
       app.displaystatus(3);
     }
     else {
+
+      app.keygame.startgame();
+      /*9
       app.keygame.gameon = true;
       running.innerHTML = "1";
       app.displaystatus(0);
+      app.keygame.gametimeout = setTimeout(app.keygame.stopgame,app.keygame. gameontime);
+      */
     }
 
   });
@@ -150,6 +163,17 @@
   }
 
 
+  app.keygame.startgame = function	(){
+    app.keygame.gameon = true;
+    keygame.gameondisplay.innerHTML = "running";
+    app.keygame.gametimeout = setTimeout(app.keygame.stopgame,app.keygame. gameontime);
+  }
+
+  app.keygame.stopgame = function	(){
+    app.keygame.gameon = false;
+    keygame.gameondisplay.innerHTML = "stopped";
+    clearTimeout(app.keygame.gametimeout);
+  }
 
 
   // calc status
