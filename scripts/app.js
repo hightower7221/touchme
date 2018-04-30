@@ -172,11 +172,11 @@
 console.log(app.keygame.totalTime);
 
 var tTime = app.keygame.totalTime;
-var index = 0;
-for (index = 0; index < tTime.length; ++index) {
-  downtimeall +=tTime[index];
-}
+var index;
 
+for (index in tTime){
+  downtimeall += tTime[index];
+}
 
 /*
     app.keygame.totalTime.forEach(function	(item, index){
