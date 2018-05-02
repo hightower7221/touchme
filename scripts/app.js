@@ -58,7 +58,15 @@
 
   document.getElementById('butRefresh').addEventListener('click', function() {
     // Refresh all of the forecasts
-    app.updateForecasts();
+    //app.updateForecasts();
+
+    fp = new Fingerprint2().get(function(result, components) {
+      console.log(result) // a hash, representing your device fingerprint
+      console.log(components) // an array of FP components
+    })
+
+
+
   });
 
   document.getElementById('butAdd').addEventListener('click', function() {
