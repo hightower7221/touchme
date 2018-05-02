@@ -57,8 +57,9 @@
    ****************************************************************************/
 
   document.getElementById('butRefresh').addEventListener('click', function() {
-    // Refresh all of the forecasts
-    app.updateForecasts();
+    app.handleFingerprint();
+
+
   });
 
   document.getElementById('butAdd').addEventListener('click', function() {
@@ -218,7 +219,59 @@
   }
 
 
+  /*****************************************************************************
+   *
+   * Start Methods
+   *
+   ****************************************************************************/
 
+   app.handleFingerprint = function(){
+     var fp = new Fingerprint2().get(function(result, components) {
+       console.log(result); // a hash, representing your device fingerprint
+       console.log(components); // an array of FP components
+
+
+     // write cookie
+     // result = eb38049251e01578d09f6e2a9d10e197
+
+     // send home
+     // result = eb38049251e01578d09f6e2a9d10e197
+     // components =
+     //  for (var index in components) {
+     //      var obj = components[index];
+     //      var value = obj.value;
+
+     var http = new XMLHttpRequest();
+     var url = "http://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+     var params = "t=0&fp=" + result + "&fpd=";
+console.log(params);
+     for (var index in components) {
+           var obj = components[index];
+           var value = obj.value;
+           var key = obj.key;
+           params = params + key + "=" + value + "##"
+           console.log(key + ": " + params);
+     }
+
+
+     http.open("POST", url, true);
+console.log("1");
+     //Send the proper header information along with the request
+     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+console.log("2");
+     http.onreadystatechange = function() {//Call a function when the state changes.
+         if(http.readyState == 4 && http.status == 200) {
+             alert(http.responseText);
+         }
+     }
+     console.log("3");
+     http.send(params);
+     console.log("4");
+
+
+ })
+
+   }
 
 
 
