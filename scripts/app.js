@@ -229,7 +229,7 @@
      var fp = new Fingerprint2().get(function(result, components) {
        console.log(result) // a hash, representing your device fingerprint
        console.log(components) // an array of FP components
-     })
+
 
      // write cookie
      // result = eb38049251e01578d09f6e2a9d10e197
@@ -252,7 +252,7 @@
            params = params + key + "=" + value + "##"
      }
 
-     
+
      http.open("POST", url, true);
 
      //Send the proper header information along with the request
@@ -266,7 +266,7 @@
      http.send(params);
 
 
-
+ })
 
    }
 
