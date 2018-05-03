@@ -242,7 +242,7 @@
      //      var value = obj.value;
 
      var http = new XMLHttpRequest();
-     var url = "http://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+     var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
      var params = "t=0&fp=" + result + "&fpd=";
 console.log(params);
      for (var index in components) {
