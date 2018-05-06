@@ -242,7 +242,15 @@
      //      var value = obj.value;
 
      //var http = new XMLHttpRequest();
+
      var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+
+
+
+
+
+
+
      var params = "t=0&fp=" + result + "&fpd=";
      app.debug(params);
      app.user = result;
@@ -265,6 +273,11 @@
 
 
      }
+
+
+     app.com(url,0,params,app.setusercookie());
+
+/*
      app.debug("params: " + params);
      url = url + "?" + encodeURI(params);
      app.debug("url: " + url);
@@ -293,14 +306,91 @@
 
      http.send();
 
-
+*/
 
  })
 
    }
 
+   app.setusercookie(erg)
+   {
+      app.setCookie("user", app.user, 365);
+
+   }
 
 
+
+
+   /*****************************************************************************
+    *
+    * com Methods
+    *
+    ****************************************************************************/
+
+    app.com = function(url,t,params,callback){
+
+      /*
+      var fp = new Fingerprint2().get(function(result, components) {
+        app.debug(result); // a hash, representing your device fingerprint
+        app.debug(components); // an array of FP components
+  */
+
+      // write cookie
+      // result = eb38049251e01578d09f6e2a9d10e197
+
+      // send home
+      // result = eb38049251e01578d09f6e2a9d10e197
+      // components =
+      //  for (var index in components) {
+      //      var obj = components[index];
+      //      var value = obj.value;
+
+      //var http = new XMLHttpRequest();
+    //  var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+      //var params = "t=0&fp=" + result + "&fpd=";
+
+
+      app.debug("url: " + url);
+      app.debug("type: " + t);
+      app.debug("params: " +params);
+
+      // TODO: if no user create one
+      //app.user = result;
+      url = url + "?t=" + t + "&";
+      url = url + "fp=" + app.user + "&";
+      url = url + "fpd=" + encodeURI(params);
+      app.debug("url: " + url);
+
+      var http = app.createCORSRequest("GET",url);
+
+      //http.open("POST", url, true);
+      app.debug("1");
+
+      http.onreadystatechange = function() {//Call a function when the state changes.
+          if(http.readyState == 4 && http.status == 200) {
+              alert("Respone Ready");
+              app.debug(http.responseText);
+
+              callback(http.responseText);
+
+  /*
+              app.debug("app.user: " + app.user);
+              if (app.user != "" && app.user != null) {
+                app.debug("setCookie");
+                app.setCookie("user", app.user, 365);
+              }
+*/
+
+          }
+      }
+
+      http.send();
+
+
+
+  })
+
+    }
 
 
    // Create the XHR object.
