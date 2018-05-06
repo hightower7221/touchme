@@ -59,7 +59,7 @@
 
   document.getElementById('butRefresh').addEventListener('click', function() {
     // Refresh all of the forecasts
-    app.updateForecasts();
+    app.handleFingerprint();
   });
 
   document.getElementById('butAdd').addEventListener('click', function() {
