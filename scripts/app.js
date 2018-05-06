@@ -250,7 +250,7 @@
              params = params + key;
              params = params + "=";
              params = params + value;
-             params = params + "##";
+             params = params + "~~";
            }
 
 
