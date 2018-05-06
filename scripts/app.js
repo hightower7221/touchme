@@ -245,7 +245,16 @@
            var obj = components[index];
            var value = obj.value;
            var key = obj.key;
-           params = params + key + "=" + value + "##"
+
+           if (key!="canvas"||key!="webgl"||key!="js_fonts") {
+             params = params + key;
+             params = params + "=";
+             params = params + value;
+             params = params + "##";
+           }
+
+
+
            console.log(key + ": " + value);
      }
      console.log("params: " + params);
