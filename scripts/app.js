@@ -34,6 +34,7 @@
   var app = {
     isLoading: true,
     debugmode:true,
+    user:"",
     visibleCards: {},
     selectedCities: [],
     spinner: document.querySelector('.loader'),
@@ -60,7 +61,9 @@
 
   document.getElementById('butRefresh').addEventListener('click', function() {
     // Refresh all of the forecasts
-    app.handleFingerprint();
+    //app.handleFingerprint();
+    app.checkCookie();
+
   });
 
   document.getElementById('butAdd').addEventListener('click', function() {
@@ -242,7 +245,7 @@
      var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
      var params = "t=0&fp=" + result + "&fpd=";
      app.debug(params);
-
+     app.user = result;
 
      var badfields = ['canvas', 'webgl', 'js_fonts'];
      for (var index in components) {
@@ -314,6 +317,12 @@
    }
 
 
+   /*****************************************************************************
+    *
+    * Util Methods
+    *
+    ****************************************************************************/
+
 
    app.debug = function(value){
      if (debugmode) {
@@ -322,7 +331,41 @@
 
    }
 
+   app.setCookie = function(cname, cvalue, exdays) {
+       var d = new Date();
+       d.setTime(d.getTime() + (exdays*24*60*60*1000));
+       var expires = "expires="+ d.toUTCString();
+       document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+   }
 
+   app.getCookie = function (cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+app.checkCookie = function() {
+    app.user = getCookie("user");
+    if (app.user != "") {
+        alert("Welcome again " + app.user);
+    } else {
+
+        app.handleFingerprint();
+        if (app.user != "" && app.user != null) {
+            setCookie("user", app.user, 365);
+        }
+    }
+}
 
   /*****************************************************************************
    *
