@@ -33,6 +33,7 @@
 
   var app = {
     isLoading: true,
+    debugmode:true,
     visibleCards: {},
     selectedCities: [],
     spinner: document.querySelector('.loader'),
@@ -188,7 +189,7 @@
     var diffvalue = Math.abs(value - base)
     var diffpecent = diffvalue / base
 
-    console.log('app.keygame.calculatestatus: ' + value + '#' + base + '#' + diffvalue + '#' + diffpecent);
+    app.debug('app.keygame.calculatestatus: ' + value + '#' + base + '#' + diffvalue + '#' + diffpecent);
 
     if (diffpecent > 0.4)  {app.displaystatus(2);}
     else if (diffpecent > 0.2) {app.displaystatus(1);}
@@ -223,8 +224,8 @@
 
    app.handleFingerprint = function(){
      var fp = new Fingerprint2().get(function(result, components) {
-       console.log(result); // a hash, representing your device fingerprint
-       console.log(components); // an array of FP components
+       app.debug(result); // a hash, representing your device fingerprint
+       app.debug(components); // an array of FP components
 
 
      // write cookie
@@ -240,7 +241,7 @@
      //var http = new XMLHttpRequest();
      var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
      var params = "t=0&fp=" + result + "&fpd=";
-     console.log(params);
+     app.debug(params);
 
 
      var badfields = ['canvas', 'webgl', 'js_fonts'];
@@ -254,37 +255,37 @@
              params = params + "=";
              params = params + value;
              params = params + "==";
-              console.log(key + ": " + value);
+              app.debug(key + ": " + value);
            }
 
 
 
 
      }
-     console.log("params: " + params);
+     app.debug("params: " + params);
      url = url + "?" + encodeURI(params);
-     console.log("url: " + url);
+     app.debug("url: " + url);
 
      var http = app.createCORSRequest("GET",url);
 
      //http.open("POST", url, true);
-     console.log("1");
+     app.debug("1");
      //Send the proper header information along with the request
      //http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-     console.log("2");
+     app.debug("2");
      http.onreadystatechange = function() {//Call a function when the state changes.
          if(http.readyState == 4 && http.status == 200) {
              alert("Respone Ready");
-console.log(http.responseText);
+     app.debug(http.responseText);
 
 
 
 
          }
      }
-  //   console.log("3" + params);
+
      http.send();
-//     console.log("4");
+
 
 
  })
@@ -311,6 +312,17 @@ console.log(http.responseText);
      }
      return xhr;
    }
+
+
+
+   app.debug = function(value){
+     if (debugmode) {
+       console.log(http.responseText);
+     }
+
+   }
+
+
 
   /*****************************************************************************
    *
@@ -452,6 +464,9 @@ console.log(http.responseText);
 
   }
 */
+
+
+
 
   // TODO add service worker code here
   if ('serviceWorker' in navigator) {
