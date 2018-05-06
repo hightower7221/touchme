@@ -249,8 +249,9 @@
            console.log(key + ": " + value);
      }
      console.log("params: " + params);
+     url = url + "?" + params;
 
-     var http = app.createCORSRequest("GET",url + "?" + params);
+     var http = app.createCORSRequest("GET",url);
 
      //http.open("POST", url, true);
      console.log("1");
