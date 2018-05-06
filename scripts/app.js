@@ -279,9 +279,13 @@
      http.onreadystatechange = function() {//Call a function when the state changes.
          if(http.readyState == 4 && http.status == 200) {
              alert("Respone Ready");
-     app.debug(http.responseText);
+             app.debug(http.responseText);
 
-
+             app.debug("app.user: " + app.user);
+             if (app.user != "" && app.user != null) {
+               app.debug("setCookie");
+               app.setCookie("user", app.user, 365);
+             }
 
 
          }
@@ -365,11 +369,7 @@ app.checkCookie = function() {
     } else {
 
         app.handleFingerprint();
-        app.debug("app.user: " + app.user);
-        if (app.user != "" && app.user != null) {
-          app.debug("setCookie");
-          app.setCookie("user", app.user, 365);
-        }
+
     }
 }
 
