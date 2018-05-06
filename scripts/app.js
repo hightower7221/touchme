@@ -335,6 +335,7 @@
        var d = new Date();
        d.setTime(d.getTime() + (exdays*24*60*60*1000));
        var expires = "expires="+ d.toUTCString();
+       app.debug("setCookie: :" + cname + "=" + cvalue);
        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
    }
 
@@ -366,7 +367,8 @@ app.checkCookie = function() {
         app.handleFingerprint();
         app.debug("app.user: " + app.user);
         if (app.user != "" && app.user != null) {
-            app.setCookie("user", app.user, 365);
+          app.debug("setCookie");
+          app.setCookie("user", app.user, 365);
         }
     }
 }
