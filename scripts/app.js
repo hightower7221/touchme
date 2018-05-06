@@ -258,9 +258,10 @@
            console.log(key + ": " + value);
      }
      console.log("params: " + params);
-     url = url + "?" + params;
+     url = url + "?" + encodeURI(params);
+     console.log("url: " + url);
 
-     var http = app.createCORSRequest("GET",encodeURI(url));
+     var http = app.createCORSRequest("GET",url);
 
      //http.open("POST", url, true);
      console.log("1");
