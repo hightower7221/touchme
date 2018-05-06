@@ -388,9 +388,9 @@
 
 
 
-  })
+  }//)
 
-    }
+    //}
 
 
    // Create the XHR object.
