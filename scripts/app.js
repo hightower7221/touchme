@@ -269,7 +269,7 @@ console.log(http.responseText);
          }
      }
   //   console.log("3" + params);
-//     http.send(params);
+     http.send();
 //     console.log("4");
 
 
