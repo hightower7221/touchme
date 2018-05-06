@@ -355,14 +355,14 @@
 }
 
 app.checkCookie = function() {
-    app.user = getCookie("user");
+    app.user = app.getCookie("user");
     if (app.user != "") {
         alert("Welcome again " + app.user);
     } else {
 
         app.handleFingerprint();
         if (app.user != "" && app.user != null) {
-            setCookie("user", app.user, 365);
+            app.setCookie("user", app.user, 365);
         }
     }
 }
