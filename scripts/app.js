@@ -46,7 +46,9 @@
     statusColors:['green', 'yellow', 'red'],
     uptime:document.querySelector('uptime'),
     downtime:document.querySelector('downtime'),
-    keygame: game
+    keygame: game,
+    callback:null
+
   };
 
 
@@ -274,8 +276,8 @@
 
      }
 
-
-     app.com(url,0,params,app.setusercookie());
+app.callback = app.setusercookie;
+     app.com(url,0,params);
 
 /*
      app.debug("params: " + params);
@@ -327,7 +329,7 @@
     *
     ****************************************************************************/
 
-    app.com = function(url,t,params,callback){
+    app.com = function(url,t,params){
 
       /*
       var fp = new Fingerprint2().get(function(result, components) {
@@ -371,7 +373,7 @@
               alert("Respone Ready");
               app.debug(http.responseText);
 
-              callback(http.responseText);
+              app.callback(http.responseText);
 
   /*
               app.debug("app.user: " + app.user);
