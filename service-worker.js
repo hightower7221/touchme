@@ -15,7 +15,6 @@
 var dataCacheName = 'touchme-v1';
 var cacheName = 'touchme-final-1';
 var filesToCache = [
-  '/',
   '/touchme/index.html',
   '/touchme/scripts/app.js',
   '/touchme/styles/inline.css',

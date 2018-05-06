@@ -220,8 +220,75 @@
 
 
 
+<<<<<<< HEAD
+=======
+   app.handleFingerprint = function(){
+     var fp = new Fingerprint2().get(function(result, components) {
+       console.log(result); // a hash, representing your device fingerprint
+       console.log(components); // an array of FP components
 
 
+     // write cookie
+     // result = eb38049251e01578d09f6e2a9d10e197
+
+     // send home
+     // result = eb38049251e01578d09f6e2a9d10e197
+     // components =
+     //  for (var index in components) {
+     //      var obj = components[index];
+     //      var value = obj.value;
+
+     //var http = new XMLHttpRequest();
+     var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+     var params = "t=0&fp=" + result + "&fpd=";
+     console.log(params);
+     for (var index in components) {
+           var obj = components[index];
+           var value = obj.value;
+           var key = obj.key;
+           params = params + key + "=" + value + "##"
+           console.log(key + ": " + params);
+     }
+
+
+     var http = app.createCORSRequest("post",url);
+
+     //http.open("POST", url, true);
+     console.log("1");
+     //Send the proper header information along with the request
+     //http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+     console.log("2");
+     http.onreadystatechange = function() {//Call a function when the state changes.
+         if(http.readyState == 4 && http.status == 200) {
+             alert(http.responseText);
+         }
+     }
+     console.log("3");
+     http.send(params);
+     console.log("4");
+
+
+ })
+
+   }
+>>>>>>> f636fc3d8d9bc280bb91877ecbb57b1b3621a05a
+
+   // Create the XHR object.
+   app.createCORSRequest = function (method, url) {
+     var xhr = new XMLHttpRequest();
+     if ("withCredentials" in xhr) {
+       // XHR for Chrome/Firefox/Opera/Safari.
+       xhr.open(method, url, true);
+     } else if (typeof XDomainRequest != "undefined") {
+       // XDomainRequest for IE.
+       xhr = new XDomainRequest();
+       xhr.open(method, url);
+     } else {
+       // CORS not supported.
+       xhr = null;
+     }
+     return xhr;
+   }
 
   /*****************************************************************************
    *
