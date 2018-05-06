@@ -241,21 +241,25 @@
      var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
      var params = "t=0&fp=" + result + "&fpd=";
      console.log(params);
+
+
+     var badfields = ['canvas', 'webgl', 'js_fonts'];
      for (var index in components) {
            var obj = components[index];
            var value = obj.value;
            var key = obj.key;
 
-           if (key!="canvas"||key!="webgl"||key!="js_fonts") {
+           if (badfields.indexOf(key)==-1) {
              params = params + key;
              params = params + "=";
              params = params + value;
-             params = params + "~~";
+             params = params + "==";
+              console.log(key + ": " + value);
            }
 
 
 
-           console.log(key + ": " + value);
+
      }
      console.log("params: " + params);
      url = url + "?" + encodeURI(params);
