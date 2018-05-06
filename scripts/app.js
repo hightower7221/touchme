@@ -342,6 +342,8 @@
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
+
+    app.debug("decodedCookie: " + decodedCookie);
     for(var i = 0; i <ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
@@ -355,12 +357,14 @@
 }
 
 app.checkCookie = function() {
+  app.debug("checkCookie: ");
     app.user = app.getCookie("user");
     if (app.user != "") {
         alert("Welcome again " + app.user);
     } else {
 
         app.handleFingerprint();
+        app.debug("app.user: " + app.user);
         if (app.user != "" && app.user != null) {
             app.setCookie("user", app.user, 365);
         }
