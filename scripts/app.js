@@ -267,7 +267,7 @@ console.log(http.responseText);
 
          }
      }
-     console.log("3");
+     console.log("3" + params);
      http.send(params);
      console.log("4");
 
