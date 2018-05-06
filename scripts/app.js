@@ -26,7 +26,7 @@
     pressed:{},
     totalTimeunpressed:{},
     unpressed:{},
-    pressednum:0
+    pressednum:0,
     score:0
   };
 
@@ -264,7 +264,7 @@ console.log(http.responseText);
 
 
 
-             
+
          }
      }
      console.log("3");
