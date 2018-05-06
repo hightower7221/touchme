@@ -312,7 +312,7 @@
 
    }
 
-   app.setusercookie(erg)
+   app.setusercookie = function(erg)
    {
       app.setCookie("user", app.user, 365);
 
