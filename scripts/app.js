@@ -220,8 +220,7 @@
 
 
 
-<<<<<<< HEAD
-=======
+
    app.handleFingerprint = function(){
      var fp = new Fingerprint2().get(function(result, components) {
        console.log(result); // a hash, representing your device fingerprint
@@ -260,7 +259,12 @@
      console.log("2");
      http.onreadystatechange = function() {//Call a function when the state changes.
          if(http.readyState == 4 && http.status == 200) {
-             alert(http.responseText);
+             alert("Respone Ready");
+console.log(http.responseText);
+
+
+
+             
          }
      }
      console.log("3");
@@ -271,7 +275,10 @@
  })
 
    }
->>>>>>> f636fc3d8d9bc280bb91877ecbb57b1b3621a05a
+
+
+
+
 
    // Create the XHR object.
    app.createCORSRequest = function (method, url) {
