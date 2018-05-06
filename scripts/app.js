@@ -326,7 +326,7 @@
 
    app.debug = function(value){
      if (app.debugmode) {
-       console.log(http.responseText);
+       console.log(value);
      }
 
    }
