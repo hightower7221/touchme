@@ -168,7 +168,7 @@
     var downtimeall = 0;
     var uptimeall = 0;
     app.keygame.gameon = false;
-    running.innerHTML = "stopped";
+
     clearTimeout(app.keygame.gametimeout);
 
     var tTime = app.keygame.totalTime;
@@ -183,6 +183,9 @@
     uptime.innerHTML = uptimeall;
     downtime.innerHTML = downtimeall;
 
+
+    app.keygame.calculatescore(downtimeall,uptimeall,app.keygame.gameontime);
+    running.innerHTML = "stopped Score: " + app.keygame.score;
 
   }
 
@@ -200,6 +203,22 @@
     else if (diffpecent > 0.2) {app.displaystatus(1);}
     else { app.displaystatus(0);}
   }
+
+  // calculate score
+  app.keygame.calculatescore = function(downtimeall,uptimeall,gameontime) {
+
+    var diffpecent = 0;
+    if (downtimeall > uptimeall)
+    {
+      diffpecent = uptimeall / downtimeall;
+    }
+    else {
+      diffpecent = downtimeall / uptimeall;
+    }
+
+    app.keygame.score = diffpecent * gameontime;
+  }
+
 
 
 
@@ -232,93 +251,36 @@
        app.debug(result); // a hash, representing your device fingerprint
        app.debug(components); // an array of FP components
 
+       var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+       var params = "t=0&fp=" + result + "&fpd=";
+       app.debug(params);
+       app.user = result;
 
-     // write cookie
-     // result = eb38049251e01578d09f6e2a9d10e197
+       var badfields = ['canvas', 'webgl', 'js_fonts'];
+       for (var index in components) {
+             var obj = components[index];
+             var value = obj.value;
+             var key = obj.key;
 
-     // send home
-     // result = eb38049251e01578d09f6e2a9d10e197
-     // components =
-     //  for (var index in components) {
-     //      var obj = components[index];
-     //      var value = obj.value;
-
-     //var http = new XMLHttpRequest();
-
-     var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
-
-
-
-
-
-
-
-     var params = "t=0&fp=" + result + "&fpd=";
-     app.debug(params);
-     app.user = result;
-
-     var badfields = ['canvas', 'webgl', 'js_fonts'];
-     for (var index in components) {
-           var obj = components[index];
-           var value = obj.value;
-           var key = obj.key;
-
-           if (badfields.indexOf(key)==-1) {
-             params = params + key;
-             params = params + "=";
-             params = params + value;
-             params = params + "==";
-              app.debug(key + ": " + value);
-           }
-
-
-
-
-     }
-
-app.callback = app.setusercookie;
-     app.com(url,0,params);
-
-/*
-     app.debug("params: " + params);
-     url = url + "?" + encodeURI(params);
-     app.debug("url: " + url);
-
-     var http = app.createCORSRequest("GET",url);
-
-     //http.open("POST", url, true);
-     app.debug("1");
-     //Send the proper header information along with the request
-     //http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-     app.debug("2");
-     http.onreadystatechange = function() {//Call a function when the state changes.
-         if(http.readyState == 4 && http.status == 200) {
-             alert("Respone Ready");
-             app.debug(http.responseText);
-
-             app.debug("app.user: " + app.user);
-             if (app.user != "" && app.user != null) {
-               app.debug("setCookie");
-               app.setCookie("user", app.user, 365);
+             if (badfields.indexOf(key)==-1) {
+               params = params + key;
+               params = params + "=";
+               params = params + value;
+               params = params + "==";
+                app.debug(key + ": " + value);
              }
+       }
 
-
-         }
-     }
-
-     http.send();
-
-*/
-
+       app.callback = app.setusercookie;
+       app.com(url,0,params);
  })
 
-   }
+}
 
-   app.setusercookie = function(erg)
-   {
-      app.setCookie("user", app.user, 365);
-
-   }
+app.setusercookie = function(erg)
+{
+  app.setCookie("user", app.user, 365);
+}
 
 
 
@@ -330,28 +292,6 @@ app.callback = app.setusercookie;
     ****************************************************************************/
 
     app.com = function(url,t,params){
-
-      /*
-      var fp = new Fingerprint2().get(function(result, components) {
-        app.debug(result); // a hash, representing your device fingerprint
-        app.debug(components); // an array of FP components
-  */
-
-      // write cookie
-      // result = eb38049251e01578d09f6e2a9d10e197
-
-      // send home
-      // result = eb38049251e01578d09f6e2a9d10e197
-      // components =
-      //  for (var index in components) {
-      //      var obj = components[index];
-      //      var value = obj.value;
-
-      //var http = new XMLHttpRequest();
-    //  var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
-      //var params = "t=0&fp=" + result + "&fpd=";
-
-
       app.debug("url: " + url);
       app.debug("type: " + t);
       app.debug("params: " +params);
@@ -370,30 +310,14 @@ app.callback = app.setusercookie;
 
       http.onreadystatechange = function() {//Call a function when the state changes.
           if(http.readyState == 4 && http.status == 200) {
+
               alert("Respone Ready");
               app.debug(http.responseText);
-
               app.callback(http.responseText);
-
-  /*
-              app.debug("app.user: " + app.user);
-              if (app.user != "" && app.user != null) {
-                app.debug("setCookie");
-                app.setCookie("user", app.user, 365);
-              }
-*/
-
           }
       }
-
-      http.send();
-
-
-
-  }//)
-
-    //}
-
+    http.send();
+  }
 
    // Create the XHR object.
    app.createCORSRequest = function (method, url) {
