@@ -246,11 +246,11 @@
            var value = obj.value;
            var key = obj.key;
            params = params + key + "=" + value + "##"
-           console.log(key + ": " + params);
+           console.log(key + ": " + value);
      }
+     console.log("params: " + params);
 
-
-     var http = app.createCORSRequest("post",url);
+     var http = app.createCORSRequest("GET",url + "?" + params);
 
      //http.open("POST", url, true);
      console.log("1");
@@ -267,9 +267,9 @@ console.log(http.responseText);
 
          }
      }
-     console.log("3" + params);
-     http.send(params);
-     console.log("4");
+  //   console.log("3" + params);
+//     http.send(params);
+//     console.log("4");
 
 
  })
