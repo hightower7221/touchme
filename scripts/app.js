@@ -228,9 +228,6 @@
     app.keygame.score = Math.round(diffpecent * gameontime);
   }
 
-
-
-
   // display status
 
     app.displaystatus = function(value) {
@@ -283,14 +280,14 @@
 
        app.callback = app.setusercookie;
        app.com(url,0,params);
- })
+     })
 
-}
+   }
 
-app.setusercookie = function(erg)
-{
-  app.setCookie("user", app.user, 365);
-}
+  app.setusercookie = function(erg)
+  {
+    app.setCookie("user", app.user, 365);
+  }
 
 
 
@@ -320,8 +317,10 @@ app.setusercookie = function(erg)
 
       http.onreadystatechange = function() {//Call a function when the state changes.
           if(http.readyState == 4 && http.status == 200) {
-
+            if (app.debugmode) {
               alert("Respone Ready");
+            }
+              //alert("Respone Ready");
               app.debug(http.responseText);
               app.callback(http.responseText);
           }
@@ -358,7 +357,6 @@ app.setusercookie = function(erg)
      if (app.debugmode) {
        console.log(value);
      }
-
    }
 
    app.setCookie = function(cname, cvalue, exdays) {
@@ -370,22 +368,22 @@ app.setusercookie = function(erg)
    }
 
    app.getCookie = function (cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
+     var name = cname + "=";
+     var decodedCookie = decodeURIComponent(document.cookie);
+     var ca = decodedCookie.split(';');
 
-    app.debug("decodedCookie: " + decodedCookie);
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
+      app.debug("decodedCookie: " + decodedCookie);
+      for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+          }
+      }
+      return "";
     }
-    return "";
-}
 
 app.checkCookie = function() {
   app.debug("checkCookie: ");
@@ -399,149 +397,13 @@ app.checkCookie = function() {
     }
 }
 
-  /*****************************************************************************
-   *
-   * Methods to update/refresh the UI
-   *
-   ****************************************************************************/
-/*
-  // Toggles the visibility of the add new city dialog.
-  app.toggleAddDialog = function(visible) {
-    if (visible) {
-      app.addDialog.classList.add('dialog-container--visible');
-    } else {
-      app.addDialog.classList.remove('dialog-container--visible');
-    }
-  };
 
-  app.toggleLoader = function() {
-    if (app.isLoading) {
-      app.spinner.setAttribute('hidden', true);
-      app.container.removeAttribute('hidden');
-      app.isLoading = false;
-    }
-  };
-
-*/
-
-
-
-
-  /*****************************************************************************
-   *
-   * Methods for dealing with the model
-   *
-   ****************************************************************************/
-
-  /*
-   * Gets a forecast for a specific city and updates the card with the data.
-   * getForecast() first checks if the weather data is in the cache. If so,
-   * then it gets that data and populates the card with the cached data.
-   * Then, getForecast() goes to the network for fresh data. If the network
-   * request goes through, then the card gets updated a second time with the
-   * freshest data.
-   */
-  app.getForecast = function(key, label) {
-    var statement = 'select * from weather.forecast where woeid=' + key;
-    var url = 'https://query.yahooapis.com/v1/public/yql?format=json&q=' +
-        statement;
-    // TODO add cache logic here
-    if ('caches' in window) {
-      /*
-       * Check if the service worker has already cached this city's weather
-       * data. If the service worker has the data, then display the cached
-       * data while the app fetches the latest data.
-       */
-      caches.match(url).then(function(response) {
-        if (response) {
-          response.json().then(function updateFromCache(json) {
-            var results = json.query.results;
-            results.key = key;
-            results.label = label;
-            results.created = json.query.created;
-          //  app.updateForecastCard(results);
-          });
-        }
-      });
-    }
-    // Fetch the latest data.
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
-      if (request.readyState === XMLHttpRequest.DONE) {
-        if (request.status === 200) {
-          var response = JSON.parse(request.response);
-          var results = response.query.results;
-          results.key = key;
-          results.label = label;
-          results.created = response.query.created;
-        //  app.updateForecastCard(results);
-        }
-      } else {
-        // Return the initial weather forecast since no data is available.
-      //  app.updateForecastCard(initialWeatherForecast);
-      }
-    };
-    request.open('GET', url);
-    request.send();
-  };
-
-  // Iterate all of the cards and attempt to get the latest forecast data
-  app.updateForecasts = function() {
-    var keys = Object.keys(app.visibleCards);
-    keys.forEach(function(key) {
-      app.getForecast(key);
-    });
-  };
-
-  // TODO add saveSelectedCities function here
-  // Save list of cities to localStorage.
-  app.saveSelectedCities = function() {
-    var selectedCities = JSON.stringify(app.selectedCities);
-    localStorage.selectedCities = selectedCities;
-  };
-
-  // TODO uncomment line below to test app with fake data
-  // app.updateForecastCard(initialWeatherForecast);
 
   /************************************************************************
    *
    * Code required to start the app
    *
-   * NOTE: To simplify this codelab, we've used localStorage.
-   *   localStorage is a synchronous API and has serious performance
-   *   implications. It should not be used in production applications!
-   *   Instead, check out IDB (https://www.npmjs.com/package/idb) or
-   *   SimpleDB (https://gist.github.com/inexorabletash/c8069c042b734519680c)
    ************************************************************************/
-
-  // TODO add startup code here
- //  app.selectedCities = localStorage.selectedCities;
-//  app.toggleLoader();
-  /*
-  if (app.selectedCities) {
-    app.selectedCities = JSON.parse(app.selectedCities);
-    app.selectedCities.forEach(function(city) {
-      app.getForecast(city.key, city.label);
-    });
-  } else {
-  */
-    /* The user is using the app for the first time, or the user has not
-     * saved any cities, so show the user some fake data. A real app in this
-     * scenario could guess the user's location via IP lookup and then inject
-     * that data into the page.
-     */
-     /*
-    app.updateForecastCard(initialWeatherForecast);
-    app.selectedCities = [
-      {key: initialWeatherForecast.key, label: initialWeatherForecast.label}
-    ];
-    app.saveSelectedCities();
-
-  }
-*/
-
-
-
 
   // TODO add service worker code here
   if ('serviceWorker' in navigator) {
@@ -549,4 +411,5 @@ app.checkCookie = function() {
              .register('./service-worker.js')
              .then(function() { console.log('Service Worker Registered'); });
   }
+  app.handleFingerprint();
 })();
