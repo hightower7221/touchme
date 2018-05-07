@@ -389,7 +389,7 @@ app.checkCookie = function() {
   app.debug("checkCookie: ");
     app.user = app.getCookie("user");
     if (app.user != "") {
-      if (debugmode) {
+      if (app.debugmode) {
         alert("Welcome again " + app.user);
       }
     } else {
