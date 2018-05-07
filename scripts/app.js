@@ -389,7 +389,9 @@ app.checkCookie = function() {
   app.debug("checkCookie: ");
     app.user = app.getCookie("user");
     if (app.user != "") {
+      if (debugmode) {
         alert("Welcome again " + app.user);
+      }
     } else {
 
         app.handleFingerprint();
@@ -411,5 +413,5 @@ app.checkCookie = function() {
              .register('./service-worker.js')
              .then(function() { console.log('Service Worker Registered'); });
   }
-  app.handleFingerprint();
+  app.checkCookie();
 })();
