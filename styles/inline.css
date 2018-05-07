@@ -98,12 +98,17 @@ body {
       font-size: 20px;
     }
 
-     .touchme {float: left;
-       width: 200px;
+     .touchme .touchmecell{
        height: 64px;
        margin-left: auto;
        margin-right: auto;
      }
+
+     .touchmecell {float: left;
+       width: 200px;
+     }
+
+
      .touchmeend {clear: left;
        width: 200px;
        height: 64px;
