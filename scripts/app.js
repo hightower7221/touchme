@@ -216,7 +216,7 @@
       diffpecent = downtimeall / uptimeall;
     }
 
-    app.keygame.score = diffpecent * gameontime;
+    app.keygame.score = Math.round(diffpecent * gameontime);
   }
 
 
