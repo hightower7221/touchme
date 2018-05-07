@@ -187,6 +187,15 @@
     app.keygame.calculatescore(downtimeall,uptimeall,app.keygame.gameontime);
     running.innerHTML = "stopped Score: " + app.keygame.score;
 
+
+    var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+    var params = "game=keygame==score=" + app.keygame.score;
+
+    app.callback = function(){
+      alert("Score noted!");
+    }
+    app.com(url,2,params);
+
   }
 
 
@@ -252,7 +261,8 @@
        app.debug(components); // an array of FP components
 
        var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
-       var params = "t=0&fp=" + result + "&fpd=";
+       //var params = "t=0&fp=" + result + "&fpd=";
+       var params = "";
        app.debug(params);
        app.user = result;
 
