@@ -320,13 +320,13 @@
             if (app.debugmode) {
               alert("Respone Ready");
             }
-              //alert("Respone Ready");
-              app.debug(http.responseText);
-              app.callback(http.responseText);
+            //alert("Respone Ready");
+            app.debug(http.responseText);
+            app.callback(http.responseText);
           }
       }
-    http.send();
-  }
+      http.send();
+    }
 
    // Create the XHR object.
    app.createCORSRequest = function (method, url) {
@@ -385,19 +385,19 @@
       return "";
     }
 
-app.checkCookie = function() {
-  app.debug("checkCookie: ");
-    app.user = app.getCookie("user");
-    if (app.user != "") {
-      if (app.debugmode) {
-        alert("Welcome again " + app.user);
+  app.checkCookie = function() {
+    app.debug("checkCookie: ");
+      app.user = app.getCookie("user");
+      if (app.user != "") {
+        if (app.debugmode) {
+          alert("Welcome again " + app.user);
+        }
+      } else {
+
+          app.handleFingerprint();
+
       }
-    } else {
-
-        app.handleFingerprint();
-
-    }
-}
+  }
 
 
 
