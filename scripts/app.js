@@ -269,12 +269,15 @@
              var value = obj.value;
              var key = obj.key;
 
+
              if(key&&value){
                if (badfields.indexOf(key)==-1) {
+                 if (params!="") {
+                   params = params + "==";
+                 }
                  params = params + key;
                  params = params + "=";
                  params = params + value;
-                 params = params + "==";
                  app.debug(key + ": " + value);
                }
              }
