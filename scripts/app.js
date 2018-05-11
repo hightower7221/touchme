@@ -352,7 +352,7 @@
             para.setAttributeNode(att);
 */
 
-            var para = app.createdisplayelment("div","card cardTemplate","");
+            var para = app.createdisplayelment("div","card cardTemplate",jobid);
 
 
             /*
@@ -361,7 +361,7 @@
             att.value = "touchme";                           // Set the value of the class attribute
             touchmediv.setAttributeNode(att);
             */
-            var touchmediv = app.createdisplayelment("div","touchme",jobid);
+            var touchmediv = app.createdisplayelment("div","touchme","");
 
             //var t = document.createTextNode(jobarray[4]);
 
@@ -372,10 +372,12 @@
             para.appendChild(touchmediv);                                          // Append the text to <p>
             document.getElementById("main").appendChild(para);
 
-
-            setTimeout(function(){
-              var obj = document.getElementById(jobid);
-              obj.style.display = "none"; }, 10000);
+            // If expire < 60 set timeout to distroy
+            if (obj.timeout>0) {
+              setTimeout(function(){
+                var obj = document.getElementById(jobid);
+                obj.style.display = "none"; }, 10000);
+            }
             break;
         }
      }
@@ -387,7 +389,7 @@
 
    app.destroyelment =function(selector) {
        var obj = document.getElementById("selector");
-       
+
    }
 
 
