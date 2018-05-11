@@ -324,7 +324,7 @@
 
         switch (jobarray[1]) {
           // display text
-          case :0
+          case 0:
             app.debug(jobarray[0] + ": " + jobarray[4]);
             break;
         }
