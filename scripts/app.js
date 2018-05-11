@@ -320,65 +320,41 @@
 
      if(erg)
      {
-        app.debug("::1::");
         var jobarray = erg.split(";");
         app.debug(jobarray);
 
-        var jobid = jobarray[0];
-        switch (jobarray[1].trim()) {
+        var job_id = jobarray[0].trim();
+        var job_type = jobarray[1].trim();
+        switch (job_type) {
           // display text
           case "0":
-            app.debug(jobarray[0] + ": " + jobarray[4]);
-
-
-            /*
-
-            <div class="card cardTemplate touchme">
-              <div class="touchme">
-                <button id="buttouchme" class="touchmeButton" aria-label="Touch Me">Touch Me</button>
               </div>
+            var card_div = app.createdisplayelment("div","card cardTemplate",job_id);
+            var touchme_div = app.createdisplayelment("div","touchme","");
 
-
-            */
-
-
-
-
-/*
-
-            var para = document.createElement("div");
-            var att = document.createAttribute("class");       // Create a "class" attribute
-            att.value = "card cardTemplate";                           // Set the value of the class attribute
-            para.setAttributeNode(att);
-*/
-
-            var para = app.createdisplayelment("div","card cardTemplate",jobid);
-
-
-            /*
-            var touchmediv = document.createElement("div");
-            att = document.createAttribute("class");       // Create a "class" attribute
-            att.value = "touchme";                           // Set the value of the class attribute
-            touchmediv.setAttributeNode(att);
-            */
-            var touchmediv = app.createdisplayelment("div","touchme","");
-
-            //var t = document.createTextNode(jobarray[4]);
-
-
+            // split content
             var obj = JSON.parse(jobarray[4]);
 
-            touchmediv.appendChild(document.createTextNode(obj.text));
-            para.appendChild(touchmediv);                                          // Append the text to <p>
-            document.getElementById("main").appendChild(para);
+            touchme_div.appendChild(document.createTextNode(obj.text));
+            card_div.appendChild(touchme_div);                                          // Append the text to <p>
+            document.getElementById("main").appendChild(card_div);
 
-            // If expire < 60 set timeout to distroy
+            // If expire set timeout to distroy
             if (obj.timeout>0) {
               setTimeout(function(){
-                var obj = document.getElementById(jobid);
-                obj.style.display = "none"; }, 10000);
+                var obj = document.getElementById(job_id);
+                obj.style.display = "none"; }, obj.timeout);
             }
             break;
+
+            // yes / no question
+            case "1":
+
+              // display elements
+
+              // click events
+
+              break;
         }
      }
      else {
