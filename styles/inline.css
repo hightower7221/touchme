@@ -104,12 +104,14 @@ body {
   .touchmeButton {
       font-size: 20px;
       float: left;
+      height: 64px;
     }
 
 
 
      .touchmecell {float: left;
        width: 200px;
+       height: 64px;
      }
 
 

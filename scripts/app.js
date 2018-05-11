@@ -320,14 +320,46 @@
 
      if(erg!="")
      {
-        var jobarray = str.split(";");
+        var jobarray = erg.split(";");
 
         switch (jobarray[1]) {
           // display text
           case 0:
             app.debug(jobarray[0] + ": " + jobarray[4]);
+
+
+            /*
+
+            <div class="card cardTemplate touchme">
+              <div class="touchme">
+                <button id="buttouchme" class="touchmeButton" aria-label="Touch Me">Touch Me</button>
+              </div>
+
+
+            */
+
+            var para = document.createElement("div");
+            var att = document.createAttribute("class");       // Create a "class" attribute
+            att.value = "card cardTemplate";                           // Set the value of the class attribute
+            para.setAttributeNode(att);
+            var touchmediv = document.createElement("div");
+            att = document.createAttribute("class");       // Create a "class" attribute
+            att.value = "touchme";                           // Set the value of the class attribute
+            touchmediv.setAttributeNode(att);
+            var t = document.createTextNode(jobarray[4]);
+            touchmediv.appendChild(t);
+            para.appendChild(touchmediv);                                          // Append the text to <p>
+            document.getElementById("main").appendChild(para);
+
+
+
+
+
             break;
         }
+     }
+     else {
+       app.debug(" No job for now ");
      }
 
    }
