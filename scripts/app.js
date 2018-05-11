@@ -318,10 +318,11 @@
    app.executeJob = function (erg) {
      alert(erg);
 
-     if(erg!="")
+     if(erg)
      {
+        app.debug("::1::");
         var jobarray = erg.split(";");
-
+        app.debug(jobarray);
         switch (jobarray[1]) {
           // display text
           case 0:

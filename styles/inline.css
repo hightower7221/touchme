@@ -94,20 +94,10 @@ body {
   .header #butAdd {
     background: url(/touchme/images/ic_add_white_24px.svg) center center no-repeat; }
 
-
-
-
-  .touchme .touchmecell .touchmeButton{
-      height: 64px;
-  }
-
   .touchmeButton {
       font-size: 20px;
       float: left;
-      height: 64px;
     }
-
-
 
      .touchmecell {float: left;
        width: 200px;
