@@ -328,7 +328,6 @@
         switch (job_type) {
           // display text
           case "0":
-              </div>
             var card_div = app.createdisplayelment("div","card cardTemplate",job_id);
             var touchme_div = app.createdisplayelment("div","touchme","");
 
