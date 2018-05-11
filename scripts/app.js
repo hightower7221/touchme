@@ -323,9 +323,9 @@
         app.debug("::1::");
         var jobarray = erg.split(";");
         app.debug(jobarray);
-        switch (jobarray[1]) {
+        switch (jobarray[1].trim()) {
           // display text
-          case 0:
+          case "0":
             app.debug(jobarray[0] + ": " + jobarray[4]);
 
 
