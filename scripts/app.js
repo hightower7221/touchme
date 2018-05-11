@@ -70,7 +70,11 @@
 
   document.getElementById('butAdd').addEventListener('click', function() {
     // Open/show the add new city dialog
-    app.toggleAddDialog(true);
+    //app.toggleAddDialog(true);
+
+    // Ask for new Job
+    app.handleJob();
+
   });
 
   document.getElementById('butAddCity').addEventListener('click', function() {
@@ -250,7 +254,9 @@
   }
 
 
-
+  /*********************************************************************************
+        handle fingerprint
+  ***********************************************************************************/
 
    app.handleFingerprint = function(){
      var fp = new Fingerprint2().get(function(result, components) {
@@ -294,6 +300,37 @@
     app.setCookie("user", app.user, 365);
   }
 
+
+  /*********************************************************************************
+  *
+  *      handle Job
+  *
+  ***********************************************************************************/
+
+   app.handleJob = function(){
+      var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+      var params = "";
+      app.debug(params);
+      app.callback = app.executeJob;
+      app.com(url,1,params);
+   }
+
+   app.executeJob = function (erg) {
+     alert(erg);
+
+     if(erg!="")
+     {
+        var jobarray = str.split(";");
+
+        switch (jobarray[1]) {
+          // display text
+          case :0
+            app.debug(jobarray[0] + ": " + jobarray[4]);
+            break;
+        }
+     }
+
+   }
 
 
 
