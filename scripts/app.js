@@ -387,7 +387,7 @@
 
    app.destroyelment =function(selector) {
        var obj = document.getElementById("selector");
-       destroy obj;
+       
    }
 
 
