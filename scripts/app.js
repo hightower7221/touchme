@@ -339,18 +339,37 @@
 
             */
 
+
+
+
+/*
+
             var para = document.createElement("div");
             var att = document.createAttribute("class");       // Create a "class" attribute
             att.value = "card cardTemplate";                           // Set the value of the class attribute
             para.setAttributeNode(att);
+*/
+
+            var para = app.createdisplayelment("div","card cardTemplate");
+
+
+            /*
             var touchmediv = document.createElement("div");
             att = document.createAttribute("class");       // Create a "class" attribute
             att.value = "touchme";                           // Set the value of the class attribute
             touchmediv.setAttributeNode(att);
-            var t = document.createTextNode(jobarray[4]);
-            touchmediv.appendChild(t);
+            */
+            var touchmediv = app.createdisplayelment("div","touchme");
+
+            //var t = document.createTextNode(jobarray[4]);
+
+
+            var obj = JSON.parse(jobarray[4]);
+
+            touchmediv.appendChild(document.createTextNode(obj.text));
             para.appendChild(touchmediv);                                          // Append the text to <p>
             document.getElementById("main").appendChild(para);
+
 
 
 
@@ -364,6 +383,17 @@
      }
 
    }
+
+
+
+   app.createdisplayelment = function(elmenttype,styleclass){
+     var para = document.createElement(elmenttype);
+     var att = document.createAttribute("class");       // Create a "class" attribute
+     att.value = styleclass;                           // Set the value of the class attribute
+     para.setAttributeNode(att);
+
+     return para;
+}
 
 
 
