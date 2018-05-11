@@ -323,6 +323,8 @@
         app.debug("::1::");
         var jobarray = erg.split(";");
         app.debug(jobarray);
+
+        var jobid = jobarray[0];
         switch (jobarray[1].trim()) {
           // display text
           case "0":
@@ -350,7 +352,7 @@
             para.setAttributeNode(att);
 */
 
-            var para = app.createdisplayelment("div","card cardTemplate");
+            var para = app.createdisplayelment("div","card cardTemplate","");
 
 
             /*
@@ -359,7 +361,7 @@
             att.value = "touchme";                           // Set the value of the class attribute
             touchmediv.setAttributeNode(att);
             */
-            var touchmediv = app.createdisplayelment("div","touchme");
+            var touchmediv = app.createdisplayelment("div","touchme",jobid);
 
             //var t = document.createTextNode(jobarray[4]);
 
@@ -371,10 +373,9 @@
             document.getElementById("main").appendChild(para);
 
 
-
-
-
-
+            setTimeout(function(){
+              var obj = document.getElementById(jobid);
+              obj.style.display = "none"; }, 10000);
             break;
         }
      }
@@ -384,13 +385,25 @@
 
    }
 
+   app.destroyelment =function(selector) {
+       var obj = document.getElementById("selector");
+       destroy obj;
+   }
 
 
-   app.createdisplayelment = function(elmenttype,styleclass){
+
+
+   app.createdisplayelment = function(elmenttype,styleclass,id){
      var para = document.createElement(elmenttype);
      var att = document.createAttribute("class");       // Create a "class" attribute
-     att.value = styleclass;                           // Set the value of the class attribute
+     att.value = styleclass;
      para.setAttributeNode(att);
+
+     if (id) {
+       att = document.createAttribute("id");       // Create a "class" attribute
+       att.value = id;
+       para.setAttributeNode(att);
+     }
 
      return para;
 }
