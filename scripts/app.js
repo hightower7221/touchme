@@ -338,7 +338,8 @@
             card_div.appendChild(touchme_div);                                          // Append the text to <p>
             document.getElementById("main").appendChild(card_div);
 
-            // If expire set timeout to distroy
+            // If expire set timeout to hide
+            app.debug(obj.timeout);
             if (obj.timeout>0) {
               setTimeout(function(){
                 var obj = document.getElementById(job_id);
