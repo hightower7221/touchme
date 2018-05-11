@@ -347,11 +347,11 @@
             }
             break;
 
-            // yes / no question
+            // question 2 options i.e. yes / no
             case "1":
-
+              app.debug("Job Type 2");
               // display elements
-
+              
               // click events
 
               break;
