@@ -376,8 +376,7 @@
                 // display a image button
                 if (obj.option1img!=""&&obj.option1img!=undefined) {
                   var img = document.createElement('img');
-                  img.id =
-                  img.src = 'obj.option1img';
+                  img.src = obj.option1img;
                   img.setAttribute('width', '200px');
                   img.addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"1");},false);
                   touchme_div.appendChild(img);
