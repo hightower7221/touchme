@@ -362,10 +362,27 @@
 
               //option one
               touchme_div = app.createdisplayelment("div","touchmecell","option1");
+
+              // display a text button
+              if (obj.option1!="")
+              {
               var btn = document.createElement("BUTTON");        // Create a <button> element
               var t = document.createTextNode(obj.option1);       // Create a text node
               btn.appendChild(t);
+              btn.addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"1");},false);
               touchme_div.appendChild(btn);
+              }
+              else {
+                // display a image button
+                if (obj.option1img!="") {
+                  var img = document.createElement('img');
+                  img.id =
+                  img.src = 'obj.option1img';
+                  img.setAttribute('width', '200px');
+                  img.addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"1");},false);
+                  touchme_div.appendChild(btn);
+                }
+              }
               card_div.appendChild(touchme_div);
 
               //option two
@@ -379,7 +396,7 @@
 
               // click events
 
-              document.getElementById('option1').addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"1");},false);
+            //  document.getElementById('option1').addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"1");},false);
               document.getElementById('option2').addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"2");},false);
               break;
         }
