@@ -346,12 +346,10 @@
         switch (job_type) {
           // display text
           case "0":
-                                             // Append the text to <p>
-            document.getElementById("main").appendChild(card_div);
+            app.debug("Job type 0");
 
             // If expire set timeout to hide
-            app.debug(obj.timeout);
-            if (obj.timeout>0) {
+            if (obj.timeout > 0) {
               setTimeout(function(){
                 var obj = document.getElementById(job_id);
                 obj.style.display = "none"; }, obj.timeout);
@@ -360,21 +358,10 @@
 
             // question 2 options i.e. yes / no
             case "1":
-              app.debug("Job Type 2");
+              app.debug("Job type 1");
               // display elements
-              /*
-              var card_div = app.createdisplayelment("div","card cardTemplate",job_id);
-              var touchme_div = app.createdisplayelment("div","touchmecell","");
 
-              var obj = JSON.parse(jobarray[4]);
-*/
-              /*
-
-              touchme_div.appendChild(document.createTextNode(obj.text));
-              card_div.appendChild(touchme_div);
-*/
               //option one
-
               var optionElm = app.createOptionElement("1",obj,job_id,job_type);
               card_div.appendChild(optionElm);
 
@@ -382,9 +369,10 @@
               optionElm = app.createOptionElement("2",obj,job_id,job_type);
               card_div.appendChild(optionElm);
 
-              document.getElementById("main").appendChild(card_div);
+              //document.getElementById("main").appendChild(card_div);
               break;
         }
+        document.getElementById("main").appendChild(card_div);
      }
      else {
        app.debug(" No job for now ");
