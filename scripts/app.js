@@ -324,8 +324,8 @@
         var jobarray = erg.split(";");
         app.debug(jobarray);
 
-        var job_id = jobarray[0].trim();
-        var job_type = jobarray[1].trim();
+        var job_id = String(jobarray[0]).trim();
+        var job_type = String(jobarray[1]).trim();
         switch (job_type) {
           // display text
           case "0":
