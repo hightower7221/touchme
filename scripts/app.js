@@ -387,7 +387,7 @@
               }
               */
 
-              var optionElm = createOptionElement("1",obj,job_id,job_type);
+              var optionElm = app.createOptionElement("1",obj,job_id,job_type);
 
               touchme_div.appendChild(optionElm);
               card_div.appendChild(touchme_div);
