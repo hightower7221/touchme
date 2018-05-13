@@ -364,7 +364,7 @@
               touchme_div = app.createdisplayelment("div","touchmecell","option1");
 
               // display a text button
-              if (obj.option1!="")
+              if (obj.option1!=""&&obj.option1!=undefined)
               {
               var btn = document.createElement("BUTTON");        // Create a <button> element
               var t = document.createTextNode(obj.option1);       // Create a text node
@@ -374,7 +374,7 @@
               }
               else {
                 // display a image button
-                if (obj.option1img!="") {
+                if (obj.option1img!=""&&obj.option1img!=undefined) {
                   var img = document.createElement('img');
                   img.id =
                   img.src = 'obj.option1img';
