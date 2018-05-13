@@ -326,17 +326,27 @@
 
         var job_id = String(jobarray[0]).trim();
         var job_type = String(jobarray[1]).trim();
+        var touchme_div = null;
+
+        var card_div = app.createdisplayelment("div","card cardTemplate",job_id);
+
+        var obj = JSON.parse(jobarray[4]);
+
+        if (job_type=="0"||job_type=="1") {
+          touchme_div = app.createdisplayelment("div","touchmecell","");
+          touchme_div.appendChild(document.createTextNode(obj.text));
+          card_div.appendChild(touchme_div);
+
+        }
+
+        // split content
+
+
+
         switch (job_type) {
           // display text
           case "0":
-            var card_div = app.createdisplayelment("div","card cardTemplate",job_id);
-            var touchme_div = app.createdisplayelment("div","touchmecell","");
-
-            // split content
-            var obj = JSON.parse(jobarray[4]);
-
-            touchme_div.appendChild(document.createTextNode(obj.text));
-            card_div.appendChild(touchme_div);                                          // Append the text to <p>
+                                             // Append the text to <p>
             document.getElementById("main").appendChild(card_div);
 
             // If expire set timeout to hide
@@ -352,70 +362,26 @@
             case "1":
               app.debug("Job Type 2");
               // display elements
+              /*
               var card_div = app.createdisplayelment("div","card cardTemplate",job_id);
               var touchme_div = app.createdisplayelment("div","touchmecell","");
 
               var obj = JSON.parse(jobarray[4]);
-              // split content
+*/
+              /*
+
               touchme_div.appendChild(document.createTextNode(obj.text));
               card_div.appendChild(touchme_div);
-
-/*
-
+*/
               //option one
-              touchme_div = app.createdisplayelment("div","touchmecell","option1");
-
-
-              // display a text button
-              if (obj.option1!=""&&obj.option1!=undefined)
-              {
-                var btn = document.createElement("BUTTON");        // Create a <button> element
-                var t = document.createTextNode(obj.option1);       // Create a text node
-                btn.appendChild(t);
-                btn.addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"1");},false);
-                touchme_div.appendChild(btn);
-              }
-              else {
-                // display a image button
-                if (obj.option1img!=""&&obj.option1img!=undefined) {
-                  var img = document.createElement('img');
-                  img.src = obj.option1img;
-                  img.setAttribute('width', '200px');
-                  img.addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"1");},false);
-                  touchme_div.appendChild(img);
-                }
-              }
-              */
 
               var optionElm = app.createOptionElement("1",obj,job_id,job_type);
-
-              //touchme_div.appendChild(optionElm);
-              //card_div.appendChild(touchme_div);
               card_div.appendChild(optionElm);
-
-              optionElm = app.createOptionElement("2",obj,job_id,job_type);
-
-              //touchme_div.appendChild(optionElm);
-              //card_div.appendChild(touchme_div);
-              card_div.appendChild(optionElm);
-
-/*
 
               //option two
-              touchme_div = app.createdisplayelment("div","touchmecell","option2");
-              var btn = document.createElement("BUTTON");        // Create a <button> element
-              var t = document.createTextNode(obj.option2);       // Create a text node
-              btn.appendChild(t);
-              touchme_div.appendChild(btn);
-              card_div.appendChild(touchme_div);
-              document.getElementById("main").appendChild(card_div);
+              optionElm = app.createOptionElement("2",obj,job_id,job_type);
+              card_div.appendChild(optionElm);
 
-              // click events
-
-            //  document.getElementById('option1').addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"1");},false);
-              document.getElementById('option2').addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"2");},false);
-
-*/
               document.getElementById("main").appendChild(card_div);
               break;
         }
@@ -433,15 +399,7 @@
      var ergObj = app.createdisplayelment("div","touchmecell",optinid);
 
      var optionobj = obj[optinid];
-     var optionimg = obj[optinid+"img"];
-
-/*
-     if (option==2) {
-       optionobj = obj.option2;
-       optionimg = obj.option2img;
-     }
-*/
-
+     var optionimg = obj[optinid + "img"];
 
 
      var ergObjdisplay = null;
@@ -480,6 +438,8 @@
        alert("Noted!");
      }
      app.com(app.url,2,params);
+
+     // TODO: Kill Job display
 
    }
 
