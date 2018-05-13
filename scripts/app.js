@@ -429,15 +429,20 @@
    app.createOptionElement = function(option,obj,job_id,job_type){
 
      //option div
-     var ergObj = app.createdisplayelment("div","touchmecell","option"+ option);
+     var optinid = "option"+ option;
+     var ergObj = app.createdisplayelment("div","touchmecell",optinid);
 
-     var optionobj = obj.option1;
-     var optionimg = obj.option1img;
+     var optionobj = obj[optinid];
+     var optionimg = obj[optinid+"img"];
 
+/*
      if (option==2) {
        optionobj = obj.option2;
        optionimg = obj.option2img;
      }
+*/
+
+
 
      var ergObjdisplay = null;
 
@@ -445,8 +450,8 @@
      // display a text button
      if (optionobj!=""&&optionobj!=undefined)
      {
-       ergObjdisplay = document.createElement("BUTTON");        // Create a <button> element
-       var t = document.createTextNode(optionobj);       // Create a text node
+       ergObjdisplay = document.createElement("BUTTON");
+       var t = document.createTextNode(optionobj);
        ergObjdisplay.appendChild(t);
      }
      else {
