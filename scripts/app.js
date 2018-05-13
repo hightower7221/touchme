@@ -330,6 +330,7 @@
 
         var card_div = app.createdisplayelment("div","card cardTemplate",job_id);
 
+        // split content
         var obj = JSON.parse(jobarray[4]);
 
         if (job_type=="0"||job_type=="1") {
@@ -338,9 +339,6 @@
           card_div.appendChild(touchme_div);
 
         }
-
-        // split content
-
 
 
         switch (job_type) {
