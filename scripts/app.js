@@ -379,8 +379,8 @@
 
               // click events
 
-              document.getElementById('option1').addEventListener('click', app.storeOptionDecition(job_id,job_type,"1"));
-              document.getElementById('option2').addEventListener('click', app.storeOptionDecition(job_id,job_type,"2"));
+              document.getElementById('option1').addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"1");},false);
+              document.getElementById('option2').addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"2");},false);
               break;
         }
      }
