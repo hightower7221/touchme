@@ -393,7 +393,7 @@
               //card_div.appendChild(touchme_div);
               card_div.appendChild(optionElm);
 
-              var optionElm = app.createOptionElement("2",obj,job_id,job_type);
+              optionElm = app.createOptionElement("2",obj,job_id,job_type);
 
               //touchme_div.appendChild(optionElm);
               //card_div.appendChild(touchme_div);
@@ -416,7 +416,7 @@
               document.getElementById('option2').addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"2");},false);
 
 */
-
+              document.getElementById("main").appendChild(card_div);
               break;
         }
      }
