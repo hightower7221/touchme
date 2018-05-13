@@ -35,6 +35,7 @@
     isLoading: true,
     debugmode:true,
     user:"",
+    url: "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
     visibleCards: {},
     selectedCities: [],
     spinner: document.querySelector('.loader'),
@@ -192,13 +193,13 @@
     running.innerHTML = "stopped Score: " + app.keygame.score;
 
 
-    var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+    //var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
     var params = "game=keygame==score=" + app.keygame.score;
 
     app.callback = function(){
       alert("Score noted!");
     }
-    app.com(url,2,params);
+    app.com(app.url,2,params);
 
   }
 
@@ -351,15 +352,52 @@
             case "1":
               app.debug("Job Type 2");
               // display elements
-              
+              var card_div = app.createdisplayelment("div","card cardTemplate",job_id);
+              var touchme_div = app.createdisplayelment("div","touchme","");
+
+              var obj = JSON.parse(jobarray[4]);
+              // split content
+              touchme_div.appendChild(document.createTextNode(obj.text));
+              card_div.appendChild(touchme_div);
+
+              //option one
+              touchme_div = app.createdisplayelment("div","touchme","option1");
+              var btn = document.createElement("BUTTON");        // Create a <button> element
+              var t = document.createTextNode(obj.option1);       // Create a text node
+              btn.appendChild(t);
+              touchme_div.appendChild(btn);
+              card_div.appendChild(touchme_div);
+
+              //option two
+              touchme_div = app.createdisplayelment("div","touchme","option2");
+              var btn = document.createElement("BUTTON");        // Create a <button> element
+              var t = document.createTextNode(obj.option2);       // Create a text node
+              btn.appendChild(t);
+              touchme_div.appendChild(btn);
+              card_div.appendChild(touchme_div);
+              document.getElementById("main").appendChild(card_div);
+
               // click events
 
+              document.getElementById('option1').addEventListener('click', app.storeOptionDecition("1"));
+              document.getElementById('option2').addEventListener('click', app.storeOptionDecition("2"));
               break;
         }
      }
      else {
        app.debug(" No job for now ");
      }
+
+   }
+
+   // store decicion
+   app.storeOptionDecition = function(value){
+     var params = "job_id=" + job_id + "==job_type=" + job_type + "==option=" + value;
+
+     app.callback = function(){
+       alert("Noted!");
+     }
+     app.com(app.url,1,params);
 
    }
 
