@@ -330,7 +330,7 @@
           // display text
           case "0":
             var card_div = app.createdisplayelment("div","card cardTemplate",job_id);
-            var touchme_div = app.createdisplayelment("div","touchme","");
+            var touchme_div = app.createdisplayelment("div","touchmecell","");
 
             // split content
             var obj = JSON.parse(jobarray[4]);
@@ -353,7 +353,7 @@
               app.debug("Job Type 2");
               // display elements
               var card_div = app.createdisplayelment("div","card cardTemplate",job_id);
-              var touchme_div = app.createdisplayelment("div","touchme","");
+              var touchme_div = app.createdisplayelment("div","touchmecell","");
 
               var obj = JSON.parse(jobarray[4]);
               // split content
@@ -361,7 +361,7 @@
               card_div.appendChild(touchme_div);
 
               //option one
-              touchme_div = app.createdisplayelment("div","touchme","option1");
+              touchme_div = app.createdisplayelment("div","touchmecell","option1");
               var btn = document.createElement("BUTTON");        // Create a <button> element
               var t = document.createTextNode(obj.option1);       // Create a text node
               btn.appendChild(t);
@@ -369,7 +369,7 @@
               card_div.appendChild(touchme_div);
 
               //option two
-              touchme_div = app.createdisplayelment("div","touchme","option2");
+              touchme_div = app.createdisplayelment("div","touchmecell","option2");
               var btn = document.createElement("BUTTON");        // Create a <button> element
               var t = document.createTextNode(obj.option2);       // Create a text node
               btn.appendChild(t);
