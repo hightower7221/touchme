@@ -453,7 +453,7 @@
        // display a image button
        if (obj.option1img!=""&&obj.option1img!=undefined) {
          ergObjdisplay = document.createElement('img');
-         ergObjdisplay.src = obj.option1img;
+         ergObjdisplay.src = optionimg;
          ergObjdisplay.setAttribute('width', '200px');
        }
      }
