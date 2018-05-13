@@ -397,7 +397,7 @@
      app.callback = function(){
        alert("Noted!");
      }
-     app.com(app.url,1,params);
+     app.com(app.url,2,params);
 
    }
 
