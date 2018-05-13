@@ -417,7 +417,7 @@
    app.createOptionElement = function(option,obj,job_id,job_type){
 
      //option div
-     touchme_div = app.createdisplayelment("div","touchmecell","option"+ option);
+     var ergObj = app.createdisplayelment("div","touchmecell","option"+ option);
 
      var optionobj = obj.option1;
      var optionimg = obj.option1img;
@@ -427,26 +427,28 @@
        optionimg = obj.option2img;
      }
 
-     var ergObj = null;
+     var ergObjdisplay = null;
 
 
      // display a text button
      if (optionobj!=""&&optionobj!=undefined)
      {
-       ergObj = document.createElement("BUTTON");        // Create a <button> element
+       ergObjdisplay = document.createElement("BUTTON");        // Create a <button> element
        var t = document.createTextNode(optionobj);       // Create a text node
-       ergObj.appendChild(t);
+       ergObjdisplay.appendChild(t);
      }
      else {
        // display a image button
        if (obj.option1img!=""&&obj.option1img!=undefined) {
-         ergObj = document.createElement('img');
-         ergObj.src = obj.option1img;
-         ergObj.setAttribute('width', '200px');
+         ergObjdisplay = document.createElement('img');
+         ergObjdisplay.src = obj.option1img;
+         ergObjdisplay.setAttribute('width', '200px');
        }
      }
 
-     ergObj.addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,option);},false);
+     ergObjdisplay.addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,option);},false);
+
+     ergObj.appendChild(ergObjdisplay);
      return ergObj;
    }
 
