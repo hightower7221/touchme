@@ -380,7 +380,7 @@
                   img.src = 'obj.option1img';
                   img.setAttribute('width', '200px');
                   img.addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,"1");},false);
-                  touchme_div.appendChild(btn);
+                  touchme_div.appendChild(img);
                 }
               }
               card_div.appendChild(touchme_div);
