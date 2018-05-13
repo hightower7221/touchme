@@ -379,8 +379,8 @@
 
               // click events
 
-              document.getElementById('option1').addEventListener('click', app.storeOptionDecition("1"));
-              document.getElementById('option2').addEventListener('click', app.storeOptionDecition("2"));
+              document.getElementById('option1').addEventListener('click', app.storeOptionDecition(job_id,job_type,"1"));
+              document.getElementById('option2').addEventListener('click', app.storeOptionDecition(job_id,job_type,"2"));
               break;
         }
      }
@@ -391,8 +391,8 @@
    }
 
    // store decicion
-   app.storeOptionDecition = function(value){
-     var params = "job_id=" + job_id + "==job_type=" + job_type + "==option=" + value;
+   app.storeOptionDecition = function(id,type,value){
+     var params = "job_id=" + id + "==job_type=" + type + "==option=" + value;
 
      app.callback = function(){
        alert("Noted!");
