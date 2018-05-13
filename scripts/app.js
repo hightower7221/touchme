@@ -35,7 +35,7 @@
     isLoading: true,
     debugmode:true,
     user:"",
-    url: "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+    url: "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php",
     visibleCards: {},
     selectedCities: [],
     spinner: document.querySelector('.loader'),
