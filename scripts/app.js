@@ -373,18 +373,6 @@
                 card_div.appendChild(optionElm);
               }
 
-
-              //option one
-/*
-              var optionElm = app.createOptionElement("1",obj,job_id,job_type);
-              card_div.appendChild(optionElm);
-
-              //option two
-              optionElm = app.createOptionElement("2",obj,job_id,job_type);
-              card_div.appendChild(optionElm);
-*/
-              //document.getElementById("main").appendChild(card_div);
-
               if (obj.timeout > 0) {
                 setTimeout(function(){
                   var obj = document.getElementById(job_id);
