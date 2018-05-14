@@ -345,7 +345,7 @@
           // display text
           case "0":
             app.debug("Job type 0");
-
+/*
             // If expire set timeout to hide
             if (obj.timeout > 0) {
               setTimeout(function(){
@@ -353,7 +353,7 @@
                 obj.style.display = "none"; }, obj.timeout);
             }
             break;
-
+*/
             // question 2 options i.e. yes / no
             case "1":
               app.debug("Job type 1");
@@ -384,6 +384,12 @@
               card_div.appendChild(optionElm);
 */
               //document.getElementById("main").appendChild(card_div);
+
+              if (obj.timeout > 0) {
+                setTimeout(function(){
+                  var obj = document.getElementById(job_id);
+                  obj.style.display = "none"; }, obj.timeout);
+              }
               break;
         }
         document.getElementById("main").appendChild(card_div);
