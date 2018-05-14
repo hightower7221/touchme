@@ -361,7 +361,7 @@
               // determine num of options
               var count = 0;
 
-              while (obj["option" + count]!=undefined||obj["option" + count + "img"]!=undefined) {
+              while (obj["option" + (count+1)]!=undefined||obj["option" + (count + 1) + "img"]!=undefined) {
                 count = count + 1;
               }
               app.debug("num of options: " + count);
