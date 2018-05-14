@@ -357,16 +357,32 @@
             // question 2 options i.e. yes / no
             case "1":
               app.debug("Job type 1");
+
+              // determine num of options
+              var count = 0;
+
+              while (obj["option" + count]!=undefined||obj["option" + count + "img"]!=undefined) {
+                count = count + 1;
+              }
+              app.debug("num of options: " + count);
+
               // display elements
 
+              for (var i = 1; i <= count; i++) {
+                var optionElm = app.createOptionElement(String(i),obj,job_id,job_type);
+                card_div.appendChild(optionElm);
+              }
+
+
               //option one
+/*
               var optionElm = app.createOptionElement("1",obj,job_id,job_type);
               card_div.appendChild(optionElm);
 
               //option two
               optionElm = app.createOptionElement("2",obj,job_id,job_type);
               card_div.appendChild(optionElm);
-
+*/
               //document.getElementById("main").appendChild(card_div);
               break;
         }
