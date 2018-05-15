@@ -264,7 +264,7 @@
        app.debug(result); // a hash, representing your device fingerprint
        app.debug(components); // an array of FP components
 
-       var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+       //var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
        //var params = "t=0&fp=" + result + "&fpd=";
        var params = "";
        app.debug(params);
@@ -291,7 +291,7 @@
        }
 
        app.callback = app.setusercookie;
-       app.com(url,0,params);
+       app.com(app.url,0,params);
      })
 
    }
@@ -309,11 +309,11 @@
   ***********************************************************************************/
 
    app.handleJob = function(){
-      var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
+      // var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
       var params = "";
       app.debug(params);
       app.callback = app.executeJob;
-      app.com(url,1,params);
+      app.com(app.url,1,params);
    }
 
    app.executeJob = function (erg) {
@@ -345,40 +345,31 @@
           // display text
           case "0":
             app.debug("Job type 0");
-/*
-            // If expire set timeout to hide
+
+          // question 2 options i.e. yes / no
+          case "1":
+            app.debug("Job type 1");
+
+            // determine num of options
+            var count = 0;
+
+            while (obj["option" + (count+1)]!=undefined||obj["option" + (count + 1) + "img"]!=undefined) {
+              count = count + 1;
+            }
+            app.debug("num of options: " + count);
+
+            // display elements
+            for (var i = 1; i <= count; i++) {
+              var optionElm = app.createOptionElement(String(i),obj,job_id,job_type);
+              card_div.appendChild(optionElm);
+            }
+
             if (obj.timeout > 0) {
               setTimeout(function(){
                 var obj = document.getElementById(job_id);
                 obj.style.display = "none"; }, obj.timeout);
             }
             break;
-*/
-            // question 2 options i.e. yes / no
-            case "1":
-              app.debug("Job type 1");
-
-              // determine num of options
-              var count = 0;
-
-              while (obj["option" + (count+1)]!=undefined||obj["option" + (count + 1) + "img"]!=undefined) {
-                count = count + 1;
-              }
-              app.debug("num of options: " + count);
-
-              // display elements
-
-              for (var i = 1; i <= count; i++) {
-                var optionElm = app.createOptionElement(String(i),obj,job_id,job_type);
-                card_div.appendChild(optionElm);
-              }
-
-              if (obj.timeout > 0) {
-                setTimeout(function(){
-                  var obj = document.getElementById(job_id);
-                  obj.style.display = "none"; }, obj.timeout);
-              }
-              break;
         }
         document.getElementById("main").appendChild(card_div);
      }
@@ -433,7 +424,7 @@
      app.callback = function(){
        alert("Noted!");
      }
-     app.com(app.url,2,params);
+     app.com(app.url,3,params);
 
      // TODO: Kill Job display
 
@@ -484,15 +475,11 @@
 
       var http = app.createCORSRequest("GET",url);
 
-      //http.open("POST", url, true);
-      app.debug("1");
-
-      http.onreadystatechange = function() {//Call a function when the state changes.
+      http.onreadystatechange = function() {
           if(http.readyState == 4 && http.status == 200) {
             if (app.debugmode) {
               alert("Respone Ready");
             }
-            //alert("Respone Ready");
             app.debug(http.responseText);
             app.callback(http.responseText);
           }
@@ -504,14 +491,11 @@
    app.createCORSRequest = function (method, url) {
      var xhr = new XMLHttpRequest();
      if ("withCredentials" in xhr) {
-       // XHR for Chrome/Firefox/Opera/Safari.
        xhr.open(method, url, true);
      } else if (typeof XDomainRequest != "undefined") {
-       // XDomainRequest for IE.
        xhr = new XDomainRequest();
        xhr.open(method, url);
      } else {
-       // CORS not supported.
        xhr = null;
      }
      return xhr;
