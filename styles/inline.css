@@ -97,16 +97,18 @@ body {
   .touchmeButton {
       font-size: 20px;
       float: left;
+      margin:10px;
     }
 
      .touchmecell {float: left;
-       width: 200px;
+    margin:10px;
        height: 64px;
+       margin:10px;
      }
 
 
      .touchmeend {clear: left;
-       width: 200px;
+    
        height: 64px;
        margin-left: auto;
        margin-right: auto;
