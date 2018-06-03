@@ -244,6 +244,7 @@ body {
 
 .card {
   padding: 16px;
+  display: inline-block;
   position: relative;
   box-sizing: border-box;
   background: #fff;
