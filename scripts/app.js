@@ -1,17 +1,3 @@
-// Copyright 2016 Google Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 
 (function() {
   'use strict';
@@ -35,11 +21,11 @@
     isLoading: true,
     debugmode:true,
     user:"",
-    url: "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php",
+    //url: "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php",
+    url: "http://back-back.a3c1.starter-us-west-1.openshiftapps.com/index.php",
     visibleCards: {},
-    selectedCities: [],
+    //selectedCities: [],
     spinner: document.querySelector('.loader'),
-    hal9000:document.querySelector('.hal9000'),
     cardTemplate: document.querySelector('.cardTemplate'),
     container: document.querySelector('.main'),
     addDialog: document.querySelector('.dialog-container'),
@@ -52,10 +38,6 @@
 
   };
 
-
-///running:document.querySelector('running'),
-
-
   /*****************************************************************************
    *
    * Event listeners for UI elements
@@ -63,21 +45,15 @@
    ****************************************************************************/
 
   document.getElementById('butRefresh').addEventListener('click', function() {
-    // Refresh all of the forecasts
-    //app.handleFingerprint();
     app.checkCookie();
-
   });
 
   document.getElementById('butAdd').addEventListener('click', function() {
-    // Open/show the add new city dialog
-    //app.toggleAddDialog(true);
-
     // Ask for new Job
     app.handleJob();
-
   });
 
+/*
   document.getElementById('butAddCity').addEventListener('click', function() {
     // Add the newly selected city
     var select = document.getElementById('selectCityToAdd');
@@ -92,16 +68,14 @@
     app.saveSelectedCities();
     app.toggleAddDialog(false);
   });
-
+*/
+/*
   document.getElementById('butAddCancel').addEventListener('click', function() {
     // Close the add new city dialog
     app.toggleAddDialog(false);
   });
-
+*/
   document.getElementById('buttouchme').addEventListener('click', function() {
-    // Start Action
-    //window.confirm("You want to be touched?");
-
     if (app.keygame.gameon) {
       app.keygame.stopgame();
       app.displaystatus(3);
@@ -109,7 +83,6 @@
     else {
       app.keygame.startgame();
     }
-
   });
 
   document.addEventListener("keydown", function(e) {
@@ -138,7 +111,6 @@
   {
     if(app.keygame.gameon)
     {
-      //document.getElementById('buttouchme').style.backgroundColor = "red";
       if (e.which in app.keygame.pressed) return;
       app.keygame.pressed[e.which] = e.timeStamp;
     }
@@ -162,9 +134,11 @@
 
   }
 
-
   app.keygame.startgame = function	(){
     app.keygame.gameon = true;
+    app.keygame.score = 0;
+    uptime.innerHTML = "0";
+    downtime.innerHTML = "0";
     running.innerHTML = "running";
     app.keygame.gametimeout = setTimeout(app.keygame.stopgame,app.keygame.gameontime);
   }
@@ -192,8 +166,6 @@
     app.keygame.calculatescore(downtimeall,uptimeall,app.keygame.gameontime);
     running.innerHTML = "stopped Score: " + app.keygame.score;
 
-
-    //var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
     var params = "game=keygame==score=" + app.keygame.score;
 
     app.callback = function(){
@@ -264,8 +236,6 @@
        app.debug(result); // a hash, representing your device fingerprint
        app.debug(components); // an array of FP components
 
-       //var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
-       //var params = "t=0&fp=" + result + "&fpd=";
        var params = "";
        app.debug(params);
        app.user = result;
@@ -275,7 +245,6 @@
              var obj = components[index];
              var value = obj.value;
              var key = obj.key;
-
 
              if(key&&value){
                if (badfields.indexOf(key)==-1) {
@@ -305,37 +274,48 @@
   /*********************************************************************************
   *
   *      handle Job
+  *       set callback
+  *       start communication
   *
   ***********************************************************************************/
 
    app.handleJob = function(){
-      // var url = "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php";
       var params = "";
       app.debug(params);
       app.callback = app.executeJob;
       app.com(app.url,1,params);
    }
 
-   app.executeJob = function (erg) {
-     alert(erg);
 
-     if(erg)
+   /*********************************************************************************
+   *
+   *      handle Job Request answer
+   *       split responseText
+   *       start communication
+   *
+   ***********************************************************************************/
+   app.executeJob = function (JobRequestResponse) {
+     alert(JobRequestResponse);
+
+     if(JobRequestResponse)
      {
-        var jobarray = erg.split(";");
+        var jobarray = JobRequestResponse.split(";");
         app.debug(jobarray);
 
         var job_id = String(jobarray[0]).trim();
         var job_type = String(jobarray[1]).trim();
-        var touchme_div = null;
-
-        var card_div = app.createdisplayelment("div","card cardTemplate",job_id);
-
         // split content
-        var obj = JSON.parse(jobarray[4]);
+        var job_content = JSON.parse(jobarray[4]);
+
+
+        var touchme_div = null;
+        var card_div = app.createdisplayelment("div","card",job_id);
+
+
 
         if (job_type=="0"||job_type=="1") {
           touchme_div = app.createdisplayelment("div","touchmecell","");
-          touchme_div.appendChild(document.createTextNode(obj.text));
+          touchme_div.appendChild(document.createTextNode(job_content.text));
           card_div.appendChild(touchme_div);
 
         }
@@ -353,21 +333,22 @@
             // determine num of options
             var count = 0;
 
-            while (obj["option" + (count+1)]!=undefined||obj["option" + (count + 1) + "img"]!=undefined) {
+            while (job_content["option" + (count+1)]!=undefined||job_content["option" + (count + 1) + "img"]!=undefined) {
               count = count + 1;
             }
             app.debug("num of options: " + count);
 
             // display elements
             for (var i = 1; i <= count; i++) {
-              var optionElm = app.createOptionElement(String(i),obj,job_id,job_type);
+              var optionElm = app.createOptionElement(String(i),job_content,job_id,job_type);
               card_div.appendChild(optionElm);
             }
 
-            if (obj.timeout > 0) {
+            // set timeout for jobelrmrnt
+            if (job_content.timeout > 0) {
               setTimeout(function(){
-                var obj = document.getElementById(job_id);
-                obj.style.display = "none"; }, obj.timeout);
+                var Job_Element = document.getElementById(job_id);
+                Job_Element.style.display = "none"; }, job_content.timeout);
             }
             break;
         }
@@ -379,39 +360,44 @@
 
    }
 
-   app.createOptionElement = function(option,obj,job_id,job_type){
+   /*********************************************************************************
+   *
+   *      create one option element
+   *       text button or image button
+   *
+   ***********************************************************************************/
+   app.createOptionElement = function(option,job_content,job_id,job_type){
 
      //option div
      var optinid = "option"+ option;
-     var ergObj = app.createdisplayelment("div","touchmecell",optinid);
+     var ergElement = app.createdisplayelment("div","touchmecell",optinid);
 
-     var optionobj = obj[optinid];
-     var optionimg = obj[optinid + "img"];
+     var OptionText = job_content[optinid];
+     var OptionImg = job_content[optinid + "img"];
 
 
-     var ergObjdisplay = null;
+     var ergDisplayElement = null;
 
 
      // display a text button
-     if (optionobj!=""&&optionobj!=undefined)
+     if (OptionText!=""&&OptionText!=undefined)
      {
-       ergObjdisplay = document.createElement("BUTTON");
-       var t = document.createTextNode(optionobj);
-       ergObjdisplay.appendChild(t);
+       ergDisplayElement = document.createElement("BUTTON");
+       ergDisplayElement.appendChild(document.createTextNode(OptionText));
      }
      else {
        // display a image button
-       if (obj.option1img!=""&&obj.option1img!=undefined) {
-         ergObjdisplay = document.createElement('img');
-         ergObjdisplay.src = optionimg;
-         ergObjdisplay.setAttribute('width', '200px');
+       if (job_content.OptionImg!=""&&job_content.OptionImg!=undefined) {
+         ergDisplayElement = document.createElement('img');
+         ergDisplayElement.src = OptionImg;
+         ergDisplayElement.setAttribute('width', '200px');
        }
      }
 
-     ergObjdisplay.addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,option);},false);
+     ergDisplayElement.addEventListener('click', function(){app.storeOptionDecition(job_id,job_type,option);},false);
 
-     ergObj.appendChild(ergObjdisplay);
-     return ergObj;
+     ergElement.appendChild(ergDisplayElement);
+     return ergElement;
    }
 
 
