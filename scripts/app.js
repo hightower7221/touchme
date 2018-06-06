@@ -354,7 +354,7 @@
             // display text
           case "3":
             app.debug("Job type 3 touch game");
-            document.getElementById("touchgame").style.display = "block";
+            document.getElementById("touchgame").style.visibility = "visible";
             break;
         }
         document.getElementById("main").appendChild(card_div);
