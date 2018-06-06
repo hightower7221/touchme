@@ -344,12 +344,15 @@
               card_div.appendChild(optionElm);
             }
 
-            // set timeout for jobelrmrnt
+            // set timeout for job element
             if (job_content.timeout > 0) {
               setTimeout(function(){
                 var Job_Element = document.getElementById(job_id);
                 Job_Element.style.display = "none"; }, job_content.timeout);
             }
+
+            card_div.style.visibility = "visible";
+            document.getElementById("main").appendChild(card_div);
             break;
             // display text
           case "3":
@@ -357,7 +360,7 @@
             document.getElementById("touchgame").style.visibility = "visible";
             break;
         }
-        document.getElementById("main").appendChild(card_div);
+
      }
      else {
        app.debug(" No job for now ");
