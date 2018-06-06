@@ -291,7 +291,7 @@ body {
 
 .card {
   padding: 16px;
-  display: inline-block;
+  display: none;
   position: relative;
   box-sizing: border-box;
   background: #fff;
