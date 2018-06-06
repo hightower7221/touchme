@@ -110,7 +110,7 @@ body {
       float: left;
       width: 50px;
       height: 40px;
-      background: url(file:///C:/D/Development/git/touchme/images/smiley.png);
+      background: url(./images/smiley.png);
       background-size: 480%;
       background-repeat: no-repeat;
       background-position-x: -50px;
@@ -121,7 +121,7 @@ body {
     float: left;
     width: 50px;
     height: 40px;
-    background: url(file:///C:/D/Development/git/touchme/images/smiley.png);
+    background: url(./images/smiley.png);
     background-size: 480%;
     background-repeat: no-repeat;
     background-position-x: 0px;
@@ -131,7 +131,7 @@ body {
     float: left;
     width: 50px;
     height: 40px;
-    background: url(file:///C:/D/Development/git/touchme/images/smiley.png);
+    background: url(./images/smiley.png);
     background-size: 480%;
     background-repeat: no-repeat;
     background-position-x: -182px;
@@ -141,7 +141,7 @@ body {
     float: left;
     width: 50px;
     height: 40px;
-    background: url(file:///C:/D/Development/git/touchme/images/smiley.png);
+    background: url(./images/smiley.png);
     background-size: 480%;
     background-repeat: no-repeat;
     background-position-x: -200px;

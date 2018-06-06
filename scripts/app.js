@@ -351,6 +351,11 @@
                 Job_Element.style.display = "none"; }, job_content.timeout);
             }
             break;
+            // display text
+          case "3":
+            app.debug("Job type 3 touch game");
+            document.getElementById("touchgame").style.display = "block";
+            break;
         }
         document.getElementById("main").appendChild(card_div);
      }
