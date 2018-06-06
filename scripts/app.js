@@ -260,7 +260,7 @@
        }
 
        app.callback = app.setusercookie;
-       app.com(app.url,0,params);
+       app.com(app.url,2,params);
      })
 
    }
