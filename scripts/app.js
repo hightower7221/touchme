@@ -392,7 +392,7 @@
      }
      else {
        // display a image button
-       if (job_content.OptionImg!=""&&job_content.OptionImg!=undefined) {
+       if (OptionImg!=""&&OptionImg!=undefined) {
          ergDisplayElement = document.createElement('img');
          ergDisplayElement.src = OptionImg;
          ergDisplayElement.setAttribute('width', '200px');
