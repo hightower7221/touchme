@@ -21,6 +21,7 @@
     isLoading: true,
     debugmode:false,
     user:"",
+    pin:"",
     //url: "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php",
     url: "https://back-back.a3c1.starter-us-west-1.openshiftapps.com/index.php",
     visibleCards: {},
@@ -240,6 +241,19 @@
        app.debug(params);
        app.user = result;
 
+// TODO: ASK for Pin
+
+        app.pin = prompt("Your pin", "");
+
+/*
+var person = prompt("Please enter your name", "Harry Potter");
+
+if (person == null || person == "") {
+    txt = "User cancelled the prompt.";
+} else {
+    txt = "Hello " + person + "! How are you today?";
+}
+*/
        var badfields = ['canvas', 'webgl', 'js_fonts'];
        for (var index in components) {
              var obj = components[index];
