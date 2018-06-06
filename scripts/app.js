@@ -317,9 +317,7 @@
           touchme_div = app.createdisplayelment("div","touchmecell","");
           touchme_div.appendChild(document.createTextNode(job_content.text));
           card_div.appendChild(touchme_div);
-
         }
-
 
         switch (job_type) {
           // display text
@@ -333,7 +331,7 @@
             // determine num of options
             var count = 0;
 
-            while (job_content["option" + (count+1)]!=undefined||job_content["option" + (count + 1) + "img"]!=undefined) {
+            while (job_content["option" + (count + 1)]!=undefined||job_content["option" + (count + 1) + "img"]!=undefined) {
               count = count + 1;
             }
             app.debug("num of options: " + count);
@@ -351,13 +349,14 @@
                 Job_Element.style.display = "none"; }, job_content.timeout);
             }
 
-            card_div.style.visibility = "visible";
+            card_div.style.display = "inline-block";
             document.getElementById("main").appendChild(card_div);
             break;
-            // display text
+
+          // display text
           case "3":
             app.debug("Job type 3 touch game");
-            document.getElementById("touchgame").style.visibility = "visible";
+            document.getElementById("touchgame").style.display = "block";
             break;
         }
 
