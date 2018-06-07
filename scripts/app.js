@@ -281,7 +281,9 @@ if (person == null || person == "") {
 
   app.setusercookie = function(erg)
   {
+    // TODO: check erg param for errors
     app.setCookie("user", app.user, 365);
+    app.addCookie("pin", app.pin, 365);
   }
 
 
@@ -522,12 +524,49 @@ if (person == null || person == "") {
      }
    }
 
+
+
+
+
    app.setCookie = function(cname, cvalue, exdays) {
-       var d = new Date();
+      var d = new Date();
        d.setTime(d.getTime() + (exdays*24*60*60*1000));
        var expires = "expires="+ d.toUTCString();
        app.debug("setCookie: :" + cname + "=" + cvalue);
        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+   }
+
+   app.addCookie = function(cname, cvalue, exdays) {
+
+     // read and split Cookie
+     var decodedCookie = decodeURIComponent(document.cookie);
+     var CookieElems = decodedCookie.split(';');
+
+     // build new Cookie
+     var oldCookieString = "";
+
+     for(var i = 0; i <ca.length; i++) {
+         var c = CookieElems[i];
+         while (c.charAt(0) == ' ') {
+             c = c.substring(1);
+         }
+         if (c.indexOf("expires") != 0) {
+            // return c.substring(name.length, c.length);
+            if(oldCookieString.length>0)
+            {
+              oldCookieString = oldCookieString + ";";
+            }
+            oldCookieString = oldCookieString + c;
+         }
+     }
+
+     // save cookie
+       var expireDate = new Date();
+       expireDate.setTime(expireDate.getTime() + (exdays*24*60*60*1000));
+       var expires = "expires="+ expireDate.toUTCString();
+       var CookieString = oldCookieString + ";" + cname + "=" + cvalue + ";" + expires + ";path=/";
+       app.debug("addCookie: :" + CookieString);
+       document.cookie = CookieString;
    }
 
    app.getCookie = function (cname) {
@@ -551,9 +590,10 @@ if (person == null || person == "") {
   app.checkCookie = function() {
     app.debug("checkCookie: ");
       app.user = app.getCookie("user");
+      app.pin = app.getCookie("pin");
       if (app.user != "") {
         if (app.debugmode) {
-          alert("Welcome again " + app.user);
+          alert("Welcome again " + app.pin + " : " + app.user);
         }
       } else {
 
