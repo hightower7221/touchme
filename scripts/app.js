@@ -18,8 +18,8 @@
 
 
   var app = {
-    isLoading: true,
-    debugmode:false,
+    isLoading:true,
+    debugmode:true,
     user:"",
     pin:"",
     //url: "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php",
