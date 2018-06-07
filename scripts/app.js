@@ -283,7 +283,8 @@ if (person == null || person == "") {
   {
     // TODO: check erg param for errors
     app.setCookie("user", app.user, 365);
-    app.addCookie("pin", app.pin, 365);
+    app.setCookie("pin", app.pin, 365);
+    //app.addCookie("pin", app.pin, 365);
   }
 
 
