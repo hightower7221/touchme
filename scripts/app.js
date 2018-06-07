@@ -524,16 +524,12 @@ if (person == null || person == "") {
      }
    }
 
-
-
-
-
    app.setCookie = function(cname, cvalue, exdays) {
       var d = new Date();
        d.setTime(d.getTime() + (exdays*24*60*60*1000));
        var expires = "expires="+ d.toUTCString();
        app.debug("setCookie: :" + cname + "=" + cvalue);
-       document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+       document.cookie = cname + "=" + cvalue + ";pin=" + app.pin + ";" + expires + ";path=/";
    }
 
    app.addCookie = function(cname, cvalue, exdays) {
@@ -564,7 +560,7 @@ if (person == null || person == "") {
        var expireDate = new Date();
        expireDate.setTime(expireDate.getTime() + (exdays*24*60*60*1000));
        var expires = "expires="+ expireDate.toUTCString();
-       var CookieString = oldCookieString + ";" + cname + "=" + cvalue + ";" + expires + ";path=/";
+       var CookieString = oldCookieString + ";" + cname + "=" + cvalue +  ";" + expires + ";path=/";
        app.debug("addCookie: :" + CookieString);
        document.cookie = CookieString;
    }
