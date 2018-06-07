@@ -479,8 +479,9 @@ if (person == null || person == "") {
       // TODO: if no user create one
       //app.user = result;
       url = url + "?t=" + t + "&";
-      url = url + "fp=" + app.user + "&";
-      url = url + "fpd=" + encodeURI(params);
+      url = url + "s=" + app.user + "&";
+      url = url + "p=" + app.pin + "&";
+      url = url + "c=" + encodeURI(params);
       app.debug("url: " + url);
 
       var http = app.createCORSRequest("GET",url);
