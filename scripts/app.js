@@ -545,7 +545,7 @@ if (person == null || person == "") {
      // build new Cookie
      var oldCookieString = "";
 
-     for(var i = 0; i <ca.length; i++) {
+     for(var i = 0; i <CookieElems.length; i++) {
          var c = CookieElems[i];
          while (c.charAt(0) == ' ') {
              c = c.substring(1);
