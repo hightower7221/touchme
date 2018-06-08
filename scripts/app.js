@@ -360,10 +360,16 @@
             }
 
             close_button.data = "X";
+            /*
             close_button.onclick = function(){
               var Main_Element = document.getElementById("main");
               Main_Element.removeChild(document.getElementById(app.job_id));
             };
+*/
+            close_button.onclick = function(){
+                app.removeElment(app.job_id);
+              };
+
 
             card_div.appendChild(close_button);
 
@@ -435,6 +441,7 @@
 
      app.callback = function(){
        alert("Noted!");
+       app.removeElment(id);
      }
      app.com(app.url,3,params);
 
@@ -442,9 +449,9 @@
 
    }
 
-   app.destroyelment =function(selector) {
-       var obj = document.getElementById("selector");
-
+   app.removeElment = function(selector) {
+       var Main_Element = document.getElementById("main");
+       Main_Element.removeChild(document.getElementById(selector));
    }
 
 
