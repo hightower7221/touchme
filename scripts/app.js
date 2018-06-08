@@ -21,7 +21,7 @@
     isLoading:true,
     debugmode:true,
     user:"",
-    pin:"",
+    system:"",
     //url: "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php",
     url: "https://back-back.a3c1.starter-us-west-1.openshiftapps.com/index.php",
     visibleCards: {},
@@ -238,22 +238,10 @@
        app.debug(components); // an array of FP components
 
        var params = "";
-       app.debug(params);
-       app.user = result;
 
-// TODO: ASK for Pin
+       app.user = prompt("Your pin", "");
+       app.system = result;
 
-        app.pin = prompt("Your pin", "");
-
-/*
-var person = prompt("Please enter your name", "Harry Potter");
-
-if (person == null || person == "") {
-    txt = "User cancelled the prompt.";
-} else {
-    txt = "Hello " + person + "! How are you today?";
-}
-*/
        var badfields = ['canvas', 'webgl', 'js_fonts'];
        for (var index in components) {
              var obj = components[index];
@@ -283,8 +271,7 @@ if (person == null || person == "") {
   {
     // TODO: check erg param for errors
     app.setCookie("user", app.user, 365);
-    app.setCookie("pin", app.pin, 365);
-    //app.addCookie("pin", app.pin, 365);
+    app.setCookie("system", app.system, 365);
   }
 
 
@@ -479,8 +466,8 @@ if (person == null || person == "") {
       // TODO: if no user create one
       //app.user = result;
       url = url + "?t=" + t + "&";
-      url = url + "s=" + app.user + "&";
-      url = url + "u=" + app.pin + "&";
+      url = url + "s=" + app.system + "&";
+      url = url + "u=" + app.user + "&";
       url = url + "c=" + encodeURI(params);
       app.debug("url: " + url);
 
@@ -531,9 +518,9 @@ if (person == null || person == "") {
        d.setTime(d.getTime() + (exdays*24*60*60*1000));
        var expires = "expires="+ d.toUTCString();
        app.debug("setCookie: :" + cname + "=" + cvalue);
-       document.cookie = cname + "=" + cvalue + ";pin=" + app.pin + ";" + expires + ";path=/";
+       document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
    }
-
+/*
    app.addCookie = function(cname, cvalue, exdays) {
 
      // read and split Cookie
@@ -566,7 +553,7 @@ if (person == null || person == "") {
        app.debug("addCookie: :" + CookieString);
        document.cookie = CookieString;
    }
-
+*/
    app.getCookie = function (cname) {
      var name = cname + "=";
      var decodedCookie = decodeURIComponent(document.cookie);
@@ -588,10 +575,10 @@ if (person == null || person == "") {
   app.checkCookie = function() {
     app.debug("checkCookie: ");
       app.user = app.getCookie("user");
-      app.pin = app.getCookie("pin");
+      app.system = app.getCookie("system");
       if (app.user != "") {
         if (app.debugmode) {
-          alert("Welcome again " + app.pin + " : " + app.user);
+          alert("Welcome again " + app.user + " : " + app.system);
         }
       } else {
 
