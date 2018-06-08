@@ -291,7 +291,7 @@
         var job_content = JSON.parse(jobarray[4]);
 
         // every job one time
-        app.debug("every job one time " +app.job_id+":"+job_id+);
+        app.debug("every job one time " +app.job_id+":"+job_id);
 
         if(app.job_id.localeCompare(job_id)!=0)
         {
