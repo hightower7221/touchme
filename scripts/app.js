@@ -609,6 +609,12 @@
              .then(function() { console.log('Service Worker Registered'); });
   }
   app.checkCookie();
+
+  /*
   setInterval(app.handleJob, 10000);
+
+  myVar = setInterval(function, milliseconds);
+clearInterval(myVar);
+*/
 
 })();
