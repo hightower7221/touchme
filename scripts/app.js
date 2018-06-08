@@ -291,13 +291,13 @@
         var job_content = JSON.parse(jobarray[4]);
 
         // every job one time
+        app.debug("every job one time " +app.job_id+":"+job_id+);
 
-        if(app.job_id!=job_id)
+        if(app.job_id.localeCompare(job_id)!=0)
         {
 
           var touchme_div = null;
           var card_div = app.createdisplayelment("div","card",job_id);
-
           var close_button = app.createdisplayelment("button","close","close_" + job_id);
 
           if (job_type=="0"||job_type=="1") {
