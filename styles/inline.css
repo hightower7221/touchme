@@ -94,6 +94,18 @@ body {
   .header #butAdd {
     background: url(/touchme/images/ic_add_white_24px.svg) center center no-repeat; }
 
+  .close {
+      width:100%;
+      display:inline-block;
+      overflow: auto;
+      white-space: nowrap;
+      margin:0px auto;
+      border:1px red solid;
+      background: url(/touchme/images/ic_add_white_24px.svg) center center no-repeat; }
+    }
+
+
+
   .touchmeButton {
       font-size: 20px;
       float: left;
