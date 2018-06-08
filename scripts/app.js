@@ -315,7 +315,9 @@
         var touchme_div = null;
         var card_div = app.createdisplayelment("div","card",job_id);
 
+        var close_button = app.createdisplayelment("button","headerButton","close_" + job_id);
 
+//<button id="close" class="headerButton" aria-label="close"></button>
 
         if (job_type=="0"||job_type=="1") {
           touchme_div = app.createdisplayelment("div","touchmecell","");
@@ -352,6 +354,9 @@
                 var Job_Element = document.getElementById(job_id);
                 Job_Element.style.display = "none"; }, job_content.timeout);
             }
+
+            card_div.appendChild(close_button);
+
 
             card_div.style.display = "inline-block";
             document.getElementById("main").appendChild(card_div);
