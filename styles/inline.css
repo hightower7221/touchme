@@ -94,15 +94,15 @@ body {
   .header #butAdd {
     background: url(/touchme/images/ic_add_white_24px.svg) center center no-repeat; }
 
-  .close {
-      display:inline-block;
-      overflow: auto;
-      white-space: nowrap;
-      margin:0px auto;
-      border:1px red solid;
-      float: right;
-      background: url(/touchme/images/ic_add_white_24px.svg) center center no-repeat; }
-    }
+    .close {
+        display:inline-block;
+        overflow: auto;
+        white-space: nowrap;
+        margin:0px auto;
+        width: 24px;
+        height: 24px;
+        float: right;
+      }
 
 
 

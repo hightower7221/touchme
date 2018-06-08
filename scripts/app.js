@@ -25,7 +25,7 @@
     //url: "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php",
     url: "https://back-back.a3c1.starter-us-west-1.openshiftapps.com/index.php",
     visibleCards: {},
-    //selectedCities: [],
+    job_id:"",
     spinner: document.querySelector('.loader'),
     cardTemplate: document.querySelector('.cardTemplate'),
     container: document.querySelector('.main'),
@@ -307,6 +307,7 @@
         app.debug(jobarray);
 
         var job_id = String(jobarray[0]).trim();
+        app.job_id = job_id;
         var job_type = String(jobarray[1]).trim();
         // split content
         var job_content = JSON.parse(jobarray[4]);
@@ -354,11 +355,12 @@
                 var Job_Element = document.getElementById(job_id);
                 Job_Element.style.display = "none"; }, job_content.timeout);
             }
-/*
-            var att = document.createAttribute("style");       // Create a "class" attribute
-            att.value = "float:right";
-            para.setAttributeNode(att);
-*/
+
+            close_button.value = "X";
+            close_button.onclick = function(){
+              document.getElementById(app.job_id).style.display = "none";
+            };
+
             card_div.appendChild(close_button);
 
 
