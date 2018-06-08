@@ -480,7 +480,7 @@ if (person == null || person == "") {
       //app.user = result;
       url = url + "?t=" + t + "&";
       url = url + "s=" + app.user + "&";
-      url = url + "p=" + app.pin + "&";
+      url = url + "u=" + app.pin + "&";
       url = url + "c=" + encodeURI(params);
       app.debug("url: " + url);
 
