@@ -285,7 +285,7 @@
         app.debug(jobarray);
 
         var job_id = String(jobarray[0]).trim();
-        app.job_id = job_id;
+
         var job_type = String(jobarray[1]).trim();
         // split content
         var job_content = JSON.parse(jobarray[4]);
@@ -295,6 +295,7 @@
 
         if(app.job_id.localeCompare(job_id)!=0)
         {
+          app.job_id = job_id;
 
           var touchme_div = null;
           var card_div = app.createdisplayelment("div","card",job_id);
