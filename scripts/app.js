@@ -368,6 +368,7 @@
 */
             close_button.onclick = function(){
                 app.removeElment(app.job_id);
+                app.storeOptionDecition(job_id,job_type,-1);
               };
 
 
