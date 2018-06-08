@@ -368,7 +368,7 @@
 */
             close_button.onclick = function(){
                 app.removeElment(app.job_id);
-                app.storeOptionDecition(job_id,job_type,-1);
+                app.storeOptionDecition(job_id,job_type,-1,false);
               };
 
 
@@ -437,11 +437,14 @@
 
 
    // store decicion
-   app.storeOptionDecition = function(id,type,value){
+   app.storeOptionDecition = function(id,type,value, showresponse=true){
      var params = "job_id=" + id + "==job_type=" + type + "==option=" + value;
 
      app.callback = function(){
-       alert("Noted!");
+       if (showresponse)
+       {
+          alert("Noted!");
+       }
        app.removeElment(id);
      }
      app.com(app.url,3,params);
@@ -482,19 +485,40 @@
     ****************************************************************************/
 
     app.com = function(url,t,params){
+      var isGet = false;
+
+
+
       app.debug("url: " + url);
       app.debug("type: " + t);
-      app.debug("params: " +params);
+      app.debug("params: " + params);
 
-      // TODO: if no user create one
-      //app.user = result;
+      var sendparam = "t=" + t + "&";
+      sendparam = sendparam + "s=" + app.system + "&";
+      sendparam = sendparam + "u=" + app.user + "&";
+      sendparam = sendparam + "c=" + encodeURI(params);
+
+      if (isGet)
+      {
+        url = url + "?" + sendparam;
+      }
+
+
+      /*
       url = url + "?t=" + t + "&";
       url = url + "s=" + app.system + "&";
       url = url + "u=" + app.user + "&";
       url = url + "c=" + encodeURI(params);
       app.debug("url: " + url);
+*/
 
-      var http = app.createCORSRequest("GET",url);
+      var sendmode = "GET";
+      if (isGet==false){
+        sendmode = "Post";
+      }
+
+//var http = app.createCORSRequest("GET",url);
+      var http = app.createCORSRequest(sendmode,url);
 
       http.onreadystatechange = function() {
           if(http.readyState == 4 && http.status == 200) {
@@ -505,7 +529,16 @@
             app.callback(http.responseText);
           }
       }
-      http.send();
+
+      if (isGet)
+      {
+          http.send();
+      }
+      else{
+          http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+          http.send(sendparam);
+      }
+
     }
 
    // Create the XHR object.
