@@ -54,28 +54,6 @@
     app.handleJob();
   });
 
-/*
-  document.getElementById('butAddCity').addEventListener('click', function() {
-    // Add the newly selected city
-    var select = document.getElementById('selectCityToAdd');
-    var selected = select.options[select.selectedIndex];
-    var key = selected.value;
-    var label = selected.textContent;
-    if (!app.selectedCities) {
-      app.selectedCities = [];
-    }
-    app.getForecast(key, label);
-    app.selectedCities.push({key: key, label: label});
-    app.saveSelectedCities();
-    app.toggleAddDialog(false);
-  });
-*/
-/*
-  document.getElementById('butAddCancel').addEventListener('click', function() {
-    // Close the add new city dialog
-    app.toggleAddDialog(false);
-  });
-*/
   document.getElementById('buttouchme').addEventListener('click', function() {
     if (app.keygame.gameon) {
       app.keygame.stopgame();
@@ -312,78 +290,84 @@
         // split content
         var job_content = JSON.parse(jobarray[4]);
 
+        // every job one time
 
-        var touchme_div = null;
-        var card_div = app.createdisplayelment("div","card",job_id);
+        if(app.job_id!=job_id)
+        {
 
-        var close_button = app.createdisplayelment("button","close","close_" + job_id);
+          var touchme_div = null;
+          var card_div = app.createdisplayelment("div","card",job_id);
 
-//<button id="close" class="headerButton" aria-label="close"></button>
+          var close_button = app.createdisplayelment("button","close","close_" + job_id);
 
-        if (job_type=="0"||job_type=="1") {
-          touchme_div = app.createdisplayelment("div","touchmecell","");
-          touchme_div.appendChild(document.createTextNode(job_content.text));
-          card_div.appendChild(touchme_div);
-        }
+          if (job_type=="0"||job_type=="1") {
+            touchme_div = app.createdisplayelment("div","touchmecell","");
+            touchme_div.appendChild(document.createTextNode(job_content.text));
+            card_div.appendChild(touchme_div);
+          }
 
-        switch (job_type) {
-          // display text
-          case "0":
-            app.debug("Job type 0");
+          switch (job_type) {
+            // display text
+            case "0":
+              app.debug("Job type 0");
 
-          // question 2 options i.e. yes / no
-          case "1":
-            app.debug("Job type 1");
+            // question 2 options i.e. yes / no
+            case "1":
+              app.debug("Job type 1");
 
-            // determine num of options
-            var count = 0;
+              // determine num of options
+              var count = 0;
 
-            while (job_content["option" + (count + 1)]!=undefined||job_content["option" + (count + 1) + "img"]!=undefined) {
-              count = count + 1;
-            }
-            app.debug("num of options: " + count);
+              while (job_content["option" + (count + 1)]!=undefined||job_content["option" + (count + 1) + "img"]!=undefined) {
+                count = count + 1;
+              }
+              app.debug("num of options: " + count);
 
-            // display elements
-            for (var i = 1; i <= count; i++) {
-              var optionElm = app.createOptionElement(String(i),job_content,job_id,job_type);
-              card_div.appendChild(optionElm);
-            }
+              // display elements
+              for (var i = 1; i <= count; i++) {
+                var optionElm = app.createOptionElement(String(i),job_content,job_id,job_type);
+                card_div.appendChild(optionElm);
+              }
 
-            // set timeout for job element
-            if (job_content.timeout > 0) {
-              setTimeout(function(){
+              // set timeout for job element
+              if (job_content.timeout > 0) {
+                setTimeout(function(){
 
-                var Job_Element = document.getElementById(job_id);
-                Job_Element.style.display = "none";
+                  var Job_Element = document.getElementById(job_id);
+                  Job_Element.style.display = "none";
 
-              }, job_content.timeout);
-            }
+                }, job_content.timeout);
+              }
 
-            close_button.data = "X";
-            /*
-            close_button.onclick = function(){
-              var Main_Element = document.getElementById("main");
-              Main_Element.removeChild(document.getElementById(app.job_id));
-            };
-*/
-            close_button.onclick = function(){
-                app.removeElment(app.job_id);
-                app.storeOptionDecition(job_id,job_type,-1,false);
+              close_button.data = "X";
+              /*
+              close_button.onclick = function(){
+                var Main_Element = document.getElementById("main");
+                Main_Element.removeChild(document.getElementById(app.job_id));
               };
+  */
+              close_button.onclick = function(){
+                  app.removeElment(app.job_id);
+                  app.storeOptionDecition(job_id,job_type,-1,false);
+                };
 
 
-            card_div.appendChild(close_button);
+              card_div.appendChild(close_button);
 
 
-            card_div.style.display = "inline-block";
-            document.getElementById("main").appendChild(card_div);
-            break;
+              card_div.style.display = "inline-block";
+              document.getElementById("main").appendChild(card_div);
+              break;
 
-          // display text
-          case "3":
-            app.debug("Job type 3 touch game");
-            document.getElementById("touchgame").style.display = "block";
-            break;
+            // display text
+            case "3":
+              app.debug("Job type 3 touch game");
+              document.getElementById("touchgame").style.display = "block";
+              break;
+          }
+        }
+        else {
+          app.debug(" Old job for now ");
         }
 
      }
@@ -576,40 +560,7 @@
        app.debug("setCookie: :" + cname + "=" + cvalue);
        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
    }
-/*
-   app.addCookie = function(cname, cvalue, exdays) {
 
-     // read and split Cookie
-     var decodedCookie = decodeURIComponent(document.cookie);
-     var CookieElems = decodedCookie.split(';');
-
-     // build new Cookie
-     var oldCookieString = "";
-
-     for(var i = 0; i <CookieElems.length; i++) {
-         var c = CookieElems[i];
-         while (c.charAt(0) == ' ') {
-             c = c.substring(1);
-         }
-         if (c.indexOf("expires") != 0) {
-            // return c.substring(name.length, c.length);
-            if(oldCookieString.length>0)
-            {
-              oldCookieString = oldCookieString + ";";
-            }
-            oldCookieString = oldCookieString + c;
-         }
-     }
-
-     // save cookie
-       var expireDate = new Date();
-       expireDate.setTime(expireDate.getTime() + (exdays*24*60*60*1000));
-       var expires = "expires="+ expireDate.toUTCString();
-       var CookieString = oldCookieString + ";" + cname + "=" + cvalue +  ";" + expires + ";path=/";
-       app.debug("addCookie: :" + CookieString);
-       document.cookie = CookieString;
-   }
-*/
    app.getCookie = function (cname) {
      var name = cname + "=";
      var decodedCookie = decodeURIComponent(document.cookie);
