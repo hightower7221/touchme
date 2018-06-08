@@ -352,13 +352,17 @@
             // set timeout for job element
             if (job_content.timeout > 0) {
               setTimeout(function(){
+
                 var Job_Element = document.getElementById(job_id);
-                Job_Element.style.display = "none"; }, job_content.timeout);
+                Job_Element.style.display = "none";
+
+              }, job_content.timeout);
             }
 
-            close_button.value = "X";
+            close_button.data = "X";
             close_button.onclick = function(){
-              document.getElementById(app.job_id).style.display = "none";
+              var Main_Element = document.getElementById("main");
+              Main_Element.removeChild(document.getElementById(app.job_id));
             };
 
             card_div.appendChild(close_button);
