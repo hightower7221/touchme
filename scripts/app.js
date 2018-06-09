@@ -220,9 +220,9 @@
        app.user = prompt("Your pin", "");
        app.system = result;
 
-       myJSON = JSON.stringify(components);
+       var myJSON = JSON.stringify(components);
        app.debug(myJSON);
-       
+
 
        var badfields = ['canvas', 'webgl', 'js_fonts'];
        for (var index in components) {
