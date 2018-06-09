@@ -211,7 +211,8 @@
   ***********************************************************************************/
 
    app.handleFingerprint = function(){
-     var fp = new Fingerprint2().get(function(result, components) {
+     var options = {excludeCanvas: true,excludeWebGL: true,excludeJsFonts: true}
+     var fp = new Fingerprint2(options).get(function(result, components) {
        app.debug(result); // a hash, representing your device fingerprint
        app.debug(components); // an array of FP components
 
@@ -220,9 +221,14 @@
        app.user = prompt("Your pin", "");
        app.system = result;
 
-       var myJSON = JSON.stringify(components);
-       app.debug(myJSON);
+      /*
+            excludeCanvas: true,excludeWebGL: true,excludeJsFonts: true
+      */
 
+       var myJSON = JSON.stringify(components);
+       app.debug("#######################################################");
+       app.debug(myJSON);
+       app.debug("#######################################################");
 
        var badfields = ['canvas', 'webgl', 'js_fonts'];
        for (var index in components) {
