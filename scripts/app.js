@@ -286,9 +286,9 @@ components[index].value = String(components[index].value).replace(";", "")
 
    app.handleJob = function(){
       var params = "";
-      if(job_id1="")
+      if(job_id!="")
       {
-        params = "oldjob=" + job_id;
+        params = "{\"oldjob\":\"" + job_id + "\"}";
       }
       app.debug(params);
       app.callback = app.executeJob;
@@ -314,11 +314,12 @@ components[index].value = String(components[index].value).replace(";", "")
         var job_id = String(jobarray[0]).trim();
 
         var job_type = String(jobarray[1]).trim();
+
         // split content
         var job_content = JSON.parse(jobarray[4]);
 
         // every job one time
-        app.debug("every job one time " +app.job_id+":"+job_id);
+        app.debug("every job one time " + app.job_id + ":" + job_id);
 
         if(app.job_id.localeCompare(job_id)!=0)
         {
