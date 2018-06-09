@@ -286,9 +286,9 @@ components[index].value = String(components[index].value).replace(";", "")
 
    app.handleJob = function(){
       var params = "";
-      if(job_id!="")
+      if(app.job_id!="")
       {
-        params = "{\"oldjob\":\"" + job_id + "\"}";
+        params = "{\"oldjob\":\"" + app.job_id + "\"}";
       }
       app.debug(params);
       app.callback = app.executeJob;
