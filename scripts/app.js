@@ -365,7 +365,7 @@ components[index].value = String(components[index].value).replace(";", "")
                   var Job_Element = document.getElementById(job_id);
                   Job_Element.style.display = "none";
 
-                }, job_content.timeout);
+                }, job_content.timeout * 1000);
               }
 
               close_button.data = "X";
