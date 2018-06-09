@@ -224,17 +224,13 @@
       /*
             excludeCanvas: true,excludeWebGL: true,excludeJsFonts: true
       */
-
+/*
       for (var index in components) {
 
 components[index].value = String(components[index].value).replace(";", "")
-/*
-            var obj = components[index];
-            obj.value =  obj.value.replace(/[\x00-\x1F\x7F-\x9F]/g, "");
-            var key = obj.key;
-            */
-          }
 
+          }
+*/
 
        var params = JSON.stringify(components);
 
