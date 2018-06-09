@@ -220,6 +220,10 @@
        app.user = prompt("Your pin", "");
        app.system = result;
 
+       myJSON = JSON.stringify(components);
+       app.debug(myJSON);
+       
+
        var badfields = ['canvas', 'webgl', 'js_fonts'];
        for (var index in components) {
              var obj = components[index];
@@ -263,6 +267,10 @@
 
    app.handleJob = function(){
       var params = "";
+      if(job_id1="")
+      {
+        params = "oldjob=" + job_id;
+      }
       app.debug(params);
       app.callback = app.executeJob;
       app.com(app.url,1,params);
