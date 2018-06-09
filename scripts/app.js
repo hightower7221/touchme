@@ -225,11 +225,13 @@
             excludeCanvas: true,excludeWebGL: true,excludeJsFonts: true
       */
 
-       var myJSON = JSON.stringify(components);
+       var params = JSON.stringify(components);
        app.debug("#######################################################");
-       app.debug(myJSON);
+       app.debug(params);
        app.debug("#######################################################");
 
+
+/*
        var badfields = ['canvas', 'webgl', 'js_fonts'];
        for (var index in components) {
              var obj = components[index];
@@ -248,7 +250,7 @@
                }
              }
        }
-
+*/
        app.callback = app.setusercookie;
        app.com(app.url,2,params);
      })
