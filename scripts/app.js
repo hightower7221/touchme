@@ -80,6 +80,15 @@
     app.keygame.handlekeytouchup(e);
   });
 
+  document.addEventListener("touchend", function(e) {
+    app.keygame.handlekeytouchup(e);
+  });
+
+  document.addEventListener("close_game", function(e) {
+    app.removeElment(app.job_id);
+    app.storeOptionDecition(app.job_id,3,-1,false);
+  });
+
   /*****************************************************************************
   /* Game first Step */
   /* https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
