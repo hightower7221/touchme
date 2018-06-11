@@ -46,13 +46,18 @@
    ****************************************************************************/
 
   document.getElementById('butRefresh').addEventListener('click', function() {
-    app.checkCookie();
+    //app.checkCookie();
+    app.remove("cacheName","/touchme/scripts/app.js")
   });
 
   document.getElementById('butAdd').addEventListener('click', function() {
     // Ask for new Job
     app.handleJob();
   });
+
+
+
+
 
   document.getElementById('buttouchme').addEventListener('click', function() {
     if (app.keygame.gameon) {
@@ -88,6 +93,13 @@
     app.removeElment(app.job_id);
     app.storeOptionDecition(app.job_id,3,-1,false);
   });
+
+
+  app.remove = function(cacheName, url) {
+  return window.caches.open(cacheName).then(function(cache) {
+    return cache.delete(url);
+  });
+}
 
   /*****************************************************************************
   /* Game first Step */
