@@ -232,6 +232,10 @@
   ***********************************************************************************/
 
    app.handleFingerprint = function(){
+
+     /*
+           excludeCanvas: true,excludeWebGL: true,excludeJsFonts: true
+     */
      var options = {excludeCanvas: true,excludeWebGL: true,excludeJsFonts: true}
      var fp = new Fingerprint2(options).get(function(result, components) {
        app.debug(result); // a hash, representing your device fingerprint
@@ -241,48 +245,12 @@
 
        app.user = prompt("Your pin", "");
        app.system = result;
-
-      /*
-            excludeCanvas: true,excludeWebGL: true,excludeJsFonts: true
-      */
-/*
-      for (var index in components) {
-
-components[index].value = String(components[index].value).replace(";", "")
-
-          }
-*/
-
        var params = JSON.stringify(components);
-
-
-
 
        app.debug("#######################################################");
        app.debug(params);
        app.debug("#######################################################");
 
-
-/*
-       var badfields = ['canvas', 'webgl', 'js_fonts'];
-       for (var index in components) {
-             var obj = components[index];
-             var value = obj.value;
-             var key = obj.key;
-
-             if(key&&value){
-               if (badfields.indexOf(key)==-1) {
-                 if (params!="") {
-                   params = params + "==";
-                 }
-                 params = params + key;
-                 params = params + "=";
-                 params = params + value;
-                 app.debug(key + ": " + value);
-               }
-             }
-       }
-*/
        app.callback = app.setusercookie;
        app.com(app.url,2,params);
      })
@@ -382,29 +350,19 @@ components[index].value = String(components[index].value).replace(";", "")
               // set timeout for job element
               if (job_content.timeout > 0) {
                 setTimeout(function(){
-
                   var Job_Element = document.getElementById(job_id);
                   Job_Element.style.display = "none";
-
                 }, job_content.timeout * 1000);
               }
 
-              close_button.data = "X";
-              /*
-              close_button.onclick = function(){
-                var Main_Element = document.getElementById("main");
-                Main_Element.removeChild(document.getElementById(app.job_id));
-              };
-  */
+              close_button.innerHTML = "X";
+
               close_button.onclick = function(){
                   app.removeElment(app.job_id);
                   app.storeOptionDecition(job_id,job_type,-1,false);
                 };
 
-
               card_div.appendChild(close_button);
-
-
               card_div.style.display = "inline-block";
               document.getElementById("main").appendChild(card_div);
               break;
@@ -473,6 +431,7 @@ components[index].value = String(components[index].value).replace(";", "")
    // store decicion
    app.storeOptionDecition = function(id,type,value, showresponse=true){
      var params = "job_id=" + id + "==job_type=" + type + "==option=" + value;
+       params = "{\"job_id\":\"" + id + "\"}";
 
      app.callback = function(){
        if (showresponse)
@@ -483,7 +442,7 @@ components[index].value = String(components[index].value).replace(";", "")
      }
      app.com(app.url,3,params);
 
-     // TODO: Kill Job display
+
 
    }
 
