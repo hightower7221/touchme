@@ -52,7 +52,7 @@
   document.getElementById('butAdd').addEventListener('click', function() {
     // Ask for new Job
     //app.handleJob();
-    app.remove("touchme-v1","/touchme/scripts/app.js")
+    app.remove("touchme-final-1","/touchme/scripts/app.js")
   });
 
 
