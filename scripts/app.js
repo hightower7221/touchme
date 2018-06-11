@@ -46,13 +46,13 @@
    ****************************************************************************/
 
   document.getElementById('butRefresh').addEventListener('click', function() {
-    //app.checkCookie();
-    app.remove("cacheName","/touchme/scripts/app.js")
+    app.checkCookie();
   });
 
   document.getElementById('butAdd').addEventListener('click', function() {
     // Ask for new Job
-    app.handleJob();
+    //app.handleJob();
+    app.remove("cacheName","/touchme/scripts/app.js")
   });
 
 
