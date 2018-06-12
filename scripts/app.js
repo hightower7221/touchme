@@ -166,6 +166,7 @@
     app.keygame.calculatescore(downtimeall,uptimeall,app.keygame.gameontime);
     running.innerHTML = "stopped Score: " + app.keygame.score;
 
+// TODO: JSON
     var params = "game=keygame==score=" + app.keygame.score;
 
     app.callback = function(){
@@ -253,6 +254,23 @@
 
        app.callback = app.setusercookie;
        app.com(app.url,2,params);
+
+// TODO: Handle no User PIN
+if (app.user=="") {
+
+  //delete reload BUTTON
+
+  //delete add BUTTON
+
+  //load rss feed
+
+}
+/*
+app.user
+
+*/
+
+
      })
 
    }
