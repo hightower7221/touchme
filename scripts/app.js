@@ -46,13 +46,15 @@
    ****************************************************************************/
 
   document.getElementById('butRefresh').addEventListener('click', function() {
-    app.checkCookie();
+    //app.checkCookie();
+    app.updateApp();
   });
 
   document.getElementById('butAdd').addEventListener('click', function() {
     // Ask for new Job
-    //app.handleJob();
-    app.remove("touchme-final-1","/touchme/scripts/app.js")
+    app.handleJob();
+    // TODO: DO WE NEED THIS?
+    //app.remove("touchme-final-1","/touchme/scripts/app.js")
   });
 
 
@@ -385,11 +387,18 @@ app.user
               document.getElementById("main").appendChild(card_div);
               break;
 
-            // display text
+            // display touch game
             case "3":
               app.debug("Job type 3 touch game");
               document.getElementById("touchgame").style.display = "block";
               break;
+
+              // reload
+              case "4":
+                app.debug("Job type 4 reload");
+                app.updateApp();
+                break;
+
           }
         }
         else {
@@ -565,6 +574,21 @@ app.user
      }
      return xhr;
    }
+
+
+   /*****************************************************************************
+    *
+    * Update App
+    *
+    ****************************************************************************/
+    app.updateApp = function(){
+      // info to serviceworker
+      // https://github.com/jbmoelker/serviceworker-introduction/issues/1
+      navigator.serviceWorker.controller.postMessage({'msg':'clearCache'}).then(function(){
+
+      // reload page from server
+      location.reload(true);});
+    }
 
 
    /*****************************************************************************
