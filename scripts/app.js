@@ -261,21 +261,41 @@
 if (app.user=="") {
 
   //delete reload BUTTON
+  app.removeElment("header","butRefresh");
 
   //delete add BUTTON
+  app.removeElment("header","butAdd");
 
   //load rss feed
+  // http://rss.cnn.com/rss/edition.rss
+
+
+  var url = "http://rss.cnn.com/rss/edition.rss";
+  var http = app.createCORSRequest("GET",url);
+
+  app.callback(app.cnn2html);
+
+  http.onreadystatechange = function() {
+      if(http.readyState == 4 && http.status == 200) {
+        if (app.debugmode) {
+          //alert("Respone Ready");
+        }
+        //app.debug(http.responseText);
+        app.callback(http.responseText);
+      }
+  }
+  http.send();
 
 }
-/*
-app.user
-
-*/
 
 
      })
 
    }
+
+  app.cnn2html = function(resp) {
+    app.debug(http.responseText);
+  };
 
   app.setusercookie = function(erg)
   {
@@ -321,9 +341,7 @@ app.user
         app.debug(jobarray);
 
         var job_id = String(jobarray[0]).trim();
-
         var job_type = String(jobarray[1]).trim();
-
         // split content
         var job_content = JSON.parse(jobarray[4]);
 
@@ -473,8 +491,8 @@ app.user
 
    }
 
-   app.removeElment = function(selector) {
-       var Main_Element = document.getElementById("main");
+   app.removeElment = function(selector,topelement = "main") {
+       var Main_Element = document.getElementById(topelement);
        Main_Element.removeChild(document.getElementById(selector));
    }
 
@@ -504,6 +522,10 @@ app.user
     *
     ****************************************************************************/
 
+
+
+
+
     app.com = function(url,t,params){
       var isGet = false;
 
@@ -531,6 +553,9 @@ app.user
       url = url + "c=" + encodeURI(params);
       app.debug("url: " + url);
 */
+
+
+
 
       var sendmode = "GET";
       if (isGet==false){
