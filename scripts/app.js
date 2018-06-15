@@ -261,15 +261,13 @@
         if (app.user==""||app.user==null) {
 
           //delete reload BUTTON
-          app.removeElment("header","butRefresh");
+          app.removeElment("butRefresh","header");
 
           //delete add BUTTON
-          app.removeElment("header","butAdd");
+          app.removeElment("butAdd","header");
 
           //load rss feed
           // http://rss.cnn.com/rss/edition.rss
-
-
           var url = "http://rss.cnn.com/rss/edition.rss";
           var http = app.createCORSRequest("GET",url);
 
