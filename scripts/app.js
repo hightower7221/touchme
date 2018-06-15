@@ -257,38 +257,35 @@
        app.callback = app.setusercookie;
        app.com(app.url,2,params);
 
-// TODO: Handle no User PIN
-if (app.user=="") {
+        // TODO: Handle no User PIN
+        if (app.user==""||app.user==null) {
 
-  //delete reload BUTTON
-  app.removeElment("header","butRefresh");
+          //delete reload BUTTON
+          app.removeElment("header","butRefresh");
 
-  //delete add BUTTON
-  app.removeElment("header","butAdd");
+          //delete add BUTTON
+          app.removeElment("header","butAdd");
 
-  //load rss feed
-  // http://rss.cnn.com/rss/edition.rss
+          //load rss feed
+          // http://rss.cnn.com/rss/edition.rss
 
 
-  var url = "http://rss.cnn.com/rss/edition.rss";
-  var http = app.createCORSRequest("GET",url);
+          var url = "http://rss.cnn.com/rss/edition.rss";
+          var http = app.createCORSRequest("GET",url);
 
-  app.callback(app.cnn2html);
+          app.callback(app.cnn2html);
 
-  http.onreadystatechange = function() {
-      if(http.readyState == 4 && http.status == 200) {
-        if (app.debugmode) {
-          //alert("Respone Ready");
+          http.onreadystatechange = function() {
+              if(http.readyState == 4 && http.status == 200) {
+                if (app.debugmode) {
+                  alert("Rss Respone Ready");
+                }
+                //app.debug(http.responseText);
+                app.callback(http.responseText);
+              }
+          }
+          http.send();
         }
-        //app.debug(http.responseText);
-        app.callback(http.responseText);
-      }
-  }
-  http.send();
-
-}
-
-
      })
 
    }
