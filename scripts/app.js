@@ -583,11 +583,17 @@ app.user
     app.updateApp = function(){
       // info to serviceworker
       // https://github.com/jbmoelker/serviceworker-introduction/issues/1
-      navigator.serviceWorker.controller.postMessage({'msg':'clearCache'});
-      window.setTimeout(function(){
-        // reload page from server
-        location.reload(true);
-      },1000);
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.controller.postMessage({'msg':'clearCache'});
+        window.setTimeout(function(){
+          // reload page from server
+          location.reload(true);
+        },1000);
+      }
+      else {
+          app.debug("[ERROR] [app.updateApp] No Serviceworker found!" );
+      }
     }
 
    /*****************************************************************************
