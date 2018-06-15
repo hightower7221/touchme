@@ -4,9 +4,9 @@ var filesToCache = [
   '/touchme/index.html',
   '/touchme/scripts/app.js',
   '/touchme/scripts/fp.js',
-  '/touchme/styles/inline.css'/*,
+  '/touchme/styles/inline.css',
   '/touchme/images/ic_add_white_24px.svg',
-  '/touchme/images/ic_refresh_white_24px.svg'*/
+  '/touchme/images/ic_refresh_white_24px.svg'
 
 ];
 
@@ -27,7 +27,7 @@ self.addEventListener('activate', function(e) {
       return Promise.all(keyList.map(function(key) {
         if (key !== cacheName && key !== dataCacheName) {
           console.log('[ServiceWorker] Removing old cache', key);
-          return caches.delete(key);
+          return cache.delete(key);
         }
       }));
     })
