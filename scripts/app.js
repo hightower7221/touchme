@@ -276,7 +276,7 @@
           picurl = picurl + "Heck! Bamboozled again!</a></blockquote>";
           picurl = picurl + "<script async src=\"//s.imgur.com/min/embed.js\" charset=\"utf-8\"></script>";
 */
-          var picurl = "<img src=\"https://i.imgur.com/jU6K5qF.jpg\">";
+          var picurl = "<img src=\"https://i.imgur.com/jU6K5qF.jpg\" height=\"200\" width=\"200\">";
 
 
 
