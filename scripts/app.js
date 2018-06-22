@@ -168,8 +168,9 @@
     app.keygame.calculatescore(downtimeall,uptimeall,app.keygame.gameontime);
     running.innerHTML = "stopped Score: " + app.keygame.score;
 
-// TODO: JSON
-    var params = "game=keygame==score=" + app.keygame.score;
+
+    //var params = "game=keygame==score=" + app.keygame.score;
+    var params = "{\"game\":\"keygame\",\"score\":\"" + app.keygame.score + "\"}";
 
     app.callback = function(){
       alert("Score noted!");
@@ -493,13 +494,10 @@
      return ergElement;
    }
 
-
-
-
    // store decicion
    app.storeOptionDecition = function(id,type,value, showresponse=true){
-     var params = "job_id=" + id + "==job_type=" + type + "==option=" + value;
-       params = "{\"job_id\":\"" + id + "\"}";
+     //var params = "job_id=" + id + "==job_type=" + type + "==option=" + value;
+     var params = "{\"job_id\":\"" + id + "\",\"job_type\":\"" + type + "\",\"option\":\"" + value + "\"}";
 
      app.callback = function(){
        if (showresponse)
