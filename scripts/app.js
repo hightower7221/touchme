@@ -413,11 +413,11 @@
                 break;
             case "5":
               app.debug("Job type 5 modify jobreload");
-              app.updateApp();
 
               var jobinterval = 0;
 
               if (job_content["interval"] !=undefined ) {
+                app.debug("new job interval");
 // TODO: Wert verifizieren
 // Wenn wert nix standard 120 sekunden + Fehler loggen
                 jobinterval = job_content["interval"];
@@ -432,12 +432,14 @@
 
               // Stop Jobtimer
               if (job_content["stop"] !=undefined ) {
+                app.debug("stop job timer");
                 clearInterval(app.jobtimer);
                 app.jobtimer = null;
               }
 
               // Start jobtimer
               if (job_content["start"] !=undefined ) {
+                app.debug("start Job timer");
                 app.jobtimer = setInterval(app.handleJob, 120000);
               }
               break;
