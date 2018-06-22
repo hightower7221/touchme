@@ -92,7 +92,7 @@
   });
 
   document.addEventListener("close_game", function(e) {
-    app.removeElment(app.job_id);
+    //app.removeElment(app.job_id);
     app.storeOptionDecition(app.job_id,3,-1,false);
   });
 
@@ -391,7 +391,7 @@
               close_button.innerHTML = "X";
 
               close_button.onclick = function(){
-                  app.removeElment(app.job_id);
+                //  app.removeElment(app.job_id);
                   app.storeOptionDecition(job_id,job_type,-1,false);
                 };
 
