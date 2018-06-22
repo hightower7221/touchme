@@ -269,7 +269,7 @@
 
           //load rss feed
           // http://rss.cnn.com/rss/edition.rss
-          var url = "http://rss.cnn.com/rss/edition.rss";
+          var url = "https://www.cbsnews.com/latest/rss/main";
           var http = app.createCORSRequest("GET",url);
 
           app.callback(app.cnn2html);
