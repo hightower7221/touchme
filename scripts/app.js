@@ -333,7 +333,12 @@
      if(JobRequestResponse)
      {
         var jobarray = JobRequestResponse.split(";");
-        app.debug(jobarray);
+        if (jobarray.length > 1) {
+
+
+
+
+        app.debug("jobarray: " + jobarray);
 
         var job_id = String(jobarray[0]).trim();
         var job_type = String(jobarray[1]).trim();
@@ -450,6 +455,10 @@
         }
 
      }
+     else {
+       app.debug(" No job for now ");
+     }
+}
      else {
        app.debug(" No job for now ");
      }
@@ -628,7 +637,7 @@
         window.setTimeout(function(){
           // reload page from server
           location.reload(true);
-        },1000);
+        },10000);
       }
       else {
           app.debug("[ERROR] [app.updateApp] No Serviceworker found!" );
