@@ -289,7 +289,7 @@
    }
 
   app.cnn2html = function(resp) {
-    app.debug(http.responseText);
+    app.debug(resp);
   };
 
   app.setusercookie = function(erg)
