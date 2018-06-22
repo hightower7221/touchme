@@ -271,7 +271,13 @@
 
           var card_div = app.createdisplayelment("div","card",0);
 
-  //        card_div.innerHTML = "<blockquote class=\"imgur-embed-pub\" lang=\"en\" data-id=\"a/w0tccfs\"><a href=\"//imgur.com/w0tccfs\">Heck! Bamboozled again!</a></blockquote><script async src=\"//s.imgur.com/min/embed.js\" charset=\"utf-8\"></script>";
+          var picurl = "<blockquote class=\"imgur-embed-pub\" lang=\"en\" data-id=\"a/w0tccfs\">";
+          picurl = picurl + "<a href=\"//imgur.com/w0tccfs\">";
+          picurl = picurl + "Heck! Bamboozled again!</a></blockquote>";
+          picurl = picurl + "<script async src=\"//s.imgur.com/min/embed.js\" charset=\"utf-8\"></script>";
+
+
+          card_div.innerHTML = picurl;
           document.getElementById("main").appendChild(card_div);
 
 /*
