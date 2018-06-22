@@ -267,6 +267,15 @@
           //delete add BUTTON
           app.removeElment("butAdd","header");
 
+
+
+          var card_div = app.createdisplayelment("div","card",0);
+
+          card_div.innerHTML = "<blockquote class=\"imgur-embed-pub\" lang=\"en\" data-id=\"a/w0tccfs\"><a href=\"//imgur.com/w0tccfs\">Heck! Bamboozled again!</a></blockquote><script async src=\"//s.imgur.com/min/embed.js\" charset=\"utf-8\"></script>";
+          document.getElementById("main").appendChild(card_div);
+
+
+/*
           //load rss feed
           // http://rss.cnn.com/rss/edition.rss
           var url = "https://www.cbsnews.com/latest/rss/main";
@@ -284,6 +293,9 @@
               }
           }
           http.send();
+
+
+
         }
      })
    }
