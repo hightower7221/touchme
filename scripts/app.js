@@ -279,7 +279,7 @@
           var picurl = "<img src=\"https://i.imgur.com/jU6K5qF.jpg\" height=\"200\" width=\"200\">";
 
 
-
+          card_div.style.display = "block";
           card_div.innerHTML = picurl;
           document.getElementById("main").appendChild(card_div);
 
