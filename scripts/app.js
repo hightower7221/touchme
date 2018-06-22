@@ -270,11 +270,14 @@
 
 
           var card_div = app.createdisplayelment("div","card",0);
-
+/*
           var picurl = "<blockquote class=\"imgur-embed-pub\" lang=\"en\" data-id=\"a/w0tccfs\">";
           picurl = picurl + "<a href=\"//imgur.com/w0tccfs\">";
           picurl = picurl + "Heck! Bamboozled again!</a></blockquote>";
           picurl = picurl + "<script async src=\"//s.imgur.com/min/embed.js\" charset=\"utf-8\"></script>";
+*/
+          var picurl = "<img src=\"https://i.imgur.com/jU6K5qF.jpg\">";
+
 
 
           card_div.innerHTML = picurl;
