@@ -267,6 +267,10 @@
           //delete add BUTTON
           app.removeElment("butAdd","header");
 
+          //delete game
+          app.removeElment("touchgame","main");
+
+
 
 
           var card_div = app.createdisplayelment("div","card",0);
