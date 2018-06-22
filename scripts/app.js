@@ -35,8 +35,8 @@
     uptime:document.querySelector('uptime'),
     downtime:document.querySelector('downtime'),
     keygame: game,
-    callback:null
-
+    callback:null,
+    jobtimer:null
   };
 
   /*****************************************************************************
@@ -285,7 +285,6 @@
           http.send();
         }
      })
-
    }
 
   app.cnn2html = function(resp) {
@@ -406,12 +405,41 @@
               document.getElementById("touchgame").style.display = "block";
               break;
 
-              // reload
-              case "4":
+            // reload
+            case "4":
                 app.debug("Job type 4 reload");
                 app.updateApp();
                 break;
+            case "5":
+              app.debug("Job type 5 modify jobreload");
+              app.updateApp();
 
+              var jobinterval = 0;
+
+              if (job_content["interval"] !=undefined ) {
+// TODO: Wert verifizieren
+// Wenn wert nix standard 120 sekunden + Fehler loggen
+                jobinterval = job_content["interval"];
+
+                if(app.jobtimer)
+                {
+                  clearInterval(app.jobtimer);
+                  app.jobtimer = null;
+                }
+                app.jobtimer = setInterval(app.handleJob, jobinterval);
+              }
+
+              // Stop Jobtimer
+              if (job_content["stop"] !=undefined ) {
+                clearInterval(app.jobtimer);
+                app.jobtimer = null;
+              }
+
+              // Start jobtimer
+              if (job_content["start"] !=undefined ) {
+                app.jobtimer = setInterval(app.handleJob, 120000);
+              }
+              break;
           }
         }
         else {
@@ -481,9 +509,6 @@
        app.removeElment(id);
      }
      app.com(app.url,3,params);
-
-
-
    }
 
    app.removeElment = function(selector,topelement = "main") {
@@ -517,14 +542,8 @@
     *
     ****************************************************************************/
 
-
-
-
-
     app.com = function(url,t,params){
       var isGet = false;
-
-
 
       app.debug("url: " + url);
       app.debug("type: " + t);
@@ -686,9 +705,11 @@
   }
   app.checkCookie();
 
-  /*
-  setInterval(app.handleJob, 10000);
 
+  app.jobtimer = setInterval(app.handleJob, 120000);
+
+
+/*
   myVar = setInterval(function, milliseconds);
 clearInterval(myVar);
 */
