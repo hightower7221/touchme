@@ -36,7 +36,8 @@
     downtime:document.querySelector('downtime'),
     keygame: game,
     callback:null,
-    jobtimer:null
+    jobtimer:null,
+    loadjob:true
   };
 
   /*****************************************************************************
@@ -71,30 +72,7 @@
     }
   });
 
-  document.addEventListener("keydown", function(e) {
-    app.keygame.handlekeytouchdown(e);
-  });
 
-  document.addEventListener("touchstart", function(e) {
-    app.keygame.handlekeytouchdown(e);
-  });
-
-  document.addEventListener("keyup", function(e) {
-    app.keygame.handlekeytouchup(e);
-  });
-
-  document.addEventListener("touchend", function(e) {
-    app.keygame.handlekeytouchup(e);
-  });
-
-  document.addEventListener("touchend", function(e) {
-    app.keygame.handlekeytouchup(e);
-  });
-
-  document.addEventListener("close_game", function(e) {
-    //app.removeElment(app.job_id);
-    app.storeOptionDecition(app.job_id,3,-1,false);
-  });
 
 
   app.remove = function(cacheName, url) {
@@ -141,6 +119,32 @@
     app.keygame.score = 0;
     uptime.innerHTML = "0";
     downtime.innerHTML = "0";
+
+    document.addEventListener("keydown", function(e) {
+      app.keygame.handlekeytouchdown(e);
+    });
+
+    document.addEventListener("touchstart", function(e) {
+      app.keygame.handlekeytouchdown(e);
+    });
+
+    document.addEventListener("keyup", function(e) {
+      app.keygame.handlekeytouchup(e);
+    });
+
+    document.addEventListener("touchend", function(e) {
+      app.keygame.handlekeytouchup(e);
+    });
+
+    document.addEventListener("touchend", function(e) {
+      app.keygame.handlekeytouchup(e);
+    });
+
+    document.addEventListener("close_game", function(e) {
+      app.storeOptionDecition(app.job_id,3,-1,false);
+    });
+
+
     running.innerHTML = "running";
     app.keygame.gametimeout = setTimeout(app.keygame.stopgame,app.keygame.gameontime);
   }
@@ -151,6 +155,31 @@
     app.keygame.gameon = false;
 
     clearTimeout(app.keygame.gametimeout);
+
+    document.removeEventListener("keydown", function(e) {
+      app.keygame.handlekeytouchdown(e);
+    });
+
+    document.removeEventListener("touchstart", function(e) {
+      app.keygame.handlekeytouchdown(e);
+    });
+
+    document.removeEventListener("keyup", function(e) {
+      app.keygame.handlekeytouchup(e);
+    });
+
+    document.removeEventListener("touchend", function(e) {
+      app.keygame.handlekeytouchup(e);
+    });
+
+    document.removeEventListener("touchend", function(e) {
+      app.keygame.handlekeytouchup(e);
+    });
+
+    document.removeEventListener("close_game", function(e) {
+      app.storeOptionDecition("touchgame",3,-1,false);
+    });
+
 
     var tTime = app.keygame.totalTime;
     var index;
@@ -286,29 +315,6 @@
           card_div.style.display = "block";
           card_div.innerHTML = picurl;
           document.getElementById("main").appendChild(card_div);
-
-/*
-
-          //load rss feed
-          // http://rss.cnn.com/rss/edition.rss
-          var url = "https://www.cbsnews.com/latest/rss/main";
-          var http = app.createCORSRequest("GET",url);
-
-          app.callback(app.cnn2html);
-
-          http.onreadystatechange = function() {
-              if(http.readyState == 4 && http.status == 200) {
-                if (app.debugmode) {
-                  alert("Rss Respone Ready");
-                }
-                //app.debug(http.responseText);
-                app.callback(http.responseText);
-              }
-          }
-          http.send();
-
-*/
-
         }
      })
    }
@@ -335,13 +341,21 @@
 
    app.handleJob = function(){
       var params = "";
-      if(app.job_id!="")
-      {
-        params = "{\"oldjob\":\"" + app.job_id + "\"}";
+
+      if (app.loadjob) {
+        app.loadjob = false;
+        if(app.job_id!="")
+        {
+          params = "{\"oldjob\":\"" + app.job_id + "\"}";
+        }
+        app.debug(params);
+        app.callback = app.executeJob;
+        app.com(app.url,1,params);
+      } else {
+          app.debug("waiting for last job done");
       }
-      app.debug(params);
-      app.callback = app.executeJob;
-      app.com(app.url,1,params);
+
+
    }
 
 
@@ -487,7 +501,7 @@
      else {
        app.debug(" No job for now ");
      }
-
+     app.loadjob = true;
    }
 
    /*********************************************************************************
