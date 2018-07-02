@@ -423,7 +423,8 @@
 
           if (job_type=="0"||job_type=="1") {
             touchme_div = app.createdisplayelment("div","touchmecell","");
-            touchme_div.appendChild(document.createTextNode(job_content.text));
+            //touchme_div.appendChild(document.createTextNode(job_content.text));
+            touchme_div.innerHTML = job_content.text;
             card_div.appendChild(touchme_div);
           }
 
