@@ -56,9 +56,13 @@
     //  app.handleJob();
     document.getElementById("touchgame").style.display = "block";
 
-    document.addEventListener("close_game", function(e) {
+
+
+ document.getElementById('close_game').addEventListener('click', function() {
+
       app.storeOptionDecition("touchgame",3,-1,false);
-    });    
+      //document.getElementById("touchgame").style.display = "none";
+    });
     // TODO: DO WE NEED THIS?
     //app.remove("touchme-final-1","/touchme/scripts/app.js")
   });
