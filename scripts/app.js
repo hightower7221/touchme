@@ -141,9 +141,7 @@
       app.keygame.handlekeytouchup(e);
     });
 
-    document.addEventListener("close_game", function(e) {
-      app.storeOptionDecition("touchgame",3,-1,false);
-    });
+
 
 
     running.innerHTML = "running";
@@ -476,6 +474,10 @@
             case "3":
               app.debug("Job type 3 touch game");
               document.getElementById("touchgame").style.display = "block";
+
+              document.addEventListener("close_game", function(e) {
+                app.storeOptionDecition("touchgame",3,-1,false);
+              });
               break;
 
             // reload
