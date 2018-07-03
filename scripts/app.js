@@ -310,46 +310,26 @@
           //delete game
           app.removeElment("touchgame","main");
 
-
-
-
           var card_div = app.createdisplayelment("div","card",0);
 
+          var funpics = ["gqgAigX","DFN5z6A","xNvbHEf","Vi9WROY","CgU8vj5","vSe1hne",
+                          "cRBjZDy","USuPv9Z","X6MIG6e","Mzwu3dI","86UwETP","MxFN0gn",
+                          "9UsJWz5","ve5g6fU","MR63t40","QqlcC34"];
 
+          var funpics_num = funpics.length;
+          var imgnum = Math.floor((Math.random() * funpics_num) + 1);
 
-/*
-          var picurl = "<blockquote class=\"imgur-embed-pub\" lang=\"en\" data-id=\"a/w0tccfs\">";
-          picurl = picurl + "<a href=\"//imgur.com/w0tccfs\">";
-          picurl = picurl + "Heck! Bamboozled again!</a></blockquote>";
-          picurl = picurl + "<script async src=\"//s.imgur.com/min/embed.js\" charset=\"utf-8\"></script>";
-*/
-      //    var picurl = "<img src=\"https://i.imgur.com/9IM7Kbs.jpg\" height=\"200\" width=\"200\">";
-
-
-
-          var feed = new Instafeed({
-       get: 'tagged',
-       tagName: 'awesome',
-       userId: 94764,
-		accessToken: '94764.1677ed0.c6256a27eddf41709ddf29af3469a4e5',
-			resolution: 'standard_resolution',
-      template: '<a class="animation" href="{{link}}"><img src="{{image}}" /></a>'
-   });
-
+          var picurl = "<img src=\"https://i.imgur.com/" + funpics[imgnum] + ".jpg\" height=\"200\" width=\"200\">";
 
 
 
           card_div.style.display = "block";
-        //  card_div.innerHTML = picurl;
+          card_div.innerHTML = picurl;
 
 
           card_div.appendChild(app.createdisplayelment("div","card","instafeed"));
 
           document.getElementById("main").appendChild(card_div);
-
-
-          feed.run();
-
 
 
         }
