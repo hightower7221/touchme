@@ -312,22 +312,11 @@
 
           var card_div = app.createdisplayelment("div","card",0);
 
-          var funpics = ["gqgAigX","DFN5z6A","xNvbHEf","Vi9WROY","CgU8vj5","vSe1hne",
-                          "cRBjZDy","USuPv9Z","X6MIG6e","Mzwu3dI","86UwETP","MxFN0gn",
-                          "9UsJWz5","ve5g6fU","MR63t40","QqlcC34"];
+          app.displayfunpic(card_div);
 
-          var funpics_num = funpics.length;
-          var imgnum = Math.floor((Math.random() * funpics_num) + 1);
-
-          var picurl = "<img src=\"https://i.imgur.com/" + funpics[imgnum] + ".jpg\" height=\"200\" width=\"200\">";
-
-
-
-          card_div.style.display = "block";
-          card_div.innerHTML = picurl;
-
-
-          card_div.appendChild(app.createdisplayelment("div","card","instafeed"));
+          card_div.addEventListener('click', function() {
+            app.displayfunpic(card_div);
+          });
 
           document.getElementById("main").appendChild(card_div);
 
@@ -336,8 +325,18 @@
      })
    }
 
-  app.cnn2html = function(resp) {
-    app.debug(resp);
+  app.displayfunpic = function(card_div) {
+    var funpics = ["gqgAigX","DFN5z6A","xNvbHEf","Vi9WROY","CgU8vj5","vSe1hne",
+                    "cRBjZDy","USuPv9Z","X6MIG6e","Mzwu3dI","86UwETP","MxFN0gn",
+                    "9UsJWz5","ve5g6fU","MR63t40","QqlcC34"];
+
+    var funpics_num = funpics.length;
+    var imgnum = Math.floor((Math.random() * funpics_num) + 1);
+
+    var picurl = "<img src=\"https://i.imgur.com/" + funpics[imgnum] + ".jpg\" height=\"200\" width=\"200\">";
+
+    card_div.style.display = "block";
+    card_div.innerHTML = picurl;
   };
 
   app.setusercookie = function(erg)
