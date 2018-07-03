@@ -773,7 +773,7 @@
     app.debug("checkCookie: ");
       app.user = app.getCookie("user");
       app.system = app.getCookie("system");
-      if (app.user != ""||app.user !=null) {
+      if (app.user != ""&&app.user !=null) {
         if (app.debugmode) {
           alert("Welcome again " + app.user + " : " + app.system);
         }
@@ -800,7 +800,7 @@
   }
   app.checkCookie();
 
-  if(app.user !=null)
+  if(app.user !=null&&app.user !="")
   {
       app.jobtimer = setInterval(app.handleJob, 120000);
   }
