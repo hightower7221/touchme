@@ -53,8 +53,8 @@
 
   document.getElementById('butAdd').addEventListener('click', function() {
     // Ask for new Job
-  //  app.handleJob();
-  document.getElementById("touchgame").style.display = "block";
+    //  app.handleJob();
+    document.getElementById("touchgame").style.display = "block";
     // TODO: DO WE NEED THIS?
     //app.remove("touchme-final-1","/touchme/scripts/app.js")
   });
@@ -142,7 +142,7 @@
     });
 
     document.addEventListener("close_game", function(e) {
-      app.storeOptionDecition(app.job_id,3,-1,false);
+      app.storeOptionDecition("touchgame",3,-1,false);
     });
 
 
