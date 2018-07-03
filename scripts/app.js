@@ -55,6 +55,10 @@
     // Ask for new Job
     //  app.handleJob();
     document.getElementById("touchgame").style.display = "block";
+
+    document.addEventListener("close_game", function(e) {
+      app.storeOptionDecition("touchgame",3,-1,false);
+    });    
     // TODO: DO WE NEED THIS?
     //app.remove("touchme-final-1","/touchme/scripts/app.js")
   });
