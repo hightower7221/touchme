@@ -56,12 +56,8 @@
     //  app.handleJob();
     document.getElementById("touchgame").style.display = "block";
 
-
-
- document.getElementById('close_game').addEventListener('click', function() {
-
+    document.getElementById('close_game').addEventListener('click', function() {
       app.storeOptionDecition("touchgame",3,-1,false);
-      //document.getElementById("touchgame").style.display = "none";
     });
     // TODO: DO WE NEED THIS?
     //app.remove("touchme-final-1","/touchme/scripts/app.js")
@@ -121,6 +117,14 @@
       app.keygame.calculatestatus(duration,500);
     }
 
+  }
+
+
+  app.keygame.displaygame = function	(){
+    document.getElementById("touchgame").style.display = "block";
+    document.getElementById('close_game').addEventListener('click', function() {
+      app.storeOptionDecition("touchgame",3,-1,false);
+    });
   }
 
   app.keygame.startgame = function	(){
@@ -481,11 +485,16 @@
             // display touch game
             case "3":
               app.debug("Job type 3 touch game");
+
+
+              /*
               document.getElementById("touchgame").style.display = "block";
 
               document.addEventListener("close_game", function(e) {
                 app.storeOptionDecition("touchgame",3,-1,false);
               });
+              */
+              app.keygame.displaygame();
               break;
 
             // reload
