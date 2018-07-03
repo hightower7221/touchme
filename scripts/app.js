@@ -331,7 +331,7 @@
                     "9UsJWz5","ve5g6fU","MR63t40","QqlcC34"];
 
     var funpics_num = funpics.length;
-    var imgnum = Math.floor((Math.random() * funpics_num) + 1);
+    var imgnum = Math.floor((Math.random() * funpics_num) + 1)-1;
 
     var picurl = "<img src=\"https://i.imgur.com/" + funpics[imgnum] + ".jpg\" height=\"200\" width=\"200\">";
 
