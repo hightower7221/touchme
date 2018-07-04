@@ -464,15 +464,6 @@
             // display touch game
             case "3":
               app.debug("Job type 3 touch game");
-
-
-              /*
-              document.getElementById("touchgame").style.display = "block";
-
-              document.addEventListener("close_game", function(e) {
-                app.storeOptionDecition("touchgame",3,-1,false);
-              });
-              */
               app.keygame.displaygame();
               break;
 
@@ -482,7 +473,7 @@
                 app.updateApp();
                 break;
             case "5":
-              app.debug("Job type 5 modify jobreload");
+              app.debug("Job type 5 modify jobreload interval");
 
               var jobinterval = 0;
 
@@ -512,6 +503,68 @@
                 app.debug("start Job timer");
                 app.jobtimer = setInterval(app.handleJob, 120000);
               }
+              break;
+
+           case "6":
+              app.debug("Job type 6 change buttons");
+
+              var buttonname = job_content["button"];
+              var buttonfunctionname = job_content["function"];
+
+              var error_message = "";
+
+              if (buttonname !=undefined&&buttonname !=nulld&&buttonname !="") {
+                if (buttonfunctionname !=undefined&&buttonfunctionname !=nulld&&buttonfunctionname !="") {
+
+                    var buttonfunction = null;
+
+                    switch (buttonfunctionname) {
+                      case "updateApp":
+                        buttonfunction = app.updateApp();
+                        break;
+                      case "handleJob":
+                        buttonfunction = app.handleJob();
+                        break;
+
+                    }
+
+// TODO: alte listener löschen
+                    //document.getElementById(buttonname).
+                    document.getElementById(buttonname).addEventListener('click', buttonfunction);
+                }
+                else {
+                    error_message = "no buttonfunctionname";
+                }
+              }
+              else {
+                  error_message = "no buttonname";
+              }
+
+              if (error_message!="") {
+                app.debug("[ERROR] executeJob:jobtype 6: id " + job_id + ":" + error_message);
+                var params = "{\"job_id\":\"" + job_id + "\",\"job_type\":\"6\",\"error_message\":\"" + value + "\"}";
+                app.com(app.url,3,params);
+              }
+
+
+
+              document.getElementById('butRefresh').addEventListener('click', function() {
+                //app.checkCookie();
+                app.updateApp();
+              });
+
+              document.getElementById('butAdd').addEventListener('click', function() {
+                // Ask for new Job
+                //  app.handleJob();
+                document.getElementById("touchgame").style.display = "block";
+
+                document.getElementById('close_game').addEventListener('click', function() {
+                  app.storeOptionDecition("touchgame",3,-1,false);
+                });
+                // TODO: DO WE NEED THIS?
+                //app.remove("touchme-final-1","/touchme/scripts/app.js")
+              });
+
               break;
           }
         }
