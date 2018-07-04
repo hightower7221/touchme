@@ -19,7 +19,7 @@
 
   var app = {
     isLoading:true,
-    debugmode:true,
+    debugmode:false,
     user:"",
     system:"",
     //url: "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php",
@@ -47,7 +47,6 @@
    ****************************************************************************/
 
   document.getElementById('butRefresh').addEventListener('click', function() {
-    //app.checkCookie();
     app.updateApp();
   });
 
@@ -59,8 +58,6 @@
     document.getElementById('close_game').addEventListener('click', function() {
       app.storeOptionDecition("touchgame",3,-1,false);
     });
-    // TODO: DO WE NEED THIS?
-    //app.remove("touchme-final-1","/touchme/scripts/app.js")
   });
 
 
@@ -709,9 +706,10 @@
       http.onreadystatechange = function() {
           if(http.readyState == 4 && http.status == 200) {
             if (app.debugmode) {
-              alert("Respone Ready");
+              //alert("Respone Ready");
+              app.debug(http.responseText);
             }
-            app.debug(http.responseText);
+            
             app.callback(http.responseText);
           }
       }
