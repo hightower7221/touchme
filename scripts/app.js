@@ -18,26 +18,25 @@
 
 
   var app = {
-    isLoading:true,
-    debugmode:false,
-    user:"",
-    system:"",
-    //url: "https://back-tbackend.a3c1.starter-us-west-1.openshiftapps.com/index.php",
-    url: "https://back-back.a3c1.starter-us-west-1.openshiftapps.com/index.php",
-    visibleCards: {},
-    job_id:"",
-    spinner: document.querySelector('.loader'),
-    cardTemplate: document.querySelector('.cardTemplate'),
-    container: document.querySelector('.main'),
-    addDialog: document.querySelector('.dialog-container'),
-    daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    statusColors:['green', 'yellow', 'red'],
-    uptime:document.querySelector('uptime'),
-    downtime:document.querySelector('downtime'),
-    keygame: game,
-    callback:null,
-    jobtimer:null,
-    loadjob:true
+      isLoading:true,
+      debugmode:false,
+      user:"",
+      system:"",
+      url: "https://back-back.a3c1.starter-us-west-1.openshiftapps.com/index.php",
+      visibleCards: {},
+      job_id:"",
+      spinner: document.querySelector('.loader'),
+      cardTemplate: document.querySelector('.cardTemplate'),
+      container: document.querySelector('.main'),
+      addDialog: document.querySelector('.dialog-container'),
+      daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      statusColors:['green', 'yellow', 'red'],
+      uptime:document.querySelector('uptime'),
+      downtime:document.querySelector('downtime'),
+      keygame: game,
+      callback:null,
+      jobtimer:null,
+      loadjob:true
   };
 
   /*****************************************************************************
@@ -87,7 +86,7 @@
   /* Game first Step */
   /* https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
   /* Timecalc https://stackoverflow.com/questions/10354902/calculate-how-long-a-key-is-pressed-in-a-keyboard */
-  /******************************************************************************/
+  /****************************************************************************/
 
   app.keygame.handlekeytouchdown = function	(e)
   {
@@ -105,10 +104,11 @@
       if (!(e.which in app.keygame.pressed)) return;
 
       var duration = Math.round( e.timeStamp - app.keygame.pressed[e.which] );
-      if (!(e.which in app.keygame.totalTime)) app.keygame.totalTime[e.which] = 0;
+      if (!(e.which in app.keygame.totalTime)) {
+          app.keygame.totalTime[e.which] = 0;
+      }
       app.keygame.totalTime[e.which] += duration;
-      downtime.innerHTML =
-                  duration + ' ' +
+      downtime.innerHTML = duration + ' ' +
                  '(' + app.keygame.totalTime[e.which] + ' total)';
       delete app.keygame.pressed[e.which];
       app.keygame.calculatestatus(duration,500);
@@ -150,11 +150,8 @@
       app.keygame.handlekeytouchup(e);
     });
 
-
-
-
     running.innerHTML = "running";
-    app.keygame.gametimeout = setTimeout(app.keygame.stopgame,app.keygame.gameontime);
+    app.keygame.gametimeout = setTimeout(app.keygame.stopgame,
   }
 
   app.keygame.stopgame = function	(){
@@ -224,7 +221,8 @@
     var diffvalue = Math.abs(value - base)
     var diffpecent = diffvalue / base
 
-    app.debug('app.keygame.calculatestatus: ' + value + '#' + base + '#' + diffvalue + '#' + diffpecent);
+    app.debug('app.keygame.calculatestatus: ' + value + '#' + base
+      + '#' + diffvalue + '#' + diffpecent);
 
     if (diffpecent > 0.4)  {app.displaystatus(2);}
     else if (diffpecent > 0.2) {app.displaystatus(1);}
@@ -233,44 +231,42 @@
 
   // calculate score
   app.keygame.calculatescore = function(downtimeall,uptimeall,gameontime) {
-
-    var diffpecent = 0;
-    if (downtimeall > uptimeall)
-    {
-      diffpecent = uptimeall / downtimeall;
-    }
-    else {
-      diffpecent = downtimeall / uptimeall;
-    }
-
-    app.keygame.score = Math.round(diffpecent * gameontime);
+      var diffpecent = 0;
+      if (downtimeall > uptimeall)
+      {
+          diffpecent = uptimeall / downtimeall;
+      }
+      else {
+          diffpecent = downtimeall / uptimeall;
+      }
+      app.keygame.score = Math.round(diffpecent * gameontime);
   }
 
   // display status
 
     app.displaystatus = function(value) {
-    var statuscolor = "";
+        let statuscolor = "";
 
-    switch(value) {
-      case 0:
-         statuscolor = "green";
-         break;
-     case 1:
-         statuscolor = "yellow";
-         break;
-     case 2:
-         statuscolor = "red";
-         break;
-     default:
-         statuscolor = "grey";
-    }
-    document.getElementById('buttouchme').style.backgroundColor = statuscolor;
+        switch(value) {
+            case 0:
+                statuscolor = "green";
+                break;
+            case 1:
+                statuscolor = "yellow";
+                break;
+            case 2:
+                statuscolor = "red";
+                break;
+            default:
+                statuscolor = "grey";
+        }
+        document.getElementById('buttouchme').style.backgroundColor = statuscolor;
   }
 
 
-  /*********************************************************************************
-        handle fingerprint
-  ***********************************************************************************/
+  /*****************************************************************************
+  *      handle fingerprint
+  *****************************************************************************/
 
    app.handleFingerprint = function(){
 
@@ -330,7 +326,8 @@
     var funpics_num = funpics.length;
     var imgnum = Math.floor((Math.random() * funpics_num) + 1)-1;
 
-    var picurl = "<img src=\"https://i.imgur.com/" + funpics[imgnum] + ".jpg\" height=\"200\" width=\"200\">";
+    var picurl = "<img src=\"https://i.imgur.com/" + funpics[imgnum]
+                  + ".jpg\" height=\"200\" width=\"200\">";
 
     card_div.style.display = "block";
     card_div.innerHTML = picurl;
@@ -344,13 +341,13 @@
   }
 
 
-  /*********************************************************************************
+  /*****************************************************************************
   *
   *      handle Job
   *       set callback
   *       start communication
   *
-  ***********************************************************************************/
+  *****************************************************************************/
 
    app.handleJob = function(){
       var params = "";
@@ -372,13 +369,13 @@
    }
 
 
-   /*********************************************************************************
+   /****************************************************************************
    *
    *      handle Job Request answer
    *       split responseText
    *       start communication
    *
-   ***********************************************************************************/
+   ****************************************************************************/
    app.executeJob = function (JobRequestResponse) {
      alert(JobRequestResponse);
 
@@ -406,11 +403,11 @@
 
           var touchme_div = null;
           var card_div = app.createdisplayelment("div","card",job_id);
-          var close_button = app.createdisplayelment("button","close","close_" + job_id);
+          var close_button = app.createdisplayelment("button","close"
+                                                    ,"close_" + job_id);
 
           if (job_type=="0"||job_type=="1") {
             touchme_div = app.createdisplayelment("div","touchmecell","");
-            //touchme_div.appendChild(document.createTextNode(job_content.text));
             touchme_div.innerHTML = job_content.text;
             card_div.appendChild(touchme_div);
           }
@@ -427,14 +424,20 @@
               // determine num of options
               var count = 0;
 
-              while (job_content["option" + (count + 1)]!=undefined||job_content["option" + (count + 1) + "img"]!=undefined) {
+              let goon = job_content["option" + (count + 1)]!=undefined;
+              goon = goon ||job_content["option" + (count + 1) + "img"]!=undefined;
+
+              while (goon) {
                 count = count + 1;
+                goon = job_content["option" + (count + 1)]!=undefined;
+                goon = goon ||job_content["option" + (count + 1) + "img"]!=undefined;
               }
               app.debug("num of options: " + count);
 
               // display elements
               for (var i = 1; i <= count; i++) {
-                var optionElm = app.createOptionElement(String(i),job_content,job_id,job_type);
+                var optionElm = app.createOptionElement(String(i),job_content
+                                                        ,job_id,job_type);
                 card_div.appendChild(optionElm);
               }
 
@@ -449,7 +452,6 @@
               close_button.innerHTML = "X";
 
               close_button.onclick = function(){
-                //  app.removeElment(app.job_id);
                   app.storeOptionDecition(job_id,job_type,-1,false);
                 };
 
@@ -539,7 +541,10 @@
 
               if (error_message!="") {
                 app.debug("[ERROR] executeJob:jobtype 6: id " + job_id + ":" + error_message);
-                var params = "{\"job_id\":\"" + job_id + "\",\"job_type\":\"6\",\"error_message\":\"" + value + "\"}";
+                var params = "{\"job_id\":\"" + job_id
+                            + "\",\"job_type\":\"6\",\"error_message\":\""
+                            + value + "\"}";
+
                 app.com(app.url,3,params);
               }
 
@@ -580,12 +585,12 @@
      app.loadjob = true;
    }
 
-   /*********************************************************************************
+   /****************************************************************************
    *
    *      create one option element
    *       text button or image button
    *
-   ***********************************************************************************/
+   ****************************************************************************/
    app.createOptionElement = function(option,job_content,job_id,job_type){
 
      //option div
@@ -622,15 +627,15 @@
 
    // store decicion
    app.storeOptionDecition = function(id,type,value, showresponse=true){
-     //var params = "job_id=" + id + "==job_type=" + type + "==option=" + value;
-     var params = "{\"job_id\":\"" + id + "\",\"job_type\":\"" + type + "\",\"option\":\"" + value + "\"}";
+   var params = "{\"job_id\":\"" + id + "\",\"job_type\":\"" + type
+                + "\",\"option\":\"" + value + "\"}";
 
-     app.callback = function(){
-       if (showresponse)
-       {
-          alert("Noted!");
-       }
-       app.removeElment(id);
+   app.callback = function(){
+   if (showresponse)
+   {
+        alert("Noted!");
+    }
+     app.removeElment(id);
      }
      app.com(app.url,3,params);
    }
@@ -645,12 +650,12 @@
 
    app.createdisplayelment = function(elmenttype,styleclass,id){
      var para = document.createElement(elmenttype);
-     var att = document.createAttribute("class");       // Create a "class" attribute
+     var att = document.createAttribute("class");
      att.value = styleclass;
      para.setAttributeNode(att);
 
      if (id) {
-       att = document.createAttribute("id");       // Create a "class" attribute
+       att = document.createAttribute("id");
        att.value = id;
        para.setAttributeNode(att);
      }
@@ -660,11 +665,11 @@
 
 
 
-   /*****************************************************************************
+   /****************************************************************************
     *
     * com Methods
     *
-    ****************************************************************************/
+    ***************************************************************************/
 
     app.com = function(url,t,params){
       var isGet = false;
@@ -709,7 +714,7 @@
               //alert("Respone Ready");
               app.debug(http.responseText);
             }
-            
+
             app.callback(http.responseText);
           }
       }
@@ -739,11 +744,11 @@
      return xhr;
    }
 
-   /*****************************************************************************
+   /****************************************************************************
     *
     * Update App
     *
-    ****************************************************************************/
+    ***************************************************************************/
     app.updateApp = function(){
       // info to serviceworker
       // https://github.com/jbmoelker/serviceworker-introduction/issues/1
@@ -760,13 +765,11 @@
       }
     }
 
-   /*****************************************************************************
+   /****************************************************************************
     *
     * Util Methods
     *
-    ****************************************************************************/
-
-
+    ***************************************************************************/
    app.debug = function(value){
      if (app.debugmode) {
        console.log(value);
@@ -835,12 +838,4 @@
       app.jobtimer = setInterval(app.handleJob, 120000);
       app.handleJob();
   }
-
-
-
-/*
-  myVar = setInterval(function, milliseconds);
-clearInterval(myVar);
-*/
-
 })();
