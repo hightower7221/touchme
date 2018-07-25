@@ -45,19 +45,7 @@
    *
    ****************************************************************************/
 
-  document.getElementById('butRefresh').addEventListener('click', function() {
-    app.updateApp();
-  });
 
-  document.getElementById('butAdd').addEventListener('click', function() {
-    // Ask for new Job
-    //  app.handleJob();
-    document.getElementById("touchgame").style.display = "block";
-
-    document.getElementById('close_game').addEventListener('click', function() {
-      app.storeOptionDecition("touchgame",3,-1,false);
-    });
-  });
 
 
 
@@ -74,7 +62,21 @@
   });
 
 
+  app.initbuttons = function(){
+      document.getElementById('butRefresh').addEventListener('click', function() {
+        app.updateApp();
+      });
 
+      document.getElementById('butAdd').addEventListener('click', function() {
+        // Ask for new Job
+        //  app.handleJob();
+        document.getElementById("touchgame").style.display = "block";
+
+        document.getElementById('close_game').addEventListener('click', function() {
+          app.storeOptionDecition("touchgame",3,-1,false);
+        });
+      });
+  }
 
   app.remove = function(cacheName, url) {
   return window.caches.open(cacheName).then(function(cache) {
@@ -113,9 +115,7 @@
       delete app.keygame.pressed[e.which];
       app.keygame.calculatestatus(duration,500);
     }
-
   }
-
 
   app.keygame.displaygame = function	(){
     document.getElementById("touchgame").style.display = "block";
@@ -312,8 +312,9 @@
           });
 
           document.getElementById("main").appendChild(card_div);
-
-
+        }
+        else {
+            app.initbuttons();
         }
      })
    }
@@ -377,7 +378,7 @@
    *
    ****************************************************************************/
    app.executeJob = function (JobRequestResponse) {
-     alert(JobRequestResponse);
+     //alert(JobRequestResponse);
 
      if(JobRequestResponse)
      {
@@ -808,7 +809,7 @@
       app.system = app.getCookie("system");
       if (app.user != ""&&app.user !=null) {
         if (app.debugmode) {
-          alert("Welcome again " + app.user + " : " + app.system);
+          alert("Welcome again " + app.user + " : ");
         }
       } else {
 
