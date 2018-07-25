@@ -151,7 +151,7 @@
     });
 
     running.innerHTML = "running";
-    app.keygame.gametimeout = setTimeout(app.keygame.stopgame,
+    app.keygame.gametimeout = setTimeout(app.keygame.stopgame,20);
   }
 
   app.keygame.stopgame = function	(){
