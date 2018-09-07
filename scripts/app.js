@@ -17,12 +17,17 @@
   };
 
 
+
+//https://back-back.a3c1.starter-us-west-1.openshiftapps.com/index.php
+
+
+
   var app = {
       isLoading:true,
       debugmode:false,
       user:"",
       system:"",
-      url: "https://back-back.a3c1.starter-us-west-1.openshiftapps.com/index.php",
+      url: "http://54.154.201.116/phpbackend/index.php",
       visibleCards: {},
       job_id:"",
       spinner: document.querySelector('.loader'),
