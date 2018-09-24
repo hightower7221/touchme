@@ -293,6 +293,9 @@
        app.debug(params);
        app.debug("#######################################################");
 
+
+
+       app.setusercookie();
        app.callback = app.setusercookie;
        app.com(app.url,2,params);
 
@@ -817,9 +820,7 @@
           alert("Welcome again " + app.user + " : ");
         }
       } else {
-
           app.handleFingerprint();
-
       }
   }
 
