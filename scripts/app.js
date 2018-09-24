@@ -27,7 +27,7 @@
       debugmode:false,
       user:"",
       system:"",
-      url: "http://54.154.201.116/phpbackend/index.php",
+      url: "https://back-backend.a3c1.starter-us-west-1.openshiftapps.com/index.php",
       visibleCards: {},
       job_id:"",
       spinner: document.querySelector('.loader'),
