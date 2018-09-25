@@ -324,6 +324,8 @@
         else {
             app.initbuttons();
             document.getElementById('main').style.backgroundImage = "url('images/grid.jpg')";
+            document.getElementById("main").style.backgroundSize = "cover";
+
         }
      })
    }
