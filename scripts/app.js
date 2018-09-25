@@ -323,6 +323,7 @@
         }
         else {
             app.initbuttons();
+            document.getElementById('main').style.backgroundimage = "images/grid.jpg";
         }
      })
    }
