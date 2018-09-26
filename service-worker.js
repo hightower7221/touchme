@@ -37,6 +37,7 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('message',  function(e) {
+  console.log('[ServiceWorker] message received');
   if(e.data.msg == "clearCache")
   {
       e.waitUntil(

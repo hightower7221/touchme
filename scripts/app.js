@@ -766,7 +766,7 @@
       // https://github.com/jbmoelker/serviceworker-introduction/issues/1
 
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.controller.postMessage({'msg':'clearCache'});
+        navigator.serviceWorker.controller.postMessage({'message':'clearCache'});
         window.setTimeout(function(){
           // reload page from server
           location.reload(true);
@@ -822,6 +822,8 @@
         if (app.debugmode) {
           alert("Welcome again " + app.user + " : ");
         }
+        document.getElementById('main').style.backgroundImage = "url('images/grid.jpg')";
+        document.getElementById("main").style.backgroundSize = "cover";
       } else {
           app.handleFingerprint();
       }

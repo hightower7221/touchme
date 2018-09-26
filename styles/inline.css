@@ -118,47 +118,6 @@ body {
     }
 
 
-    .s1 {
-      float: left;
-      width: 50px;
-      height: 40px;
-      background: url(../images/smiley.png);
-      background-size: 480%;
-      background-repeat: no-repeat;
-      background-position-x: -50px;
-      background-position-y: -10px;
-       }
-
-  .s2 {
-    float: left;
-    width: 50px;
-    height: 40px;
-    background: url(../images/smiley.png);
-    background-size: 480%;
-    background-repeat: no-repeat;
-    background-position-x: 0px;
-    background-position-y: -143px;
-      }
-  .s3 {
-    float: left;
-    width: 50px;
-    height: 40px;
-    background: url(../images/smiley.png);
-    background-size: 480%;
-    background-repeat: no-repeat;
-    background-position-x: -182px;
-    background-position-y: -55px;
-                 }
-  .s4 {
-    float: left;
-    width: 50px;
-    height: 40px;
-    background: url(./images/smiley.png);
-    background-size: 480%;
-    background-repeat: no-repeat;
-    background-position-x: -200px;
-    background-position-y: -10px;
-    }
 
 
 
