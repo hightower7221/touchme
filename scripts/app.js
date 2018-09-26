@@ -847,7 +847,7 @@
 
   if(app.user !=null&&app.user !="")
   {
-      app.jobtimer = setInterval(app.handleJob, 120000);
+      app.jobtimer = setInterval(app.handleJob, 60000);
       app.handleJob();
   }
 })();
