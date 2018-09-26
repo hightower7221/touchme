@@ -457,7 +457,8 @@
               if (job_content.timeout > 0) {
                 setTimeout(function(){
                   var Job_Element = document.getElementById(job_id);
-                  Job_Element.style.display = "none";
+                  if(Job_Element.style!=null)
+                  {Job_Element.style.display = "none";}
                 }, job_content.timeout * 1000);
               }
 
@@ -766,7 +767,8 @@
       // https://github.com/jbmoelker/serviceworker-introduction/issues/1
 
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.controller.postMessage({'message':'clearCache'});
+        //navigator.serviceWorker.controller.postMessage({'message':'clearCache'});
+        navigator.serviceWorker.controller.postMessage('clearCache');
         window.setTimeout(function(){
           // reload page from server
           location.reload(true);

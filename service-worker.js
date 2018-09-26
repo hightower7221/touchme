@@ -5,6 +5,7 @@ var filesToCache = [
   '/touchme/scripts/app.js',
   '/touchme/scripts/fp.js',
   '/touchme/styles/inline.css',
+  '/touchme/images/grid.jpg',
   '/touchme/images/ic_add_white_24px.svg',
   '/touchme/images/ic_refresh_white_24px.svg'
 
